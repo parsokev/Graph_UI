@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="viewArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>781</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="geometry">
+      <rect>
+       <x>-20</x>
+       <y>-20</y>
+       <width>811</width>
+       <height>581</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>809</width>
+        <height>579</height>
+       </rect>
+      </property>
+      <widget class="QGroupBox" name="fileSelectBox">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>10</y>
+         <width>721</width>
+         <height>321</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+ border: 1px solid black;
+	background-color: rgb(199, 199, 199);
+	background-color: rgb(170, 170, 255);
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+       <widget class="QToolButton" name="openButton">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>70</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a text file containing the specified format of  `vertex1, vertex2, distance/cost value` for each unique edge present in the graph to be processed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	border: 1px solid black;
+	
+	background-color: rgb(210, 210, 210);
+	font: 700 9pt &quot;Arial&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Select Text File</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="selectedFileText">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>70</y>
+          <width>401</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPlainTextEdit {
+border: 1px solid black;
+}
+</string>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
+        </property>
+        <property name="backgroundVisible">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="fileSelectTitle">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>30</y>
+          <width>311</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+	color: maroon;
+	font: 12pt &quot;Javanese Text&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Select A Text File to Process</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::TextFormat::RichText</enum>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="estimateVertexButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>200</y>
+          <width>331</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Program will estimate total number of unique verticies based on a preset graph density and the number of edges detected in selected text file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+	font: 700 10pt &quot;Arial&quot;;
+	color: rgb(0, 85, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>Have Program Estimate (Based on Selected File)</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="manualVertexButton">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>200</y>
+          <width>191</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Program will accept a manually-entered value provided by user&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+	font: 700 10pt &quot;Arial&quot;;
+	color: rgb(0, 85, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>Provide Manually</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="manualVertexEntry">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>240</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
+        </property>
+        <property name="showGroupSeparator" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>5</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="manualVertexTitle">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>220</y>
+          <width>221</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+	font: 10pt &quot;Javanese Text&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Enter the Total Number of Verticies:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="vertexSelectTitle">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>150</y>
+          <width>491</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+	color: maroon;
+	font: 12pt &quot;Javanese Text&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Select Method for Estimating Total Number of Graph Verticies</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="Line" name="line">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>120</y>
+          <width>731</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="confirmFileButton">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>280</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Submit text file for processing and organizing graph information for generating pathing solutions&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	font: 9pt &quot;Franklin Gothic Medium&quot;;
+	border: 1px solid firebrick;
+	background-color: rgb(230, 230, 230);
+}</string>
+        </property>
+        <property name="text">
+         <string>Confirm File Information</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="progressLabel">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>220</y>
+          <width>281</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	color: rgb(85, 255, 0);
+	font: 700 italic 10pt &quot;Calibri&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step1Label">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>30</y>
+          <width>21</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	border: 1px solid darkslategrey;
+	font: 12pt &quot;Verdana&quot;;
+	color: green;
+	background-color: rgb(214, 107, 0);
+}</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::Box</enum>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step2Label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>150</y>
+          <width>21</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	border: 1px solid darkslategrey;
+	font: 12pt &quot;Verdana&quot;;
+	color: green;
+	background-color: rgb(214, 107, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="fileNotificationLabel">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>106</y>
+          <width>401</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	font: italic 10pt &quot;Calibri&quot;;
+	color: crimson;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="fileConfirmationLabel">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>180</y>
+          <width>681</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	font: 600 italic 9pt &quot;Lucida Sans&quot;;
+	color: navajowhite;
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="solutionSelectBox">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>330</y>
+         <width>721</width>
+         <height>181</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	background-color: rgb(170, 170, 255);
+	border: 1px solid black;
+}</string>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="solutionSelectTitle">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>20</y>
+          <width>331</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+	color: maroon;
+	font: 12pt &quot;Javanese Text&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Select Graphical Solution Type</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="shortestPathButton">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>60</y>
+          <width>141</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Path with shortest total distance that connects a selected starting vertex to a specified destination vertex&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+	font: 700 10pt &quot;Arial&quot;;
+	color: rgb(0, 85, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>Shortest Path</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="mstButton">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>60</y>
+          <width>231</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Collection of edges that connect all of the verticies in graph with the minimum total cost/distance&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton{
+	font: 700 10pt &quot;Arial&quot;;
+	color: rgb(0, 85, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>Minimum Spanning Tree (MST)</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="startVertexSelect">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>100</y>
+          <width>231</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 9pt &quot;Arial&quot;;
+	border: 1px solid black;
+}</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="destVertexSelect">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>130</y>
+          <width>231</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 9pt &quot;Arial&quot;;
+	border: 1px solid black;
+}</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="pathSelectTitle">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>80</y>
+          <width>251</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+	color: darkbrown;
+	font: 10pt &quot;Javanese Text&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Select Verticies for Shortest Path:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="submitButton">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>140</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate the Images of the Complete Graph and the Request Solution Type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	border: 1px solid red;
+	font: 10pt &quot;Franklin Gothic Medium&quot;;
+	background-color: rgb(239, 239, 239);
+}</string>
+        </property>
+        <property name="text">
+         <string>Generate Solution Image</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="step3Label">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>20</y>
+          <width>21</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	border: 1px solid darkslategrey;
+	font: 12pt &quot;Verdana&quot;;
+	color: green;
+	background-color: rgb(214, 107, 0);
+}</string>
+        </property>
+        <property name="text">
+         <string>3</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="vertexNotificationLabel">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>156</y>
+          <width>351</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	font: italic 10pt &quot;Calibri&quot;;
+	color: crimson;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QToolButton" name="displayImgButton">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>530</y>
+         <width>231</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton {
+	border: 1px solid black;
+	font: 11pt &quot;Javanese Text&quot;;
+	background-color: rgb(255, 170, 127);
+}</string>
+       </property>
+       <property name="text">
+        <string>View Generated Solution</string>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="displayGraphButton">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>530</y>
+         <width>221</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton{
+	border: 1px solid black;
+	background-color: rgb(255, 255, 127);
+	font: 11pt &quot;Javanese Text&quot;;
+}</string>
+       </property>
+       <property name="text">
+        <string>View Generated Full Graph</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: ghostwhite;
+font: 10pt &quot;Calibri&quot;;
+color: lightcoral;</string>
+   </property>
+  </widget>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionVertexToggle">
+   <property name="text">
+    <string>VertexToggle</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionEstimateVertexClicked">
+   <property name="text">
+    <string>EstimateVertexClicked</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionManualVertexClicked">
+   <property name="text">
+    <string>ManualVertexClicked</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
