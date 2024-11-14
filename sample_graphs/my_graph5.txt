@@ -1,0 +1,99 @@
+San Diego, Las Vegas, 336
+San Diego, Cupertino, 487
+Cupertino, Sacramento, 128
+Las Vegas, Sacramento, 570
+San Francisco, Cupertino, 46
+San Francisco, Santa Barbara, 330
+Las Vegas, Fresno, 395
+Las Vegas, Redding, 644
+Fresno, Redding, 331
+Sacramento, Redding, 162
+Medford, Redding, 149
+Medford, Sacramento, 308
+Redding, Los Angeles, 546
+Los Angeles, Sacramento, 385
+Medford, San Jose, 395
+Los Angeles, San Jose, 340
+Los Angeles, Santa Barbara, 95
+Los Angeles, Santa Cruz, 341
+Santa Barbara, Santa Cruz, 258
+Santa Cruz, San Jose, 32
+Santa Barbara, San Jose, 278
+Santa Monica, Medford, 691
+Dallas, Cupertino, 1696
+Concord, Sacramento, 2989
+Portland, Los Angeles, 964
+Concord, Portland, 3064
+Houston, Dallas, 239
+San Francisco, Colorado Springs, 1320
+Colorado Springs, Las Vegas, 815
+Providence, Santa Cruz, 3144
+Providence, Las Vegas, 2699
+Portland, Medford, 273
+Atlanta, Santa Barbara, 2263
+Atlanta, New York, 881
+New York, Fresno, 2914
+Atlanta, Cupertino, 2436
+Nashville, Redding, 2342
+Nashville, Dallas, 664
+Helena, Los Angeles, 1175
+Helena, Concord, 2410
+Montpelier, Atlanta, 1184
+Montpelier, San Francisco, 3013
+Abilene, Providence, 1915
+Abilene, San Diego, 1176
+Abilene, Portland, 1844
+Columbus, Nashville, 383
+Columbus, San Diego, 2243
+New York, Columbus, 535
+Philadelphia, Houston, 1547
+Philadelphia, Santa Cruz, 2934
+Philadelphia, Abilene, 1647
+Seattle, Las Vegas, 1125
+Seattle, Portland, 174
+Portland, Columbus, 2439
+Newark, Santa Barbara, 2868
+Newark, Colorado Springs, 1765
+Boise, Dallas, 1683
+Boise, San Diego, 953
+Detroit, Montpelier, 680
+Detroit, San Jose, 2430
+Concord, Lubbock, 2013
+Lubbock, Houston, 516
+Lubbock, Portland, 1679
+Minneapolis, Detroit, 700
+Minneapolis, Las Vegas, 1656
+Philadelphia, Minneapolis, 1167
+Orlando, Atlanta, 438
+Orlando, Redding, 2969
+Orlando, Medford, 3050
+Baton Rouge, Houston, 268
+Baton Rouge, Tampa, 714
+Tampa, San Francisco, 2831
+Oklahoma City, Colorado Springs, 582
+Oklahoma City, Orlando, 1285
+Detroit, Omaha, 733
+Omaha, Newark, 1231
+Omaha, San Diego, 1618
+Las Vegas, Columbus, 2055
+Fargo, New York, 1431
+Fargo, Minneapolis, 234
+Santa Monica, Providence, 2983
+Santa Monica, Baton Rouge, 1828
+Flagstaff, Austin, 1033
+Flagstaff, San Diego, 485
+Flagstaff, Colorado Springs, 616
+Austin, Omaha, 839
+Austin, Portland, 270
+Minneapolis, New York, 1197
+Boise, Cupertino, 690
+South Padre Island, Dallas, 565
+South Padre Island, Los Angeles, 1651
+Oklahoma City, South Padre Island, 758
+Little Rock, Columbus, 725
+Little Rock, Montpelier, 1470
+Little Rock, Orlando, 956
+Baltimore, Detroit, 528
+Baltimore, Colorado Springs, 1646
+Baltimore, Houston, 1445
+Seattle, Colorado Springs, 1384

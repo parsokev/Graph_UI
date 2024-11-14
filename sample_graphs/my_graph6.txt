@@ -1,0 +1,946 @@
+Abilene, Atlanta, 963
+Abilene, Austin, 217
+Abilene, Baltimore, 1547
+Abilene, Baton Rouge, 609
+Abilene, Boise, 1418
+Abilene, Colorado Springs, 640
+Abilene, Columbus, 1205
+Abilene, Concord, 1229
+Abilene, Cupertino, 1534
+Abilene, Dallas, 182
+Abilene, Detroit, 1316
+Abilene, Fargo, 1168
+Abilene, Flagstaff, 808
+Abilene, Fresno, 1397
+Abilene, Helena, 1500
+Abilene, Houston, 351
+Abilene, Las Vegas, 1061
+Abilene, Little Rock, 500
+Abilene, Los Angeles, 1254
+Abilene, Lubbock, 164
+Abilene, Medford, 1811
+Abilene, Minneapolis, 1078
+Abilene, Montpelier, 1947
+Abilene, Nashville, 845
+Abilene, New York, 1729
+Abilene, Newark, 1718
+Abilene, Oklahoma City, 292
+Abilene, Omaha, 745
+Abilene, Orlando, 1268
+Abilene, Philadelphia, 1648
+Abilene, Portland, 1845
+Abilene, Providence, 1917
+Abilene, Redding, 1726
+Abilene, Sacramento, 1565
+Abilene, San Diego, 1177
+Abilene, San Francisco, 1570
+Abilene, San Jose, 1528
+Abilene, San Barbara, 1351
+Abilene, Santa Cruz, 1529
+Abilene, Santa Monica, 1270
+Abilene, Seattle, 1918
+Abilene, South Padre Island, 544
+Abilene, Tampa, 1284
+Atlanta, Austin, 930
+Atlanta, Baltimore, 680
+Atlanta, Baton Rouge, 527
+Atlanta, Boise, 2173
+Atlanta, Colorado Springs, 1387
+Atlanta, Columbus, 570
+Atlanta, Concord, 266
+Atlanta, Cupertino, 2437
+Atlanta, Dallas, 782
+Atlanta, Detroit, 723
+Atlanta, Fargo, 1366
+Atlanta, Flagstaff, 1711
+Atlanta, Fresno, 2300
+Atlanta, Helena, 2058
+Atlanta, Houston, 793
+Atlanta, Las Vegas, 1964
+Atlanta, Little Rock, 520
+Atlanta, Los Angeles, 2175
+Atlanta, Lubbock, 1127
+Atlanta, Medford, 2606
+Atlanta, Minneapolis, 1132
+Atlanta, Montpelier, 1179
+Atlanta, Nashville, 250
+Atlanta, New York, 866
+Atlanta, Newark, 858
+Atlanta, Oklahoma City, 849
+Atlanta, Omaha, 985
+Atlanta, Orlando, 441
+Atlanta, Philadelphia, 780
+Atlanta, Portland, 2600
+Atlanta, Providence, 1046
+Atlanta, Redding, 2585
+Atlanta, Sacramento, 2469
+Atlanta, San Diego, 2140
+Atlanta, San Francisco, 2473
+Atlanta, San Jose, 2431
+Atlanta, San Barbara, 2264
+Atlanta, Santa Cruz, 2432
+Atlanta, Santa Monica, 2191
+Atlanta, Seattle, 2637
+Atlanta, South Padre Island, 1166
+Atlanta, Tampa, 456
+Austin, Baltimore, 1561
+Austin, Baton Rouge, 433
+Austin, Boise, 1627
+Austin, Colorado Springs, 849
+Austin, Columbus, 1236
+Austin, Concord, 1196
+Austin, Cupertino, 1723
+Austin, Dallas, 196
+Austin, Detroit, 1380
+Austin, Fargo, 1263
+Austin, Flagstaff, 1016
+Austin, Fresno, 1596
+Austin, Helena, 1697
+Austin, Houston, 166
+Austin, Las Vegas, 1270
+Austin, Little Rock, 514
+Austin, Los Angeles, 1378
+Austin, Lubbock, 373
+Austin, Medford, 2068
+Austin, Minneapolis, 1173
+Austin, Montpelier, 1978
+Austin, Nashville, 859
+Austin, New York, 1743
+Austin, Newark, 1733
+Austin, Oklahoma City, 389
+Austin, Omaha, 840
+Austin, Orlando, 1129
+Austin, Philadelphia, 1663
+Austin, Portland, 2054
+Austin, Providence, 1932
+Austin, Redding, 1922
+Austin, Sacramento, 1761
+Austin, San Diego, 1301
+Austin, San Francisco, 1759
+Austin, San Jose, 1717
+Austin, San Barbara, 1474
+Austin, Santa Cruz, 1718
+Austin, Santa Monica, 1394
+Austin, Seattle, 2127
+Austin, South Padre Island, 372
+Austin, Tampa, 1144
+Baltimore, Baton Rouge, 1180
+Baltimore, Boise, 2380
+Baltimore, Colorado Springs, 1646
+Baltimore, Columbus, 405
+Baltimore, Concord, 426
+Baltimore, Cupertino, 2855
+Baltimore, Dallas, 1366
+Baltimore, Detroit, 527
+Baltimore, Fargo, 1343
+Baltimore, Flagstaff, 2182
+Baltimore, Fresno, 2771
+Baltimore, Helena, 2146
+Baltimore, Houston, 1446
+Baltimore, Las Vegas, 2410
+Baltimore, Little Rock, 1051
+Baltimore, Los Angeles, 2646
+Baltimore, Lubbock, 1664
+Baltimore, Medford, 2813
+Baltimore, Minneapolis, 1110
+Baltimore, Montpelier, 504
+Baltimore, Nashville, 703
+Baltimore, New York, 192
+Baltimore, Newark, 184
+Baltimore, Oklahoma City, 1319
+Baltimore, Omaha, 1154
+Baltimore, Orlando, 893
+Baltimore, Philadelphia, 106
+Baltimore, Portland, 2806
+Baltimore, Providence, 372
+Baltimore, Redding, 2791
+Baltimore, Sacramento, 2728
+Baltimore, San Diego, 2625
+Baltimore, San Francisco, 2814
+Baltimore, San Jose, 2847
+Baltimore, San Barbara, 2735
+Baltimore, Santa Cruz, 2873
+Baltimore, Santa Monica, 2662
+Baltimore, Seattle, 2764
+Baltimore, South Padre Island, 1819
+Baltimore, Tampa, 948
+Baton Rouge, Boise, 2107
+Baton Rouge, Colorado Springs, 1150
+Baton Rouge, Columbus, 969
+Baton Rouge, Concord, 793
+Baton Rouge, Cupertino, 2124
+Baton Rouge, Dallas, 427
+Baton Rouge, Detroit, 1123
+Baton Rouge, Fargo, 1367
+Baton Rouge, Flagstaff, 1397
+Baton Rouge, Fresno, 1982
+Baton Rouge, Helena, 2085
+Baton Rouge, Houston, 269
+Baton Rouge, Las Vegas, 1646
+Baton Rouge, Little Rock, 344
+Baton Rouge, Los Angeles, 1813
+Baton Rouge, Lubbock, 772
+Baton Rouge, Medford, 2396
+Baton Rouge, Minneapolis, 1211
+Baton Rouge, Montpelier, 1657
+Baton Rouge, Nashville, 590
+Baton Rouge, New York, 1362
+Baton Rouge, Newark, 1351
+Baton Rouge, Oklahoma City, 630
+Baton Rouge, Omaha, 950
+Baton Rouge, Orlando, 699
+Baton Rouge, Philadelphia, 1282
+Baton Rouge, Portland, 2534
+Baton Rouge, Providence, 1550
+Baton Rouge, Redding, 2311
+Baton Rouge, Sacramento, 2150
+Baton Rouge, San Diego, 1736
+Baton Rouge, San Francisco, 2155
+Baton Rouge, San Jose, 2113
+Baton Rouge, San Barbara, 1910
+Baton Rouge, Santa Cruz, 2114
+Baton Rouge, Santa Monica, 1829
+Baton Rouge, Seattle, 2608
+Baton Rouge, South Padre Island, 643
+Baton Rouge, Tampa, 715
+Boise, Colorado Springs, 883
+Boise, Columbus, 2012
+Boise, Concord, 2363
+Boise, Cupertino, 681
+Boise, Dallas, 1590
+Boise, Detroit, 1959
+Boise, Fargo, 1222
+Boise, Flagstaff, 856
+Boise, Fresno, 720
+Boise, Helena, 488
+Boise, Houston, 1824
+Boise, Las Vegas, 624
+Boise, Little Rock, 1770
+Boise, Los Angeles, 844
+Boise, Lubbock, 1253
+Boise, Medford, 472
+Boise, Minneapolis, 1452
+Boise, Montpelier, 2629
+Boise, Nashville, 1927
+Boise, New York, 2468
+Boise, Newark, 2458
+Boise, Oklahoma City, 1481
+Boise, Omaha, 1231
+Boise, Orlando, 2612
+Boise, Philadelphia, 2437
+Boise, Portland, 431
+Boise, Providence, 2646
+Boise, Redding, 524
+Boise, Sacramento, 554
+Boise, San Diego, 953
+Boise, San Francisco, 640
+Boise, San Jose, 673
+Boise, San Barbara, 898
+Boise, Santa Cruz, 699
+Boise, Santa Monica, 843
+Boise, Seattle, 505
+Boise, South Padre Island, 1949
+Boise, Tampa, 2628
+Colorado Springs, Columbus, 1243
+Colorado Springs, Concord, 1577
+Colorado Springs, Cupertino, 1346
+Colorado Springs, Dallas, 741
+Colorado Springs, Detroit, 1338
+Colorado Springs, Fargo, 935
+Colorado Springs, Flagstaff, 611
+Colorado Springs, Fresno, 1209
+Colorado Springs, Helena, 861
+Colorado Springs, Houston, 975
+Colorado Springs, Las Vegas, 817
+Colorado Springs, Little Rock, 950
+Colorado Springs, Los Angeles, 1084
+Colorado Springs, Lubbock, 500
+Colorado Springs, Medford, 1316
+Colorado Springs, Minneapolis, 983
+Colorado Springs, Montpelier, 1985
+Colorado Springs, Nashville, 1141
+Colorado Springs, New York, 1778
+Colorado Springs, Newark, 1767
+Colorado Springs, Oklahoma City, 662
+Colorado Springs, Omaha, 609
+Colorado Springs, Orlando, 1826
+Colorado Springs, Philadelphia, 1711
+Colorado Springs, Portland, 1309
+Colorado Springs, Providence, 1982
+Colorado Springs, Redding, 1294
+Colorado Springs, Sacramento, 1231
+Colorado Springs, San Diego, 1146
+Colorado Springs, San Francisco, 1317
+Colorado Springs, San Jose, 1340
+Colorado Springs, San Barbara, 1173
+Colorado Springs, Santa Cruz, 1341
+Colorado Springs, Santa Monica, 1100
+Colorado Springs, Seattle, 1383
+Colorado Springs, South Padre Island, 1185
+Colorado Springs, Tampa, 1842
+Columbus, Concord, 436
+Columbus, Cupertino, 2488
+Columbus, Dallas, 1041
+Columbus, Detroit, 203
+Columbus, Fargo, 1000
+Columbus, Flagstaff, 1779
+Columbus, Fresno, 2368
+Columbus, Helena, 1803
+Columbus, Houston, 1157
+Columbus, Las Vegas, 2007
+Columbus, Little Rock, 726
+Columbus, Los Angeles, 2243
+Columbus, Lubbock, 1262
+Columbus, Medford, 2446
+Columbus, Minneapolis, 767
+Columbus, Montpelier, 744
+Columbus, Nashville, 380
+Columbus, New York, 536
+Columbus, Newark, 525
+Columbus, Oklahoma City, 916
+Columbus, Omaha, 787
+Columbus, Orlando, 948
+Columbus, Philadelphia, 469
+Columbus, Portland, 2439
+Columbus, Providence, 741
+Columbus, Redding, 2424
+Columbus, Sacramento, 2361
+Columbus, San Diego, 2222
+Columbus, San Francisco, 2447
+Columbus, San Jose, 2480
+Columbus, San Barbara, 2332
+Columbus, Santa Cruz, 2506
+Columbus, Santa Monica, 2259
+Columbus, Seattle, 2421
+Columbus, South Padre Island, 1530
+Columbus, Tampa, 1023
+Concord, Cupertino, 2703
+Concord, Dallas, 1048
+Concord, Detroit, 634
+Concord, Fargo, 1408
+Concord, Flagstaff, 1977
+Concord, Fresno, 2566
+Concord, Helena, 2211
+Concord, Houston, 1059
+Concord, Las Vegas, 2230
+Concord, Little Rock, 786
+Concord, Los Angeles, 2441
+Concord, Lubbock, 1393
+Concord, Medford, 2797
+Concord, Minneapolis, 1175
+Concord, Montpelier, 919
+Concord, Nashville, 440
+Concord, New York, 606
+Concord, Newark, 598
+Concord, Oklahoma City, 1114
+Concord, Omaha, 1176
+Concord, Orlando, 551
+Concord, Philadelphia, 521
+Concord, Portland, 2790
+Concord, Providence, 787
+Concord, Redding, 2775
+Concord, Sacramento, 2734
+Concord, San Diego, 2406
+Concord, San Francisco, 2739
+Concord, San Jose, 2697
+Concord, San Barbara, 2530
+Concord, Santa Cruz, 2698
+Concord, Santa Monica, 2457
+Concord, Seattle, 2829
+Concord, South Padre Island, 1432
+Concord, Tampa, 605
+Cupertino, Dallas, 1697
+Cupertino, Detroit, 2439
+Cupertino, Fargo, 1818
+Cupertino, Flagstaff, 727
+Cupertino, Fresno, 157
+Cupertino, Helena, 1142
+Cupertino, Houston, 1893
+Cupertino, Las Vegas, 533
+Cupertino, Little Rock, 1928
+Cupertino, Los Angeles, 347
+Cupertino, Lubbock, 1369
+Cupertino, Medford, 405
+Cupertino, Minneapolis, 2021
+Cupertino, Montpelier, 3109
+Cupertino, Nashville, 2267
+Cupertino, New York, 2948
+Cupertino, Newark, 2938
+Cupertino, Oklahoma City, 1591
+Cupertino, Omaha, 1711
+Cupertino, Orlando, 2780
+Cupertino, Philadelphia, 2917
+Cupertino, Portland, 676
+Cupertino, Providence, 3127
+Cupertino, Redding, 259
+Cupertino, Sacramento, 129
+Cupertino, San Diego, 466
+Cupertino, San Francisco, 44
+Cupertino, San Jose, 11
+Cupertino, San Barbara, 285
+Cupertino, Santa Cruz, 31
+Cupertino, Santa Monica, 346
+Cupertino, Seattle, 849
+Cupertino, South Padre Island, 1996
+Cupertino, Tampa, 2795
+Dallas, Detroit, 1186
+Dallas, Fargo, 1081
+Dallas, Flagstaff, 969
+Dallas, Fresno, 1559
+Dallas, Helena, 1567
+Dallas, Houston, 240
+Dallas, Las Vegas, 1222
+Dallas, Little Rock, 320
+Dallas, Los Angeles, 1436
+Dallas, Lubbock, 346
+Dallas, Medford, 1972
+Dallas, Minneapolis, 942
+Dallas, Montpelier, 1783
+Dallas, Nashville, 664
+Dallas, New York, 1549
+Dallas, Newark, 1538
+Dallas, Oklahoma City, 207
+Dallas, Omaha, 658
+Dallas, Orlando, 1087
+Dallas, Philadelphia, 1468
+Dallas, Portland, 2015
+Dallas, Providence, 1737
+Dallas, Redding, 1888
+Dallas, Sacramento, 1727
+Dallas, San Diego, 1359
+Dallas, San Francisco, 1732
+Dallas, San Jose, 1689
+Dallas, San Barbara, 1532
+Dallas, Santa Cruz, 1691
+Dallas, Santa Monica, 1452
+Dallas, Seattle, 2089
+Dallas, South Padre Island, 566
+Dallas, Tampa, 1103
+Detroit, Fargo, 924
+Detroit, Flagstaff, 1891
+Detroit, Fresno, 2407
+Detroit, Helena, 1727
+Detroit, Houston, 1303
+Detroit, Las Vegas, 2014
+Detroit, Little Rock, 872
+Detroit, Los Angeles, 2282
+Detroit, Lubbock, 1373
+Detroit, Medford, 2393
+Detroit, Minneapolis, 690
+Detroit, Montpelier, 700
+Detroit, Nashville, 535
+Detroit, New York, 615
+Detroit, Newark, 605
+Detroit, Oklahoma City, 1027
+Detroit, Omaha, 733
+Detroit, Orlando, 1163
+Detroit, Philadelphia, 584
+Detroit, Portland, 2386
+Detroit, Providence, 701
+Detroit, Redding, 2371
+Detroit, Sacramento, 2308
+Detroit, San Diego, 2343
+Detroit, San Francisco, 2394
+Detroit, San Jose, 2426
+Detroit, San Barbara, 2371
+Detroit, Santa Cruz, 2453
+Detroit, Santa Monica, 2298
+Detroit, Seattle, 2345
+Detroit, South Padre Island, 1676
+Detroit, Tampa, 1178
+Fargo, Flagstaff, 1538
+Fargo, Fresno, 1856
+Fargo, Helena, 808
+Fargo, Houston, 1320
+Fargo, Las Vegas, 1532
+Fargo, Little Rock, 1028
+Fargo, Los Angeles, 1800
+Fargo, Lubbock, 1224
+Fargo, Medford, 1690
+Fargo, Minneapolis, 236
+Fargo, Montpelier, 1599
+Fargo, Nashville, 1118
+Fargo, New York, 1437
+Fargo, Newark, 1428
+Fargo, Oklahoma City, 878
+Fargo, Omaha, 421
+Fargo, Orlando, 1802
+Fargo, Philadelphia, 1407
+Fargo, Portland, 1499
+Fargo, Providence, 1616
+Fargo, Redding, 1753
+Fargo, Sacramento, 1689
+Fargo, San Diego, 1862
+Fargo, San Francisco, 1776
+Fargo, San Jose, 1808
+Fargo, San Barbara, 1889
+Fargo, Santa Cruz, 1834
+Fargo, Santa Monica, 1816
+Fargo, Seattle, 1426
+Fargo, South Padre Island, 1633
+Fargo, Tampa, 1818
+Flagstaff, Fresno, 590
+Flagstaff, Helena, 1001
+Flagstaff, Houston, 1203
+Flagstaff, Las Vegas, 254
+Flagstaff, Little Rock, 1201
+Flagstaff, Los Angeles, 465
+Flagstaff, Lubbock, 642
+Flagstaff, Medford, 1003
+Flagstaff, Minneapolis, 1547
+Flagstaff, Montpelier, 2519
+Flagstaff, Nashville, 1540
+Flagstaff, New York, 2312
+Flagstaff, Newark, 2301
+Flagstaff, Oklahoma City, 864
+Flagstaff, Omaha, 1213
+Flagstaff, Orlando, 2053
+Flagstaff, Philadelphia, 2245
+Flagstaff, Portland, 1283
+Flagstaff, Providence, 2516
+Flagstaff, Redding, 919
+Flagstaff, Sacramento, 758
+Flagstaff, San Diego, 488
+Flagstaff, San Francisco, 763
+Flagstaff, San Jose, 720
+Flagstaff, San Barbara, 554
+Flagstaff, Santa Cruz, 722
+Flagstaff, Santa Monica, 481
+Flagstaff, Seattle, 1357
+Flagstaff, South Padre Island, 1338
+Flagstaff, Tampa, 2069
+Fresno, Helena, 1180
+Fresno, Houston, 1765
+Fresno, Las Vegas, 395
+Fresno, Little Rock, 1790
+Fresno, Los Angeles, 220
+Fresno, Lubbock, 1231
+Fresno, Medford, 477
+Fresno, Minneapolis, 2050
+Fresno, Montpelier, 3075
+Fresno, Nashville, 2129
+Fresno, New York, 2913
+Fresno, Newark, 2904
+Fresno, Oklahoma City, 1453
+Fresno, Omaha, 1677
+Fresno, Orlando, 2642
+Fresno, Philadelphia, 2834
+Fresno, Portland, 749
+Fresno, Providence, 3092
+Fresno, Redding, 332
+Fresno, Sacramento, 171
+Fresno, San Diego, 339
+Fresno, San Francisco, 187
+Fresno, San Jose, 150
+Fresno, San Barbara, 254
+Fresno, Santa Cruz, 155
+Fresno, Santa Monica, 219
+Fresno, Seattle, 922
+Fresno, South Padre Island, 1868
+Fresno, Tampa, 2658
+Helena, Houston, 1801
+Helena, Las Vegas, 903
+Helena, Little Rock, 1683
+Helena, Los Angeles, 1170
+Helena, Lubbock, 1326
+Helena, Medford, 867
+Helena, Minneapolis, 1038
+Helena, Montpelier, 2401
+Helena, Nashville, 1813
+Helena, New York, 2240
+Helena, Newark, 2230
+Helena, Oklahoma City, 1459
+Helena, Omaha, 1076
+Helena, Orlando, 2498
+Helena, Philadelphia, 2209
+Helena, Portland, 662
+Helena, Providence, 2419
+Helena, Redding, 972
+Helena, Sacramento, 1013
+Helena, San Diego, 1232
+Helena, San Francisco, 1100
+Helena, San Jose, 1132
+Helena, San Barbara, 1259
+Helena, Santa Cruz, 1159
+Helena, Santa Monica, 1186
+Helena, Seattle, 588
+Helena, South Padre Island, 2011
+Helena, Tampa, 2513
+Houston, Las Vegas, 1457
+Houston, Little Rock, 435
+Houston, Los Angeles, 1546
+Houston, Lubbock, 517
+Houston, Medford, 2236
+Houston, Minneapolis, 1179
+Houston, Montpelier, 1923
+Houston, Nashville, 779
+Houston, New York, 1629
+Houston, Newark, 1618
+Houston, Oklahoma City, 445
+Houston, Omaha, 897
+Houston, Orlando, 965
+Houston, Philadelphia, 1548
+Houston, Portland, 2249
+Houston, Providence, 1817
+Houston, Redding, 2090
+Houston, Sacramento, 1929
+Houston, San Diego, 1469
+Houston, San Francisco, 1927
+Houston, San Jose, 1885
+Houston, San Barbara, 1643
+Houston, Santa Cruz, 1886
+Houston, Santa Monica, 1562
+Houston, Seattle, 2323
+Houston, South Padre Island, 374
+Houston, Tampa, 981
+Las Vegas, Little Rock, 1454
+Las Vegas, Los Angeles, 271
+Las Vegas, Lubbock, 895
+Las Vegas, Medford, 751
+Las Vegas, Minneapolis, 1658
+Las Vegas, Montpelier, 2682
+Las Vegas, Nashville, 1793
+Las Vegas, New York, 2521
+Las Vegas, Newark, 2511
+Las Vegas, Oklahoma City, 1117
+Las Vegas, Omaha, 1284
+Las Vegas, Orlando, 2306
+Las Vegas, Philadelphia, 2473
+Las Vegas, Portland, 971
+Las Vegas, Providence, 2700
+Las Vegas, Redding, 644
+Las Vegas, Sacramento, 564
+Las Vegas, San Diego, 332
+Las Vegas, San Francisco, 568
+Las Vegas, San Jose, 526
+Las Vegas, San Barbara, 359
+Las Vegas, Santa Cruz, 527
+Las Vegas, Santa Monica, 287
+Las Vegas, Seattle, 1125
+Las Vegas, South Padre Island, 1579
+Las Vegas, Tampa, 2322
+Little Rock, Los Angeles, 1666
+Little Rock, Lubbock, 619
+Little Rock, Medford, 2204
+Little Rock, Minneapolis, 860
+Little Rock, Montpelier, 1468
+Little Rock, Nashville, 349
+Little Rock, New York, 1234
+Little Rock, Newark, 1223
+Little Rock, Oklahoma City, 339
+Little Rock, Omaha, 611
+Little Rock, Orlando, 959
+Little Rock, Philadelphia, 1153
+Little Rock, Portland, 2197
+Little Rock, Providence, 1422
+Little Rock, Redding, 2120
+Little Rock, Sacramento, 1959
+Little Rock, San Diego, 1677
+Little Rock, San Francisco, 1964
+Little Rock, San Jose, 1921
+Little Rock, San Barbara, 1755
+Little Rock, Santa Cruz, 1923
+Little Rock, Santa Monica, 1682
+Little Rock, Seattle, 2271
+Little Rock, South Padre Island, 808
+Little Rock, Tampa, 974
+Los Angeles, Lubbock, 1106
+Los Angeles, Medford, 691
+Los Angeles, Minneapolis, 1925
+Los Angeles, Montpelier, 2950
+Los Angeles, Nashville, 2004
+Los Angeles, New York, 2789
+Los Angeles, Newark, 2779
+Los Angeles, Oklahoma City, 1328
+Los Angeles, Omaha, 1552
+Los Angeles, Orlando, 2511
+Los Angeles, Philadelphia, 2710
+Los Angeles, Portland, 962
+Los Angeles, Providence, 2968
+Los Angeles, Redding, 545
+Los Angeles, Sacramento, 384
+Los Angeles, San Diego, 121
+Los Angeles, San Francisco, 382
+Los Angeles, San Jose, 340
+Los Angeles, San Barbara, 95
+Los Angeles, Santa Cruz, 341
+Los Angeles, Santa Monica, 17
+Los Angeles, Seattle, 1135
+Los Angeles, South Padre Island, 1651
+Los Angeles, Tampa, 2526
+Lubbock, Medford, 1645
+Lubbock, Minneapolis, 1135
+Lubbock, Montpelier, 2004
+Lubbock, Nashville, 1009
+Lubbock, New York, 1797
+Lubbock, Newark, 1786
+Lubbock, Oklahoma City, 349
+Lubbock, Omaha, 802
+Lubbock, Orlando, 1432
+Lubbock, Philadelphia, 1730
+Lubbock, Portland, 1679
+Lubbock, Providence, 2001
+Lubbock, Redding, 1561
+Lubbock, Sacramento, 1400
+Lubbock, San Diego, 1042
+Lubbock, San Francisco, 1404
+Lubbock, San Jose, 1362
+Lubbock, San Barbara, 1195
+Lubbock, Santa Cruz, 1363
+Lubbock, Santa Monica, 1123
+Lubbock, Seattle, 1753
+Lubbock, South Padre Island, 686
+Lubbock, Tampa, 1448
+Medford, Minneapolis, 1934
+Medford, Montpelier, 3069
+Medford, Nashville, 2367
+Medford, New York, 2907
+Medford, Newark, 2898
+Medford, Oklahoma City, 1868
+Medford, Omaha, 1671
+Medford, Orlando, 3052
+Medford, Philadelphia, 2877
+Medford, Portland, 273
+Medford, Providence, 3086
+Medford, Redding, 150
+Medford, Sacramento, 309
+Medford, San Diego, 811
+Medford, San Francisco, 364
+Medford, San Jose, 396
+Medford, San Barbara, 669
+Medford, Santa Cruz, 423
+Medford, Santa Monica, 691
+Medford, Seattle, 446
+Medford, South Padre Island, 2341
+Medford, Tampa, 3068
+Minneapolis, Montpelier, 1364
+Minneapolis, Nashville, 883
+Minneapolis, New York, 1203
+Minneapolis, Newark, 1193
+Minneapolis, Oklahoma City, 788
+Minneapolis, Omaha, 378
+Minneapolis, Orlando, 1568
+Minneapolis, Philadelphia, 1172
+Minneapolis, Portland, 1733
+Minneapolis, Providence, 1381
+Minneapolis, Redding, 1951
+Minneapolis, Sacramento, 1887
+Minneapolis, San Diego, 1988
+Minneapolis, San Francisco, 1974
+Minneapolis, San Jose, 2006
+Minneapolis, San Barbara, 2015
+Minneapolis, Santa Cruz, 2033
+Minneapolis, Santa Monica, 1942
+Minneapolis, Seattle, 1660
+Minneapolis, South Padre Island, 1543
+Minneapolis, Tampa, 1583
+Montpelier, Nashville, 1124
+Montpelier, New York, 317
+Montpelier, Newark, 326
+Montpelier, Oklahoma City, 1658
+Montpelier, Omaha, 1403
+Montpelier, Orlando, 1393
+Montpelier, Philadelphia, 408
+Montpelier, Portland, 3056
+Montpelier, Providence, 229
+Montpelier, Redding, 3041
+Montpelier, Sacramento, 2978
+Montpelier, San Diego, 2964
+Montpelier, San Francisco, 3064
+Montpelier, San Jose, 3096
+Montpelier, San Barbara, 3041
+Montpelier, Santa Cruz, 3123
+Montpelier, Santa Monica, 2968
+Montpelier, Seattle, 3014
+Montpelier, South Padre Island, 2295
+Montpelier, Tampa, 1448
+Nashville, New York, 886
+Nashville, Newark, 875
+Nashville, Oklahoma City, 678
+Nashville, Omaha, 740
+Nashville, Orlando, 689
+Nashville, Philadelphia, 806
+Nashville, Portland, 2354
+Nashville, Providence, 1074
+Nashville, Redding, 2339
+Nashville, Sacramento, 2275
+Nashville, San Diego, 2022
+Nashville, San Francisco, 2302
+Nashville, San Jose, 2260
+Nashville, San Barbara, 2094
+Nashville, Santa Cruz, 2262
+Nashville, Santa Monica, 2021
+Nashville, Seattle, 2391
+Nashville, South Padre Island, 1153
+Nashville, Tampa, 704
+New York, Newark, 11
+New York, Oklahoma City, 1449
+New York, Omaha, 1241
+New York, Orlando, 1079
+New York, Philadelphia, 95
+New York, Portland, 2894
+New York, Providence, 182
+New York, Redding, 2879
+New York, Sacramento, 2816
+New York, San Diego, 2755
+New York, San Francisco, 2902
+New York, San Jose, 2934
+New York, San Barbara, 2879
+New York, Santa Cruz, 2961
+New York, Santa Monica, 2806
+New York, Seattle, 2852
+New York, South Padre Island, 2002
+New York, Tampa, 1134
+Newark, Oklahoma City, 1438
+Newark, Omaha, 1231
+Newark, Orlando, 1070
+Newark, Philadelphia, 86
+Newark, Portland, 2884
+Newark, Providence, 192
+Newark, Redding, 2869
+Newark, Sacramento, 2806
+Newark, San Diego, 2744
+Newark, San Francisco, 2892
+Newark, San Jose, 2925
+Newark, San Barbara, 2869
+Newark, Santa Cruz, 2951
+Newark, Santa Monica, 2796
+Newark, Seattle, 2842
+Newark, South Padre Island, 1991
+Newark, Tampa, 1125
+Oklahoma City, Omaha, 456
+Oklahoma City, Orlando, 1287
+Oklahoma City, Philadelphia, 1383
+Oklahoma City, Portland, 1908
+Oklahoma City, Providence, 1654
+Oklahoma City, Redding, 1783
+Oklahoma City, Sacramento, 1622
+Oklahoma City, San Diego, 1307
+Oklahoma City, San Francisco, 1626
+Oklahoma City, San Jose, 1584
+Oklahoma City, San Barbara, 1417
+Oklahoma City, Santa Cruz, 1585
+Oklahoma City, Santa Monica, 1345
+Oklahoma City, Seattle, 1982
+Oklahoma City, South Padre Island, 759
+Oklahoma City, Tampa, 1303
+Omaha, Orlando, 1425
+Omaha, Philadelphia, 1210
+Omaha, Portland, 1657
+Omaha, Providence, 1420
+Omaha, Redding, 1642
+Omaha, Sacramento, 1578
+Omaha, San Diego, 1614
+Omaha, San Francisco, 1665
+Omaha, San Jose, 1697
+Omaha, San Barbara, 1641
+Omaha, Santa Cruz, 1724
+Omaha, Santa Monica, 1568
+Omaha, Seattle, 1655
+Omaha, South Padre Island, 1216
+Omaha, Tampa, 1440
+Orlando, Philadelphia, 987
+Orlando, Portland, 3037
+Orlando, Providence, 1253
+Orlando, Redding, 2970
+Orlando, Sacramento, 2809
+Orlando, San Diego, 2430
+Orlando, San Francisco, 2813
+Orlando, San Jose, 2771
+Orlando, San Barbara, 2603
+Orlando, Santa Cruz, 2772
+Orlando, Santa Monica, 2523
+Orlando, Seattle, 3074
+Orlando, South Padre Island, 1336
+Orlando, Tampa, 85
+Philadelphia, Portland, 2864
+Philadelphia, Providence, 275
+Philadelphia, Redding, 2849
+Philadelphia, Sacramento, 2785
+Philadelphia, San Diego, 2690
+Philadelphia, San Francisco, 2872
+Philadelphia, San Jose, 2904
+Philadelphia, San Barbara, 2800
+Philadelphia, Santa Cruz, 2931
+Philadelphia, Santa Monica, 2727
+Philadelphia, Seattle, 2822
+Philadelphia, South Padre Island, 1920
+Philadelphia, Tampa, 1047
+Portland, Providence, 3074
+Portland, Redding, 422
+Portland, Sacramento, 581
+Portland, San Diego, 1083
+Portland, San Francisco, 635
+Portland, San Jose, 668
+Portland, San Barbara, 941
+Portland, Santa Cruz, 694
+Portland, Santa Monica, 963
+Portland, Seattle, 174
+Portland, South Padre Island, 2376
+Portland, Tampa, 3054
+Providence, Redding, 3067
+Providence, Sacramento, 3003
+Providence, San Diego, 2958
+Providence, San Francisco, 3090
+Providence, San Jose, 3122
+Providence, San Barbara, 3066
+Providence, Santa Cruz, 3149
+Providence, Santa Monica, 2993
+Providence, Seattle, 3040
+Providence, South Padre Island, 2188
+Providence, Tampa, 1313
+Redding, Sacramento, 163
+Redding, San Diego, 665
+Redding, San Francisco, 218
+Redding, San Jose, 250
+Redding, San Barbara, 523
+Redding, Santa Cruz, 276
+Redding, Santa Monica, 545
+Redding, Seattle, 595
+Redding, South Padre Island, 2195
+Redding, Tampa, 2988
+Sacramento, San Diego, 505
+Sacramento, San Francisco, 88
+Sacramento, San Jose, 120
+Sacramento, San Barbara, 393
+Sacramento, Santa Cruz, 147
+Sacramento, Santa Monica, 385
+Sacramento, Seattle, 753
+Sacramento, South Padre Island, 2034
+Sacramento, Tampa, 2826
+San Diego, San Francisco, 509
+San Diego, San Jose, 467
+San Diego, San Barbara, 219
+San Diego, Santa Cruz, 468
+San Diego, Santa Monica, 134
+San Diego, Seattle, 1262
+San Diego, South Padre Island, 1573
+San Diego, Tampa, 2449
+San Francisco, San Jose, 49
+San Francisco, San Barbara, 326
+San Francisco, Santa Cruz, 73
+San Francisco, Santa Monica, 382
+San Francisco, Seattle, 808
+San Francisco, South Padre Island, 2032
+San Francisco, Tampa, 2831
+San Jose, San Barbara, 279
+San Jose, Santa Cruz, 33
+San Jose, Santa Monica, 340
+San Jose, Seattle, 840
+San Jose, South Padre Island, 1989
+San Jose, Tampa, 2789
+San Barbara, Santa Cruz, 259
+San Barbara, Santa Monica, 92
+San Barbara, Seattle, 1114
+San Barbara, South Padre Island, 1747
+San Barbara, Tampa, 2623
+Santa Cruz, Santa Monica, 340
+Santa Cruz, Seattle, 867
+Santa Cruz, South Padre Island, 1989
+Santa Cruz, Tampa, 2789
+Santa Monica, Seattle, 1136
+Santa Monica, South Padre Island, 1665
+Santa Monica, Tampa, 2541
+Seattle, South Padre Island, 2451
+Seattle, Tampa, 3092
+South Padre Island, Tampa, 1354

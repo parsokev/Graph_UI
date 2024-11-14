@@ -1,0 +1,15 @@
+# ninja log v6
+9	967	7532602131985180	Graph_ImagingUI_autogen/timestamp	3ea0ebb5a98022e2
+9	967	7532602131985180	Graph_ImagingUI_autogen/mocs_compilation.cpp	3ea0ebb5a98022e2
+9	967	7532602131985180	C:/Users/kpar1/Code_Projects/Qt_Project/Graph_ImagingUI/build/Desktop_Qt_6_8_0_MinGW_64_bit-Profile/Graph_ImagingUI_autogen/timestamp	3ea0ebb5a98022e2
+9	967	7532602131985180	C:/Users/kpar1/Code_Projects/Qt_Project/Graph_ImagingUI/build/Desktop_Qt_6_8_0_MinGW_64_bit-Profile/Graph_ImagingUI_autogen/mocs_compilation.cpp	3ea0ebb5a98022e2
+1064	1224	7532602133935934	CMakeFiles/Graph_ImagingUI.dir/gprintf.cpp.obj	dd98b82b65715960
+1009	1960	7532602133379577	CMakeFiles/Graph_ImagingUI.dir/derived_hashmap.cpp.obj	90a63ce41c97a5f1
+1052	2048	7532602133814221	CMakeFiles/Graph_ImagingUI.dir/pair_minheap.cpp.obj	734fe96ac463111a
+1039	4360	7532602133685750	CMakeFiles/Graph_ImagingUI.dir/graph_writing.cpp.obj	8680aa1082f18534
+975	4623	7532602133032998	CMakeFiles/Graph_ImagingUI.dir/Graph_ImagingUI_autogen/mocs_compilation.cpp.obj	8a59c32c52d59d15
+987	4661	7532602133164019	CMakeFiles/Graph_ImagingUI.dir/main.cpp.obj	1d8100ab7e9c5962
+1019	4727	7532602133477503	CMakeFiles/Graph_ImagingUI.dir/graph_input.cpp.obj	f06e4b6ef7e79db9
+1029	7867	7532602133581760	CMakeFiles/Graph_ImagingUI.dir/graph_processing.cpp.obj	4c554b1a550711fe
+998	11161	7532602133279546	CMakeFiles/Graph_ImagingUI.dir/mainwindow.cpp.obj	8ac2134d7f54dc37
+11164	11651	7532602234935813	Graph_ImagingUI.exe	f9730fcc68a06e04
