@@ -17,7 +17,7 @@
 std::string path_filename = "../../dot_graphs/shortest_path_overlay.gv";
 std::string MST_filename = "../../dot_graphs/MST_overlay.gv";
 std::string graph_filename = "../../dot_graphs/full_graph.gv";
-std::string graphviz_path = "./Graphviz/bin/";
+std::string graphviz_path = "../../Graphviz/bin/";
 
 // Qt QString variables storing updated platform-selective text file/graph image locations
 QString filename = "";  // Name of Selected Text File to Process

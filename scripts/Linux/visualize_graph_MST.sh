@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-graphviz_path='./Graphviz/bin/dot.exe'
+graphviz_path='../../Graphviz/bin/dot.exe'
 # Change Permission to ensure dot.exe can be executed for generating .gv file output to png format
 chmod +x "$graphviz_path"
 if [ $? -ne 0 ]; then
