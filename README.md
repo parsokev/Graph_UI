@@ -10,6 +10,12 @@ This was achieved through the utilization of:
    - [Graphviz](https://www.graphviz.org/) was utilized to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
 # Requirements
+[!WARNING]
+[
+- In order to reduce file size and maintain local-machine compatibility, the Graphviz directory has been ommitted from the repository.
+- [Please visit Graphviz to download the most stable ZIP-archived version that is compatible with your local machine](https://www.graphviz.org/download/), copy/extract its contents (excluding the main folder),
+- and place them directly within the cloned repository's [Graphviz directory](./Graphviz). This will eliminate the required installation of Graphviz on the local machine while still allowing for its use by the application.
+]
 
 # Deploying Executable
 
