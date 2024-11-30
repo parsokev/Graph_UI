@@ -33,7 +33,6 @@ qt_add_executable(Graph_ImagingUI
         graph_writing.h graph_writing.cpp
         pair_minheap.h pair_minheap.cpp
         gprintf.h gprintf.cpp
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Graph_ImagingUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
