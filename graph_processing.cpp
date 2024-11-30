@@ -39,7 +39,6 @@ static void print_shortest_path(const std::vector<std::string>& path_list) {
 }
 
 
-// int build_adjacency_list(const std::string& filename, const std::string& write_name, unsigned int vertex_count, main_hashmap<double>&& adj_list, QProgressDialog& progressBar) {
 int build_adjacency_list(const std::string& filename, const std::string& write_name, unsigned int vertex_count, main_hashmap<double>&& adj_list) {
     std::fstream read_file;
     std::fstream write_file {write_name, write_file.trunc | write_file.out};
