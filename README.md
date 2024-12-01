@@ -4,7 +4,7 @@ This project was developed with the intent to convert [a previous application](h
 from user-provided text files strictly through interaction with a command console into a graphical user interface (GUI) that provides the same functionality.
 
 This was achieved through the utilization of:
-   - [Qt Creator](https://doc.qt.io/qt-6/qt-intro.html) to develop an interactive cross-platform application window that accepts user-requested
+   - [Qt Creator](https://doc.qt.io/qt-6/qt-intro.html) to develop an interactive cross-platform desktop application window that accepts user-requested
       graphical solutions from a graph
       whose edges are described in each separate line within a text file selected by the user.
 
@@ -48,7 +48,7 @@ the application will generate a desktop application window that will allow the u
 If wishing to clone this repository to your local machine, this application must be built **using QT Creator or Visual Studio with QT extensions installed and enabled**.
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
-Once the repository has been cloned locally using either platforms, set the application's intended path to the build directory to follow the path outlined below
+Once the repository has been cloned locally using either platforms, set the application's build directory path to mirror the path outlined below
 and ensure the CMake build kit is configured to be compatible with local machine's OS:
 
 ```
@@ -65,11 +65,22 @@ and ensure the CMake build kit is configured to be compatible with local machine
 > This should be sufficient to build the project using CMake. This process using Visual Studio is accomplished in a similar fashion.
 > Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
 
-Upon completion of build process, application will display the application window for accepting requests upon being executed. The most recently generated images
-will be stored within the `graph_images` directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
+Upon completion of build process, the application will display the application window for accepting requests upon being executed. The most recently generated images
+will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
 
 # Deploying Executable
 
+If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Visual Studio or Qt Creator.
+This can used through the Qt command-line tool by the following steps:
+    1. Copy the generated MyProjectName.exe file and paste it within an empty directory
+    2. Initialize the Qt command-line tool and navigate to the directory containing the .exe file
+    3. Enter the command ```windeployqt MyProjectName.exe .```
+
+> [!NOTE]
+> Remember to have the directory hierarchy mirror that of the cloned repository and copy all folders found in root directory
+> Place .exe file in alignment with place of GraphImaging_UI, where 'Debug_Qt_...' is the kit directory within the build directory
+
+![Image of Hierarchy](./ui_images/rough-directory-tree)
 
 # Citations:
 Third Party Software/Libraries Utilized in Building this Project Include:
