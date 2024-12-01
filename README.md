@@ -21,7 +21,7 @@ the application will generate an application window that will allow the user to:
     > [!NOTE]
     > Example text files can be found in the [sample_graphs](./sample_graphs) directory
 
-    ![Image of File Selection UI](./ui_images/file-selection-step.png)
+    ![Image of File Selection UI](./ui_images/file-select-step.png)
 
 2. Either manually enter an estimated number of verticies for the graph or request for the program automatically estimate the number
 
