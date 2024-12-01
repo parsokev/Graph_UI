@@ -12,12 +12,29 @@ This was achieved through the utilization of:
 
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
 the application will generate an application window that will allow the user to:
-    1. Select a local text file providing graphical information to be processed/visualized in terms of individual edges.
-        - Each separate line describes a unique edge found in the graph in the format of:
-            - `vertex1, vertex2, distance-between-verticies`
-    2. Either manually enter an estimated number of verticies for the graph or request for the program automatically estimate the number
-    3. Select whether the program should visualize the Minimum Spanning Tree or shortest path between two specified verticies, using the text file
 
+ 1. Select a local text file providing graphical information to be processed/visualized in terms of individual edges.
+    - Each separate line describes a unique edge found in the graph in the format of 
+    ```
+        vertex1, vertex2, distance-between-verticies
+    ```
+    > [!NOTE]
+    > Example text files can be found in the [sample_graphs](./sample_graphs) directory
+
+    ![Image of File Selection UI](./ui_images/file-selection-step.png)
+
+2. Either manually enter an estimated number of verticies for the graph or request for the program automatically estimate the number
+
+    ![Image of Vertex Selection UI](./ui_images/vertex-select-step.png)
+
+3. Select whether the program should visualize the Minimum Spanning Tree or shortest path between two specified verticies, using the text file
+
+    ![Image of Solution Request UI](./ui_images/solution-select-step.png)
+
+4. Upon confirmation of these, the project will generate the visualizations of both the graph depicted in the text file and that of the requested
+   graphical solution overlaying the original graph and allow the user to select and view these images after generation
+
+    ![Image of Image Selection UI](./ui_images/image-select-step.png)
 
 
 # Project Setup
