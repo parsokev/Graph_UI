@@ -11,18 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-# find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Svg)
-# find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 qt_standard_project_setup()
-
-# set( PROJECT_SOURCES
-#     main.cpp
-#     mainwindow.cpp
-#     mainwindow.h
-#     mainwindow.ui
-#     ui_mainwindow.h
-# )
 
 set( TARGET ${PROJECT_NAME} )
 set( SOURCE_PATH "${PROJECT_SOURCE_DIR}/src" )
@@ -52,7 +42,6 @@ target_link_libraries( ${TARGET} PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
 else()
     if(ANDROID)
         add_library( ${TARGET} SHARED
-            # ${PROJECT_SOURCES}
             ${HPPS}
             ${CPPS}
         )
@@ -60,7 +49,6 @@ else()
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(${TARGET}
-            # ${PROJECT_SOURCES}
             ${HPPS}
             ${CPPS}
         )
