@@ -80,7 +80,7 @@ This can used through the Qt command-line tool by the following steps:
 > Remember to have the directory hierarchy mirror that of the cloned repository and copy all folders found in root directory
 > Place .exe file in alignment with place of GraphImaging_UI, where 'Debug_Qt_...' is the kit directory within the build directory
 
-![Image of Hierarchy](./ui_images/rough-directory-tree)
+![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
 # Citations:
 Third Party Software/Libraries Utilized in Building this Project Include:
