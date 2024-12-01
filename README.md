@@ -12,14 +12,14 @@ This was achieved through the utilization of:
 
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
 the application will generate an application window that will allow the user to:
+> [!NOTE]
+> Example text files can be found in the [sample_graphs](./sample_graphs) directory
 
  1. Select a local text file providing graphical information to be processed/visualized in terms of individual edges.
     - Each separate line describes a unique edge found in the graph in the format of 
     ```
         vertex1, vertex2, distance-between-verticies
     ```
-    > [!NOTE]
-    > Example text files can be found in the [sample_graphs](./sample_graphs) directory
 
     ![Image of File Selection UI](./ui_images/file-select-step.png)
 
