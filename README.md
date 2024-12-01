@@ -11,7 +11,7 @@ This was achieved through the utilization of:
    - [Graphviz](https://www.graphviz.org/) was utilized to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
-the application will generate an application window that will allow the user to:
+the application will generate a desktop application window that will allow the user to:
 > [!NOTE]
 > Example text files can be found in the [sample_graphs](./sample_graphs) directory
 
@@ -38,13 +38,35 @@ the application will generate an application window that will allow the user to:
 
 
 # Project Setup
+
 > [!IMPORTANT]
 > In order to reduce file size and maintain local-machine compatibility, the Graphviz directory has been omitted from the repository.
 > Please download the most stable ZIP-archived version that is compatible with your local machine from the [download page for Graphviz](https://www.graphviz.org/download/),
 > and place the extracted contents(excluding the main folder itself) directly into the cloned repository's [Graphviz directory](./Graphviz).
 > This will eliminate the required installation of Graphviz on the local machine while still allowing for its use by the application.
 
+If wishing to clone this repository to your local machine, this application must be built **using QT Creator or Visual Studio with QT extensions installed and enabled**.
+This allows for the generation of an application executable that is compatible with the local machine's OS.
 
+Once the repository has been cloned locally using either platforms, set the application's intended path to the build directory to follow the path outlined below
+and ensure the CMake build kit is configured to be compatible with local machine's OS:
+
+```
+<root-directory>\build\<your-kit-name-here>
+```
+
+> [!NOTE]
+> The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
+
+> Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
+> to match the path syntax.
+> Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
+> for the selection of available kits presented.
+> This should be sufficient to build the project using CMake. This process using Visual Studio is accomplished in a similar fashion.
+> Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
+
+Upon completion of build process, application will display the application window for accepting requests upon being executed. The most recently generated images
+will be stored within the `graph_images` directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
 
 # Deploying Executable
 
