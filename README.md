@@ -72,9 +72,9 @@ will be stored within the [graph_images](./graph_images) directory (they will be
 
 If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Visual Studio or Qt Creator.
 This can used through the Qt command-line tool by the following steps:
-    1. Copy the generated MyProjectName.exe file and paste it within an empty directory
-    2. Initialize the Qt command-line tool and navigate to the directory containing the .exe file
-    3. Enter the command ```windeployqt MyProjectName.exe .```
+1. Copy the generated MyProjectName.exe file and paste it within an empty directory
+2. Initialize the Qt command-line tool and navigate to the directory containing the .exe file
+3. Enter the command ```windeployqt MyProjectName.exe .```
 
 > [!NOTE]
 > Remember to have the directory hierarchy mirror that of the cloned repository and copy all folders found in root directory
