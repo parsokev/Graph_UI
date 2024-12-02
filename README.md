@@ -22,7 +22,7 @@ graphical visualizations after completing the following steps:
 > [!NOTE]
 > Example text files can be found in the [sample_graphs](./sample_graphs) directory
 
-    ![Image of File Selection UI](./ui_images/file-select-step.png)
+> ![Image of File Selection UI](./ui_images/file-select-step.png)
 
 2. Either manually enter an estimated number of verticies for the graph or request for the program automatically estimate the number
 
@@ -64,7 +64,7 @@ the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug 
 > The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
 > The repository tree should follow the below image
 
-    ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
+> ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
 Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
 to match the path syntax.
