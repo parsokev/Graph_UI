@@ -11,15 +11,16 @@ This was achieved through the utilization of:
    - [Graphviz](https://www.graphviz.org/) was utilized to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
-the application will generate a desktop application window that will allow the user to:
-> [!NOTE]
-> Example text files can be found in the [sample_graphs](./sample_graphs) directory
+the application will generate a desktop application window that will allow the user to generate and view
+graphical visualizations after completing the following steps:
 
  1. Select a local text file providing graphical information to be processed/visualized in terms of individual edges.
     - Each separate line describes a unique edge found in the graph in the format of 
     ```
         vertex1, vertex2, distance-between-verticies
     ```
+    > [!NOTE]
+    > Example text files can be found in the [sample_graphs](./sample_graphs) directory
 
     ![Image of File Selection UI](./ui_images/file-select-step.png)
 
@@ -45,7 +46,8 @@ the application will generate a desktop application window that will allow the u
 > and place the extracted contents(excluding the main folder itself) directly into the cloned repository's [Graphviz directory](./Graphviz).
 > This will eliminate the required installation of Graphviz on the local machine while still allowing for its use by the application.
 
-If wishing to clone this repository to your local machine, this application must be built **using QT Creator or Visual Studio with QT extensions installed and enabled**.
+If wishing to clone this repository to your local machine, this application must be built **using [QT Creator](https://doc.qt.io/qtcreator/index.html)**
+**or [Visual Studio with QT extensions installed and enabled](https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2022)**.
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
 ## Setting up CMake Build Configurations for Local Execution and Debugging
@@ -64,17 +66,17 @@ the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug 
 
 > ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
-> Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
-> to match the path syntax.
-> Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
-> for the selection of available kits presented.
-> This should be sufficient to build the project using CMake. This process using Visual Studio is accomplished in a similar fashion.
-> Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
+Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
+to match the path syntax.
+Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
+for the selection of available kits presented.
+This should be sufficient to build the project using CMake. This process using Visual Studio is accomplished in a similar fashion.
+Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
 
 Upon completion of build process, the application will display the application window for accepting requests upon being executed. The most recently generated images
 will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
 
-## Setting up CMake Build Directory for Deploying a Stand-Alone Application
+## Setting up CMake Build Directory for Deploying as Stand-Alone Application
 
 If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Visual Studio or Qt Creator
 to be installed. If wishing to deploy the application, set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is
@@ -92,6 +94,13 @@ the CMake Build Type is 'Release' if wishing to deploy the application executabl
 Upon completion, the directory in which the app was deployed can be executed locally without the programs required to build/run the application by simply
 double clicking the .exe file within the directory
 
+
+# Sample Generated Images
+
+
+# Additional Resources
+
+## Build Graphs using GoogleMaps API and the provided Python script in py_builder directory
 
 # Citations:
 Third Party Software/Libraries Utilized in Building this Project Include:
