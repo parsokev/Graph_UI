@@ -15,10 +15,17 @@
 
 
 // Relative Paths to .gv files for generating images using Graphviz's Dot
-std::string path_filename = "../../dot_graphs/shortest_path_overlay.gv";
-std::string MST_filename = "../../dot_graphs/MST_overlay.gv";
-std::string graph_filename = "../../dot_graphs/full_graph.gv";
-std::string graphviz_path = "../../Graphviz/bin/";
+std::string path_filename = "./dot_graphs/shortest_path_overlay.gv";
+std::string MST_filename = "./dot_graphs/MST_overlay.gv";
+std::string graph_filename = "./dot_graphs/full_graph.gv";
+std::string graphviz_path = "./Graphviz/bin/";
+std::string MST_image = "./graph_images/MST_overlay.png";
+std::string SP_image = "./graph_images/shortest_path_overlay.png";
+
+#ifdef __linux__
+std::string Linux_SP_script = "../../scripts/Linux/visualize_graph_SP.sh";
+std::string Linux_MST_script = "../../scripts/Linux/visualize_graph_MST.sh";
+#endif
 
 // Qt QString variables storing updated platform-selective text file/graph image locations
 QString filename = "";  // Name of Selected Text File to Process
@@ -26,7 +33,7 @@ QString filepath = "";  // Name of Absolute Path to Selected Text File
 QString requestedSolution = "";
 QString requestedVertexMethod = "";
 QString solutionDestination = "";
-QString graphDestination = "../../graph_images/full_graph.png";
+QString graphDestination = "./graph_images/full_graph.png";
 
 // Conversions of QString variables that are used for pipeline script commands
 std::string file_name = "";
@@ -110,7 +117,7 @@ void MainWindow::onActionOpenTriggered()
     QFileDialog fileDialog(this, tr("Select Text File"));
     bool verified_file = false;
     // Restrict File Selection to Text Files
-    fileDialog.setDirectory("../../sample_graphs");
+    fileDialog.setDirectory("sample_graphs");
     fileDialog.setNameFilter(tr("Text files (*.txt)"));
     if(fileDialog.exec()) {
         // Verify User Selected a Text File and Retrieve its Path for Referencing
@@ -605,10 +612,10 @@ void MainWindow::onActionSubmitClicked()
     // Set Universal Printed Output and Graph Image Locations based on type of Information Requested By User
     if (requestedSolution == "S") {
         request_type = "SHORTEST PATH";
-        destination_file = "../../graph_images/shortest_path_overlay.png";
+        destination_file = SP_image;
     } else {
         request_type = "MINIMUM SPANNING TREE";
-        destination_file = "../../graph_images/MST_overlay.png";
+        destination_file = MST_image;
     }
 
     // Select Linux-Compatible Bash Script and set CLI command to environment path to linux bash if Linux is detected
@@ -616,10 +623,10 @@ void MainWindow::onActionSubmitClicked()
     // Preset Script Path and Graph Image Locations based on User Requested Information for Linux Users
     command_val = "/bin/bash"
     if (requestedSolution == "S") {
-        script_path = "../../scripts/Linux/visualize_graph_SP.sh";
+        script_path = Linux_SP_script;
 
     } else {
-        script_path = "../../scripts/Linux/visualize_graph_MST.sh";
+        script_path = Linux_MST_script;
     }
 #endif
     // If Preprocessor Conditional Detects MacOS, Directly Execute Multiple Bash Commands to Graphviz's Dot Executable through A Pipeline
