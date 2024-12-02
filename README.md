@@ -54,18 +54,21 @@ This allows for the generation of an application executable that is compatible w
 Once the repository has been cloned locally using either platforms, if you wish to build the application to run within QT Creator/Visual Studio,
 set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is configured to be compatible with local machine's OS:
 ```
-<repo-root-directory>\build\<your-configuration-here>
+    <repo-root-directory>\build\<your-configuration-here>
 ```
 
 CMakeLists and resource paths are configured to be set according to the CMake Build Type so **ensure the CMake build path follows the path above and
 the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug Information) and NOT 'Release' if wishing to build for local usage purposes**
 
+
+
+![Image of Hierarchy](./ui_images/rough-directory-tree.png)
+
 > [!NOTE]
 > The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
 > The repository tree should follow the below image
 
-![Image of Hierarchy](./ui_images/rough-directory-tree.png)
- the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
+Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
 to match the path syntax.
 Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
 for the selection of available kits presented.
