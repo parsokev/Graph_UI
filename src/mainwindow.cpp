@@ -13,14 +13,29 @@
 #include <QPixmap>
 #include <QImageReader>
 
-
-// Relative Paths to .gv files for generating images using Graphviz's Dot
+/* Set paths to resource directories according to build path defined by CMake Configuration/Build Type
+ * 'RELEASE' = App Deployment -> Build path = CMAKE_SOURCE_DIR/<deploy-directory>
+ * 'DEBUG' or 'RELDEBUG' = Local Build -> Build path = CMAKE_SOURCE_DIR/build/<local-config-directory>
+*/
+#ifdef RELEASE
+// Relative Paths for deployed executable that is within same directory as the executable
 std::string path_filename = "./dot_graphs/shortest_path_overlay.gv";
 std::string MST_filename = "./dot_graphs/MST_overlay.gv";
 std::string graph_filename = "./dot_graphs/full_graph.gv";
 std::string graphviz_path = "./Graphviz/bin/";
 std::string MST_image = "./graph_images/MST_overlay.png";
 std::string SP_image = "./graph_images/shortest_path_overlay.png";
+QString graphDestination = "./graph_images/full_graph.png";
+#else
+// Relative Paths for locally built executable that is two levels below resource files
+std::string path_filename = "../../dot_graphs/shortest_path_overlay.gv";
+std::string MST_filename = "../../dot_graphs/MST_overlay.gv";
+std::string graph_filename = "../../dot_graphs/full_graph.gv";
+std::string graphviz_path = "../../Graphviz/bin/";
+std::string MST_image = "../../graph_images/MST_overlay.png";
+std::string SP_image = "../../graph_images/shortest_path_overlay.png";
+QString graphDestination = "../../graph_images/full_graph.png";
+#endif
 
 #ifdef __linux__
 std::string Linux_SP_script = "../../scripts/Linux/visualize_graph_SP.sh";
@@ -33,7 +48,7 @@ QString filepath = "";  // Name of Absolute Path to Selected Text File
 QString requestedSolution = "";
 QString requestedVertexMethod = "";
 QString solutionDestination = "";
-QString graphDestination = "./graph_images/full_graph.png";
+
 
 // Conversions of QString variables that are used for pipeline script commands
 std::string file_name = "";

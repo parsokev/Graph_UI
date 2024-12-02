@@ -48,15 +48,21 @@ the application will generate a desktop application window that will allow the u
 If wishing to clone this repository to your local machine, this application must be built **using QT Creator or Visual Studio with QT extensions installed and enabled**.
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
-Once the repository has been cloned locally using either platforms, set the application's build directory path to mirror the path outlined below
-and ensure the CMake build kit is configured to be compatible with local machine's OS:
+## Setting up CMake Build Configurations for Local Execution and Debugging
+Once the repository has been cloned locally using either platforms, if you wish to build the application to run within QT Creator/Visual Studio,
+set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is configured to be compatible with local machine's OS:
+```
+<repo-root-directory>\build\<your-configuration-here>
+```
 
-```
-<root-directory>\build\<your-kit-name-here>
-```
+CMakeLists and resource paths are configured to be set according to the CMake Build Type so **ensure the CMake build path follows the path above and
+the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug Information) and NOT 'Release' if wishing to build for local usage purposes**
 
 > [!NOTE]
 > The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
+> The repository tree should follow the below image
+
+> ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
 > Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
 > to match the path syntax.
@@ -68,19 +74,24 @@ and ensure the CMake build kit is configured to be compatible with local machine
 Upon completion of build process, the application will display the application window for accepting requests upon being executed. The most recently generated images
 will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
 
-# Deploying Executable
+## Setting up CMake Build Directory for Deploying a Stand-Alone Application
 
-If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Visual Studio or Qt Creator.
-This can used through the Qt command-line tool by the following steps:
-1. Copy the generated MyProjectName.exe file and paste it within an empty directory
-2. Initialize the Qt command-line tool and navigate to the directory containing the .exe file
-3. Enter the command ```windeployqt MyProjectName.exe .```
+If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Visual Studio or Qt Creator
+to be installed. If wishing to deploy the application, set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is
+configured to be compatible with local machine's OS:
+```
+<repo-root-directory>\<deployed-app-directory-here>
+```
 
 > [!NOTE]
-> Remember to have the directory hierarchy mirror that of the cloned repository and copy all folders found in root directory
-> Place .exe file in alignment with place of GraphImaging_UI, where 'Debug_Qt_...' is the kit directory within the build directory
+> The [App directory](./App) within the repo was intentionally left empty to provide expected location of deployment directory within the path represented above.
 
-![Image of Hierarchy](./ui_images/rough-directory-tree.png)
+CMakeLists and resource paths are configured to be set according to the CMake Build Type so **ensure the CMake build path follows the path above and
+the CMake Build Type is 'Release' if wishing to deploy the application executable along with along all required runtime and Qt dependencies**
+
+Upon completion, the directory in which the app was deployed can be executed locally without the programs required to build/run the application by simply
+double clicking the .exe file within the directory
+
 
 # Citations:
 Third Party Software/Libraries Utilized in Building this Project Include:
