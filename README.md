@@ -65,8 +65,7 @@ the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug 
 > The repository tree should follow the below image
 
 ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
-
-Implementing the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
+ the build path in QT Creator can accomplished by by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
 to match the path syntax.
 Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
 for the selection of available kits presented.
