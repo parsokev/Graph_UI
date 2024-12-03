@@ -1,4 +1,4 @@
-# Project Description:
+# Project Description
 
 This project was developed with the intent to build upon [a previously-made console application](https://github.com/parsokev/graph_repo) that generates
 graphical images from user-provided text files. This project provides a graphical user interface (GUI) with the same functionality as the
@@ -129,7 +129,7 @@ If wishing to use this, please visit [the DistanceMatrixAPI homepage](https://de
 create an account and generate the API key needed to make requests with the program. For the requests made by the program, the cost for such requests will
 be virtually free and free trials with GCP credits are available for new accounts.
 
-# Citations:
+# Citations
 
 Third Party Software/Libraries Utilized in Building this Project Include:
 
