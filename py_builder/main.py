@@ -15,6 +15,8 @@ KEY = app_secret    # API key for DistanceMatrix API access
 REFERENCE_FILE = 'empty.txt'    # Text file to be referenced in validation
 GRAPH_FILE = 'full.txt'     # Text file to be filled with distance data
 
+HOST_URL = '127.0.0.1'
+PORT = 8080
 # List of all cities used generate and write formatted edges to GRAPH_FILE.
 # Edges are used to build requests for edge distances from DistanceMatrix API
 cities = ["Abilene", "Atlanta", "Austin", "Baltimore", "Baton Rouge", "Boise",
@@ -116,12 +118,28 @@ def get_distance():
                 '&origins={}'
                 '&key={}'.format(vertex_2, vertex_1, KEY)
             )
+            # Catch invalid requests and continue with next request if possible
             loc_info = requests.get(dis_req).json()
-            # Convert to preferred distance unit from default value of meters
-            miles = math.ceil(int(
-                loc_info['rows'][0]['elements'][0]['distance']['value']
-                ) * 0.000621371)
+            no_res_body = 'status' not in loc_info or 'rows' not in loc_info
+            if (no_res_body or loc_info['status'] != 'OK' or
+               len(loc_info['rows']) == 0):
+                print(f'Invalid request for edge of {vertex_1} and {vertex_2}')
+                print('Continuing...')
+                continue
 
+            try:
+                # Convert to preferred distance unit from default of meters
+                miles = math.ceil(int(
+                    loc_info['rows'][0]['elements'][0]['distance']['value']
+                    ) * 0.000621371)
+            except Exception as e:
+                # Catch exceptions raised by multiple results being returned
+                print(e)
+                print(f'Request for edge of {vertex_1} and {vertex_2} may'
+                      f' have generated more than one distance result. '
+                      f'Please provide increased precision to request'
+                      f' locations.')
+                continue
             # If cities had to be further specified, revert to initial names
             vertex_1 = (vertex_1[:len(vertex_1)-5] if vertex_1.find('%') != -1
                         else vertex_1)
@@ -141,4 +159,4 @@ def get_distance():
 if __name__ == "__main__":
     # Ensure server only starts if edge information for request is valid
     if run_server:
-        app.run(host="127.0.0.1", port=8080, debug=True)
+        app.run(host=HOST_URL, port=PORT, debug=True)
