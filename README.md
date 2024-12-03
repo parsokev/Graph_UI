@@ -37,10 +37,9 @@ graphical visualizations after completing the following steps:
 
     ![Image of Image Selection UI](./ui_images/image-select-step.png)
     
-> [!NOTE]
-> The generated images will be immediately viewable through clicking the buttons within the application window but can also be viewed in higher
-> quality within their default local save location within the [graph_images](./graph_images) directory. They will be saved upon generation but
-> will be overwritten upon processing a new text file or changing the requested solution type.
+    The generated images will be immediately viewable through clicking the buttons within the application window but can also be viewed in higher
+    quality within their default local save location within the [graph_images](./graph_images) directory. They will be saved upon generation but
+    will be overwritten upon processing a new text file or changing the requested solution type.
 
 # Project Setup
 
@@ -48,7 +47,7 @@ graphical visualizations after completing the following steps:
 > In order to reduce file size and maintain local-machine compatibility, the Graphviz directory has been omitted from the repository.
 > Please download the most stable ZIP-archived version that is compatible with your local machine from the [download page for Graphviz](https://www.graphviz.org/download/),
 > and place the extracted contents(excluding the main folder itself) directly into the cloned repository's [Graphviz directory](./Graphviz).
-> This will eliminate the required installation of Graphviz on the local machine while still allowing for its use by the application.
+> This will eliminate the need to complete local setup/installation of Graphviz on the local machine while still allowing for its use by the application.
 
 If wishing to clone this repository to your local machine, this application must be built **using [QT Creator](https://doc.qt.io/qtcreator/index.html)**
 **or [Visual Studio with QT extensions installed and enabled](https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2022)**.
@@ -111,11 +110,27 @@ Example Image Generated from my_graph5.txt
 
 # Additional Resources
 
-## Build Graphs using GoogleMaps API and the provided Python script in py_builder directory
+## Build Graphs using GoogleMaps API and the provided Python script
 
-# Citations:
+The main.py file found in the [py_builder directory](./py_builder) was utilized for testing and generating graph text files
+while using the GoogleMaps API to provided simplified distance data between geographic locations. The python file can be used to:
+
+1. Generate the maximum number of unique edges that can be generated from a list of city names using the `create_max_edges` function
+2. Parse an existing text file with a list of edges (where each line follows format of `city1, city2, `) and have the rough distance
+   between the two existing city locations (requested from [GoogleMaps' DistanceMatrixAPI](https://developers.google.com/maps/documentation/distance-matrix)
+   ) written at the end of the edge for all edges with valid locations. 
+
+If wishing to use this, please visit [the DistanceMatrixAPI homepage](https://developers.google.com/maps/documentation/distance-matrix) to
+create an account and generate the API key needed to make requests with the program. For the requests made by the program, the cost for such requests will
+be virtually free and free trials with GCP credits are available for new accounts.
+
+## Citations:
+
 Third Party Software/Libraries Utilized in Building this Project Include:
 
 - [Graphviz](https://www.graphviz.org/license/)
 
 - [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations#lgpl)
+
+In accordance with the wishes of Qt, the LPGLv3 license has been included with this repository and the links to both
+license agreements of the Graphviz and Qt are provided above.
