@@ -132,5 +132,5 @@ Third Party Software/Libraries Utilized in Building this Project Include:
 
 - [Qt](https://www.qt.io/licensing/open-source-lgpl-obligations#lgpl)
 
-In accordance with the wishes of Qt, the LPGLv3 license has been included with this repository and the links to both
-license agreements of the Graphviz and Qt are provided above.
+In accordance with the wishes of Qt and Graphviz, the LGPLv3 license has been included with this repository and the links to the
+license agreements for both Graphviz and Qt are provided above.
