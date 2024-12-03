@@ -26,6 +26,7 @@ std::string graphviz_path = "./Graphviz/bin/";
 std::string MST_image = "./graph_images/MST_overlay.png";
 std::string SP_image = "./graph_images/shortest_path_overlay.png";
 QString graphDestination = "./graph_images/full_graph.png";
+QString starting_file = "./sample_graphs";
 #else
 // Relative Paths for locally built executable that is two levels below resource files
 std::string path_filename = "../../dot_graphs/shortest_path_overlay.gv";
@@ -35,6 +36,7 @@ std::string graphviz_path = "../../Graphviz/bin/";
 std::string MST_image = "../../graph_images/MST_overlay.png";
 std::string SP_image = "../../graph_images/shortest_path_overlay.png";
 QString graphDestination = "../../graph_images/full_graph.png";
+QString starting_file = "../../sample_graphs";
 #endif
 
 #ifdef __linux__
@@ -129,10 +131,11 @@ void MainWindow::onActionOpenTriggered()
     filepath = "";   // Holds absolute path to selected text file
 
     // Generate and Display File Selection Window for User to Select Text File with Graphical Information
-    QFileDialog fileDialog(this, tr("Select Text File"));
+    QFileDialog fileDialog(this, tr("Select Text File"), starting_file);
     bool verified_file = false;
     // Restrict File Selection to Text Files
-    fileDialog.setDirectory("sample_graphs");
+    // fileDialog.setFol
+    // fileDialog.setDirectory(starting_file);
     fileDialog.setNameFilter(tr("Text files (*.txt)"));
     if(fileDialog.exec()) {
         // Verify User Selected a Text File and Retrieve its Path for Referencing
@@ -662,15 +665,15 @@ void MainWindow::onActionSubmitClicked()
         if (requestedSolution == "S") {
         // Set Output Image File Path Designated for Shortest Path and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
-        script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
-        script_path.append(dot_path).append(" -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file);
+        script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
+        script_path.append(dot_path).append(" -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file).append(" -v");
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for Shortest Path Solution Image is '%s'", path_filename.c_str());
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
-        script_path.append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
-        script_path.append(dot_path).append(" -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file);
+        script_path.append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
+        script_path.append(dot_path).append(" -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file).append(" -v");
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
@@ -682,15 +685,15 @@ void MainWindow::onActionSubmitClicked()
     if (requestedSolution == "S") {
         // Set Output Image File Path Designated for Shortest Path and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = graphviz_path;
-        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
-        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file).append("\"");
+        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
+        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file).append(" -v\"");
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for Shortest Path Solution Image is '%s'", path_filename.c_str());
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = graphviz_path;
-        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
-        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file).append("\"");
+        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
+        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file).append(" -v\"");
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
