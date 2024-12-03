@@ -36,7 +36,11 @@ graphical visualizations after completing the following steps:
    graphical solution overlaying the original graph and allow the user to select and view these images after generation
 
     ![Image of Image Selection UI](./ui_images/image-select-step.png)
-
+    
+> [!NOTE]
+> The generated images will be immediately viewable through clicking the buttons within the application window but can also be viewed in higher
+> quality within their default local save location within the [graph_images](./graph_images) directory. They will be saved upon generation but
+> will be overwritten upon processing a new text file or changing the requested solution type.
 
 # Project Setup
 
@@ -97,6 +101,13 @@ double clicking the .exe file within the directory
 
 # Sample Generated Images
 
+A gallery of pregenerated graph images can be found in the [graph_images](./graph_images) directory, which were generated
+to show visualizations of lower density graphs using [my_graph5.txt](./sample_graphs/my_graph5.txt) and of higher density graphs
+using [my_graph6.txt](./sample_graphs/my_graph6.txt) both of which can be found in the [sample_graphs directory](./sample_graphs)
+
+Example Image Generated from my_graph5.txt
+
+![Image of Shortest Path](./graph_images/sample_sp_graph5)
 
 # Additional Resources
 
