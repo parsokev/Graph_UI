@@ -107,7 +107,7 @@ using [my_graph6.txt](./sample_graphs/my_graph6.txt) both of which can be found 
 
 Example Image Generated from my_graph5.txt
 
-![Image of Shortest Path](./graph_images/sample_sp_graph5)
+![Image of Shortest Path](./graph_images/sample_sp_graph5.png)
 
 # Additional Resources
 
