@@ -48,7 +48,7 @@ QString filepath = "";  // Name of Absolute Path to Selected Text File
 QString requestedSolution = "";
 QString requestedVertexMethod = "";
 QString solutionDestination = "";
-
+std::string c_filename;
 
 // Conversions of QString variables that are used for pipeline script commands
 std::string file_name = "";
@@ -275,7 +275,8 @@ void MainWindow::onActionConfirmFileClicked()
             // Update Progress Bar and UI Element State to Assure User of Progress
             this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
             this->statusBar()->showMessage("Estimating Number of Verticies based on Selected Text File...");
-            gprintf("Estimating number of unique verticies from '%s'...\n", filename.toStdString());
+            c_filename = filename.toStdString();
+            gprintf("Estimating number of unique verticies from '%s'...\n", c_filename.c_str());
             fileBuildBar.setValue(25);
             fileBuildBar.setLabelText("Estimating Number of Verticies based on Selected Text File...");
             QApplication::processEvents();
@@ -309,10 +310,12 @@ void MainWindow::onActionConfirmFileClicked()
              * - Build an Adjancency List while Parsing Selected Text File
              * - Verify Read Operation Success and Prepopulate UI Elements to Display Solution Selection Data to User
              */
+
             // Update Progress Bar and UI Element State to Assure User of Progress
             this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
             this->statusBar()->showMessage("Using Provided Number of Verticies to Decrease File Processing Time...");
-            gprintf("Estimating number of unique verticies from '%s'...\n", filename.toStdString());
+            c_filename = filename.toStdString();
+            gprintf("Estimating number of unique verticies from '%s'...\n", c_filename.c_str());
             fileBuildBar.setValue(25);
             fileBuildBar.setLabelText("Using Provided Number of Verticies to Decrease File Processing Time...");
             QApplication::processEvents();
@@ -324,10 +327,16 @@ void MainWindow::onActionConfirmFileClicked()
                 vertex_count = 5;
             }
         } else {
-            // Catch Potential Erroneous Outcomes that Lead to Vertex Selection not Being Engaged and Yet Proceeding
-            // Close Main Application to Avoid Erroneous Output/Processing Errors
-            // ADD DIALOG BOX AND HANDLE ERRORS FOR APPLICATION HERE
-            this->close();
+            std::cerr << "Unexpected value of requested Solution type received\n";
+            QMessageBox reportUnexpectedError;
+            reportUnexpectedError.setIcon(QMessageBox::Critical);
+            reportUnexpectedError.setText("Error(s) were encountered while attempting to determine selected vertex estimation type");
+            reportUnexpectedError.setInformativeText("An unexpected value was received for the selected request vertex estimation type.\n"
+                                                     "Please restart the application and try again.");
+            reportUnexpectedError.setWindowTitle("Unexpected Vertex Request Read Error");
+            reportUnexpectedError.exec();
+            QApplication::exit(1);
+            return;
         }
         gprintf("Process finished processing vertex count input. Building unordered map container...");
 
@@ -341,8 +350,8 @@ void MainWindow::onActionConfirmFileClicked()
         file_name = filepath.toStdString();
 
         // Update Progress Notification
-        gprintf("Building graph from '%s' file contents...", file_name);
-        gprintf("Writing graph information to file '%s' for image processing...", graph_filename);
+        gprintf("Building graph from '%s' file contents...", c_filename.c_str());
+        gprintf("Writing graph information to file '%s' for image processing...", graph_filename.c_str());
         fileBuildBar.setLabelText("Processing and Storing Edge Information from Selected File...");
         fileBuildBar.setValue(50);
         QApplication::processEvents();
@@ -539,7 +548,7 @@ void MainWindow::onActionSubmitClicked()
         // If Shortest Path is Selected, Verify Source and Destination Verticies are Valid Before Beginning Calculations
         std::string source_vertex = ui->startVertexSelect->currentText().toStdString();
         std::string dest_vertex = ui->destVertexSelect->currentText().toStdString();
-        gprintf("Beginning Shortest Path Calculations Starting at '%s' and Ending at '%s'", source_vertex, dest_vertex);
+        gprintf("Beginning Shortest Path Calculations Starting at '%s' and Ending at '%s'", source_vertex.c_str(), dest_vertex.c_str());
         if (source_vertex.empty() || dest_vertex.empty()){
             // If User failed to Select a Destination or Source Vertex, Prevent Submission and Redirect User back to Vetex Selection
             ui->submitButton->setVisible(false);
@@ -623,7 +632,7 @@ void MainWindow::onActionSubmitClicked()
     std::string request_type = "";
     std::string destination_file = "";
     std::string command_val = "";
-
+    std::string c_graphfile = graphDestination.toStdString();
     // Set Universal Printed Output and Graph Image Locations based on type of Information Requested By User
     if (requestedSolution == "S") {
         request_type = "SHORTEST PATH";
@@ -655,15 +664,15 @@ void MainWindow::onActionSubmitClicked()
         script_path = "chmod +x ";
         script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
         script_path.append(dot_path).append(" -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file);
-        gprintf("Path for Full Graph Image is '%s'", graphDestination.toStdString());
-        gprintf("Path for Shortest Path Solution Image is '%s'", path_filename);
+        gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
+        gprintf("Path for Shortest Path Solution Image is '%s'", path_filename.c_str());
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
         script_path.append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
         script_path.append(dot_path).append(" -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file);
-        gprintf("Path for Full Graph Image is '%s'", graphDestination.toStdString());
-        gprintf("Path for MST Solution Image is '%s'", MST_filename);
+        gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
+        gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
 #endif
 
@@ -675,15 +684,15 @@ void MainWindow::onActionSubmitClicked()
         script_path = graphviz_path;
         script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
         script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file).append("\"");
-        gprintf("Path for Full Graph Image is '%s'", graphDestination.toStdString());
-        gprintf("Path for Shortest Path Solution Image is '%s'", path_filename);
+        gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
+        gprintf("Path for Shortest Path Solution Image is '%s'", path_filename.c_str());
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = graphviz_path;
         script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append("; ");
         script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file).append("\"");
-        gprintf("Path for Full Graph Image is '%s'", graphDestination.toStdString());
-        gprintf("Path for MST Solution Image is '%s'", MST_filename);
+        gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
+        gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
 
 #endif
@@ -699,7 +708,7 @@ void MainWindow::onActionSubmitClicked()
         QApplication::exit(1);
         return;
     }
-    gprintf("Attempting to Execute Script or Command of '%s'...", script_path);
+    gprintf("Attempting to Execute Script or Command of '%s'...", script_path.c_str());
 
 // Execute Bash Shell Scripts using Linux-Compliant <sys/wait.h> Library Functions for Image Generation if Linux OS is Detected
 #ifdef __linux__
@@ -725,7 +734,7 @@ void MainWindow::onActionSubmitClicked()
     // Use popen for MacOS and Windows Systems, to Execute Commands/Scripts within a Pipeline and Read/Monitor its Output for Errors
     FILE *pipe_stream;
     command_val.append(script_path);
-    gprintf("Generating the '%s' using the processed graphical information...\n", request_type);
+    gprintf("Generating the '%s' using the processed graphical information...\n", request_type.c_str());
     gprintf("\n=============================== IMAGE GENERATION RESULTS ====================================\n");
 
     // Establish Stream with Intent to both Execute the Powershell Script and Read from Buffer containing the Command Line Output for Error Detection
@@ -748,8 +757,8 @@ void MainWindow::onActionSubmitClicked()
             return;
         } else {
             // Else, Proceed with Indicating Images are Ready for Viewing
-            gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type, destination_file);
-            gprintf("The Image of the Entire Graph was placed within:   '%s'", graphDestination.toStdString());
+            gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type.c_str(), destination_file.c_str());
+            gprintf("The Image of the Entire Graph was placed within:   '%s'", c_graphfile.c_str());
         }
         pclose(pipe_stream);
     } else {
