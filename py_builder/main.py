@@ -92,7 +92,8 @@ def get_distance():
             v1_fargo = vertex_1 == "Fargo"
             v2_fargo = vertex_2 == "Fargo"
             includes_fargo = vertex_1 == "Fargo" or vertex_2 == "Fargo"
-            # %2C specified addition of two characters for US state abbrev
+            # %2C(unicode comma) to increase location precision to a state
+            # Repeat for country if necessary
             if includes_concord:
                 vertex_1 = (vertex_1 + "%2CNC" if v1_concord
                             else vertex_1)
