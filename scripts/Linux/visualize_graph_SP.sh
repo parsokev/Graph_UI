@@ -12,7 +12,7 @@ else
 fi
 
 # Attempt to generate image of entire processed graph using graphviz
-"$graphviz_path" -Tpng:cairo ../../dot_graphs/full_graph.gv -o ../../graph_images/full_graph.png
+"$graphviz_path" -Tpng:cairo ../../dot_graphs/full_graph.gv -o ../../graph_images/full_graph.png -v
 if [ $? -ne 0 ]; then
     echo "" 
     echo "VISUALIZATION ERROR DETECTED: An error was encountered while attempting to generate the image for the Complete Graph within \"full_graph.png\""
@@ -24,7 +24,7 @@ else
 fi
 
 # Attempt to generate image of MST overlaying the entire processed graph using graphviz
-"$graphviz_path" -Tpng:cairo ../../dot_graphs/full_graph.gv -o ../../graph_images/shortest_path_overlay.png
+"$graphviz_path" -Tpng:cairo ../../dot_graphs/full_graph.gv -o ../../graph_images/shortest_path_overlay.png -v
 if [ $? -ne 0 ]; then
     echo ""
     echo "VISUALIZATION ERROR DETECTED: An error was encountered while attempting to generate the image for the Shortest Path within \"shortest_path_overlay.png\""

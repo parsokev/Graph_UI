@@ -107,7 +107,8 @@ using [my_graph6.txt](./sample_graphs/my_graph6.txt) both of which can be found 
 
 > [!CAUTION]
 > When building visualizations for graphs with higher edge densities like `my_graph6.txt`, it may take several minutes for the
-> visualization software to complete the image generation process.
+> visualization software to complete the image generation process. In such cases, the detailed progress of the visualization process can
+> be monitored through standard error ouput in the console
 
 Example Image Generated from `my_graph5.txt`
 
