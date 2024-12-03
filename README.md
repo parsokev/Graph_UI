@@ -66,7 +66,7 @@ the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug 
 
 > [!NOTE]
 > The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
-> The repository tree should follow the below image (some directories arenot shown in image)
+> The repository tree should follow the below image (some directories are not shown in image)
 
 > ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
@@ -95,8 +95,8 @@ configured to be compatible with local machine's OS:
 CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path follows the path above and
 the CMake Build Type is 'Release' if wishing to deploy the application executable along with all required runtime and Qt dependencies***
 
-Upon completion, the directory in which the app was deployed can be executed locally without the programs required to build/run the application by simply
-double clicking the .exe file within the directory
+Upon completion of build process, the directory in which the app was deployed can be executed locally without the programs required to build/run the application 
+by simply double clicking the .exe file within the directory
 
 
 # Sample Generated Images
@@ -129,7 +129,7 @@ If wishing to use this, please visit [the DistanceMatrixAPI homepage](https://de
 create an account and generate the API key needed to make requests with the program. For the requests made by the program, the cost for such requests will
 be virtually free and free trials with GCP credits are available for new accounts.
 
-## Citations:
+# Citations:
 
 Third Party Software/Libraries Utilized in Building this Project Include:
 
