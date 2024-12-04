@@ -39,6 +39,7 @@ QString graphDestination = "../../graph_images/full_graph.png";
 QString starting_file = "../../sample_graphs";
 #endif
 
+// Instead of using direct commands, program uses pre-made shell scripts for Linux OS
 #ifdef __linux__
 std::string Linux_SP_script = "../../scripts/Linux/visualize_graph_SP.sh";
 std::string Linux_MST_script = "../../scripts/Linux/visualize_graph_MST.sh";
@@ -406,7 +407,6 @@ void MainWindow::onActionConfirmFileClicked()
 #ifdef debug
         std::cerr << "Filled Hashmap is: " << *(this->main_hash) << '\n';
 #endif
-
         // Fill DropDowns with Verticies Found
         auto vertex_list = this->main_hash->get_keys();
         vertex_list.sort();

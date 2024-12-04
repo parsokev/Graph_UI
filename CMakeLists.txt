@@ -93,7 +93,7 @@ endif()
 # FOR APPLICATION DEPLOYMENT ONLY - SET BUILD TYPE TO 'RELEASE'
 # Call appropriate function from deployment script to place all resources, runtime dependencies
 # and Qt dependencies within same directory as generated .exe file
-if ($<CONFIG:Release>)
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
     if (WIN32)
         #use function to call windeployqt for Windows
         windeployqt(${PROJECT_NAME})
