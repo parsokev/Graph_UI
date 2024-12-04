@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 # Establish executable with project name and targets for compilation
 qt_add_executable( ${TARGET}
         MANUAL_FINALIZATION
+        src/mainwindow.ui
         ${HPPS}
         ${CPPS}
 )

@@ -48,7 +48,7 @@ public:
     QSpinBox *manualVertexEntry;
     QLabel *manualVertexTitle;
     QLabel *vertexSelectTitle;
-    QFrame *line;
+    QFrame *fileSelectSeparator;
     QToolButton *confirmFileButton;
     QLabel *progressLabel;
     QLabel *step1Label;
@@ -179,12 +179,12 @@ public:
 "	font: 12pt \"Javanese Text\";\n"
 "}"));
         vertexSelectTitle->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
-        line = new QFrame(fileSelectBox);
-        line->setObjectName("line");
-        line->setGeometry(QRect(-10, 120, 731, 20));
-        line->setStyleSheet(QString::fromUtf8(""));
-        line->setFrameShape(QFrame::Shape::HLine);
-        line->setFrameShadow(QFrame::Shadow::Sunken);
+        fileSelectSeparator = new QFrame(fileSelectBox);
+        fileSelectSeparator->setObjectName("line");
+        fileSelectSeparator->setGeometry(QRect(-10, 120, 731, 20));
+        fileSelectSeparator->setStyleSheet(QString::fromUtf8(""));
+        fileSelectSeparator->setFrameShape(QFrame::Shape::HLine);
+        fileSelectSeparator->setFrameShadow(QFrame::Shadow::Sunken);
         confirmFileButton = new QToolButton(fileSelectBox);
         confirmFileButton->setObjectName("confirmFileButton");
         confirmFileButton->setGeometry(QRect(270, 280, 141, 31));

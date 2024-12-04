@@ -240,8 +240,9 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
     // If source vertex is also the destination vertex, simply return the vertex with a distance of 0
     if (s_vertex.compare(des_vertex) == 0) {
         QMessageBox sameDest;
-        sameDest.setWindowTitle("SHORTEST PATH RESULTS");
-        sameDest.setStyleSheet("QMessageBox {background-color: rgb(170, 170, 255);} QMessageBox QLabel{color: rgb(0, 85, 0); font: 10pt \"Javanese Text\"}");
+        sameDest.setWindowTitle("Shortest Path Results");
+        sameDest.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                               " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         QString samePath = "";
         samePath.append("The Shortest Path from ").append(s_vertex).append(" TO ").append(des_vertex);
         samePath.append("\n").append(s_vertex).append(" -> ").append(des_vertex).append("\n\nTOTAL COST/DISTANCE: 0\n");
@@ -375,8 +376,9 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
     }
     // Else, at least one path exists between source and destination vertex, with shortest path value being found
     QMessageBox pathMessage;
-    pathMessage.setWindowTitle("SHORTEST PATH RESULTS");
-    pathMessage.setStyleSheet("QMessageBox {background-color: rgb(170, 170, 255);} QMessageBox QLabel{color: rgb(0, 85, 0); font: 10pt \"Javanese Text\"}");
+    pathMessage.setWindowTitle("Shortest Path Results");
+    pathMessage.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
     QString shortPathMsg = "";
     shortPathMsg.append("The Shortest Path from ").append(s_vertex).append(" TO ").append(des_vertex).append("\n");
     std::cerr << "============================= SHORTEST PATH RESULTS ====================================\n";
@@ -559,8 +561,9 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
 
     // Print simplified list of all edges comprising of MST and its total cost/length to terminal output for user
     QMessageBox mstPath;
-    mstPath.setWindowTitle("MINIMUM SPANNING TREE RESULTS");
-    mstPath.setStyleSheet("QMessageBox {background-color: rgb(170, 170, 255);} QMessageBox QLabel{color: rgb(0, 85, 0); font: 10pt \"Javanese Text\"}");
+    mstPath.setWindowTitle("Minimum Spanning Tree Results");
+    mstPath.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
     QString mstMsg = "";
 
     mstMsg.append("MST RESULTS\n").append("The Minimum Spanning Tree is formed from the Edges of:\n");
