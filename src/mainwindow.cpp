@@ -156,7 +156,6 @@ void MainWindow::onActionOpenTriggered()
             filename = "";
             ui->manualVertexButton->setEnabled(false);
             ui->estimateVertexButton->setEnabled(false);
-            // ui->solutionSelectBox->hide();
             ui->step3Label->hide();
             ui->solutionSelectTitle->hide();
             ui->mstButton->hide();
@@ -179,7 +178,6 @@ void MainWindow::onActionOpenTriggered()
             ui->solutionSelectTitle->setVisible(false);
             ui->mstButton->setVisible(false);
             ui->shortestPathButton->setVisible(false);
-            // ui->solutionSelectBox->setVisible(false);
             ui->submitButton->setVisible(false);
             ui->manualVertexButton->setEnabled(true);
             ui->estimateVertexButton->setEnabled(true);
@@ -257,7 +255,6 @@ void MainWindow::onActionConfirmFileClicked()
         this->statusBar()->showMessage("Graph Text File is Invalid! Please select a text file containing the graph information before proceeding");
         ui->fileNotificationLabel->setVisible(true);
         // Prevent User from Accessing UI Elements that are Populated with Data Extracted from User-Selected Text file
-        // ui->solutionSelectBox->hide();
         ui->step3Label->hide();
         ui->solutionSelectTitle->hide();
         ui->mstButton->hide();
@@ -424,13 +421,19 @@ void MainWindow::onActionConfirmFileClicked()
         fileBuildBar.setValue(100);
         statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
         statusBar()->showMessage("Graph Contents Validated! If you wish to choose a different file, please restart the application.");
-        // ui->solutionSelectBox->setVisible(true);
         ui->step3Label->setVisible(true);
         ui->solutionSelectTitle->setVisible(true);
         ui->mstButton->setVisible(true);
         ui->shortestPathButton->setVisible(true);
         ui->confirmFileButton->setVisible(false);
         ui->fileConfirmationLabel->setVisible(true);
+        QMessageBox confInfo;
+        confInfo.setWindowTitle("File Processing Complete");
+        confInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+        QString confMessage = "File Validation and Processing Complete!\n\nPlease note that if you wish to have a different text file processed, you must restart the application to do so.";
+        confInfo.setText(confMessage);
+        confInfo.exec();
     }
 }
 
@@ -643,7 +646,8 @@ void MainWindow::onActionSubmitClicked()
 
     // Immediately Update Event State of Progress Bar before Longest Expected Span of Processing Time
     imgProgressBar.setValue(45);
-    imgProgressBar.setLabelText("Executing local OS-compatible Script for Solution Imaging...");
+    imgProgressBar.setLabelText("Executing local OS-compatible Script for Solution Imaging.\nThis may take up to several minutes to complete...");
+
     QApplication::processEvents();
 
     // Initialize Path Variables that will be Employed Based on Detected Platform's OS
@@ -801,6 +805,7 @@ void MainWindow::onActionSubmitClicked()
     statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
     statusBar()->showMessage("Image Generation Complete!");
     solutionDestination = solutionDestination.fromStdString(destination_file);
+    // Notify user of ways to view the newly generated images and/or locate them if they wish to save/delete them.
     QMessageBox imgInfo;
     imgInfo.setWindowTitle("Viewing your Generated Image Results");
     imgInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
@@ -814,6 +819,7 @@ void MainWindow::onActionSubmitClicked()
     }
     imgInfo.setText(imgMessage);
     imgInfo.exec();
+    // Make image viewing buttons available after providing viewing instructions
     ui->displayImgButton->setVisible(true);
     ui->submitButton->setVisible(true);
     ui->displayGraphButton->setVisible(true);
