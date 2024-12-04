@@ -91,9 +91,11 @@ configured to be compatible with local machine's OS:
 
 > [!NOTE]
 > The [App directory](./App) within the repo was intentionally left empty to provide expected location of deployment directory within the path represented above.
+> 
+> 
 > It should also be noted that the .png files stored in the 'graph_images' directory and .gv files stored in the 'dot_graphs' directory will be modified in each
 > successive execution of the application. This may be flagged by a device's anti-virus software if transferred to a different device when application is executed.
-> To prevent this from occurring, delete all previously generated files from these two directories before transferring to a different device.
+> **To prevent this from occurring, delete all previously generated files from these two directories before transferring to a different device**.
 
 CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path follows the path above and
 the CMake Build Type is 'Release' if wishing to deploy the application executable along with all required runtime and Qt dependencies***
