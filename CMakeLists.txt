@@ -16,7 +16,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 qt_standard_project_setup()
 
 # Include Qt deployment functions held in CMake deployment script
-include(windeployqt)
+include(deploy_app)
 
 # Establish source file locations
 set( TARGET ${PROJECT_NAME} )
