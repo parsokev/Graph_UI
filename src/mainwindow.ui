@@ -6,15 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>811</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QMainWindow{
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5, stop: 0 mintcream, stop: 1 paleturquoise);
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="viewArea" native="true">
@@ -36,13 +38,15 @@
      <property name="geometry">
       <rect>
        <x>-20</x>
-       <y>-20</y>
+       <y>0</y>
        <width>811</width>
        <height>581</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QScrollArea{
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 cyan);
+}</string>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
@@ -59,10 +63,10 @@
       <widget class="QGroupBox" name="fileSelectBox">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>10</y>
-         <width>721</width>
-         <height>321</height>
+         <x>20</x>
+         <y>0</y>
+         <width>781</width>
+         <height>341</height>
         </rect>
        </property>
        <property name="layoutDirection">
@@ -73,9 +77,10 @@
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox {
- border: 1px solid black;
-	background-color: rgb(199, 199, 199);
-	background-color: rgb(170, 170, 255);
+ 	border: 1px solid black;
+ 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0.5, y2: 0.5, stop: 0 honeydew, stop: 1 lightblue);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }</string>
        </property>
        <property name="title">
@@ -88,11 +93,14 @@
         <bool>false</bool>
        </property>
        <widget class="QToolButton" name="openButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
-          <x>480</x>
+          <x>540</x>
           <y>70</y>
-          <width>81</width>
+          <width>101</width>
           <height>31</height>
          </rect>
         </property>
@@ -101,10 +109,14 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QToolButton {
-	border: 1px solid black;
-	
-	background-color: rgb(210, 210, 210);
-	font: 700 9pt &quot;Arial&quot;;
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue);
+	border-style: solid;
+	border-color: navy;
+	border-width: 1px;
+	font: 700 10pt &quot;Sylfaen&quot;;
+	color: indigo;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
 }</string>
         </property>
         <property name="text">
@@ -114,7 +126,7 @@
        <widget class="QPlainTextEdit" name="selectedFileText">
         <property name="geometry">
          <rect>
-          <x>80</x>
+          <x>140</x>
           <y>70</y>
           <width>401</width>
           <height>31</height>
@@ -122,7 +134,10 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QPlainTextEdit {
-border: 1px solid black;
+	border: 1px solid navy;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	font: 10pt &quot;Gill Sans MT&quot;;
 }
 </string>
         </property>
@@ -136,7 +151,7 @@ border: 1px solid black;
        <widget class="QLabel" name="fileSelectTitle">
         <property name="geometry">
          <rect>
-          <x>200</x>
+          <x>270</x>
           <y>30</y>
           <width>311</width>
           <height>21</height>
@@ -144,8 +159,8 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
-	color: maroon;
-	font: 12pt &quot;Javanese Text&quot;;
+	color: darkblue;
+	font: 12pt &quot;Trebuchet MS&quot;;
 }</string>
         </property>
         <property name="text">
@@ -169,8 +184,8 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QRadioButton{
-	font: 700 10pt &quot;Arial&quot;;
-	color: rgb(0, 85, 0);
+	font: 12pt &quot;Gill Sans MT&quot;;
+	color: maroon;
 }</string>
         </property>
         <property name="text">
@@ -180,7 +195,7 @@ border: 1px solid black;
        <widget class="QRadioButton" name="manualVertexButton">
         <property name="geometry">
          <rect>
-          <x>410</x>
+          <x>430</x>
           <y>200</y>
           <width>191</width>
           <height>16</height>
@@ -191,8 +206,8 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QRadioButton{
-	font: 700 10pt &quot;Arial&quot;;
-	color: rgb(0, 85, 0);
+	font: 12pt &quot;Gill Sans MT&quot;;
+	color: maroon;
 }</string>
         </property>
         <property name="text">
@@ -202,14 +217,29 @@ border: 1px solid black;
        <widget class="QSpinBox" name="manualVertexEntry">
         <property name="geometry">
          <rect>
-          <x>460</x>
+          <x>500</x>
           <y>240</y>
-          <width>141</width>
+          <width>161</width>
           <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QSpinBox {
+	font: 10pt &quot;Franklin Gothic Demi&quot;;
+	border: 1px solid midnightblue;
+	border-radius: 1px;
+ 	padding-right: 15px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+}</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -233,7 +263,7 @@ border: 1px solid black;
        <widget class="QLabel" name="manualVertexTitle">
         <property name="geometry">
          <rect>
-          <x>450</x>
+          <x>480</x>
           <y>220</y>
           <width>221</width>
           <height>20</height>
@@ -242,6 +272,7 @@ border: 1px solid black;
         <property name="styleSheet">
          <string notr="true">QLabel {
 	font: 10pt &quot;Javanese Text&quot;;
+	color: navy;
 }</string>
         </property>
         <property name="text">
@@ -251,7 +282,7 @@ border: 1px solid black;
        <widget class="QLabel" name="vertexSelectTitle">
         <property name="geometry">
          <rect>
-          <x>190</x>
+          <x>220</x>
           <y>150</y>
           <width>491</width>
           <height>21</height>
@@ -259,8 +290,9 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
-	color: maroon;
-	font: 12pt &quot;Javanese Text&quot;;
+	color: darkblue;
+
+	font: 12pt &quot;Trebuchet MS&quot;;
 }</string>
         </property>
         <property name="text">
@@ -270,12 +302,12 @@ border: 1px solid black;
          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="Line" name="line">
+       <widget class="Line" name="fileSelectSeparator">
         <property name="geometry">
          <rect>
           <x>-10</x>
           <y>120</y>
-          <width>731</width>
+          <width>791</width>
           <height>20</height>
          </rect>
         </property>
@@ -289,9 +321,9 @@ border: 1px solid black;
        <widget class="QToolButton" name="confirmFileButton">
         <property name="geometry">
          <rect>
-          <x>270</x>
+          <x>290</x>
           <y>280</y>
-          <width>141</width>
+          <width>151</width>
           <height>31</height>
          </rect>
         </property>
@@ -300,13 +332,17 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QToolButton {
-	font: 9pt &quot;Franklin Gothic Medium&quot;;
-	border: 1px solid firebrick;
-	background-color: rgb(230, 230, 230);
+	color: indigo;
+	font: 700 10pt &quot;Sylfaen&quot;;
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue);
+	border-style: solid;
+	border-color: midnightblue;
+	border-width: 1px;
+	border-radius: 5px;
 }</string>
         </property>
         <property name="text">
-         <string>Confirm File Information</string>
+         <string>Submit File Information</string>
         </property>
        </widget>
        <widget class="QLabel" name="progressLabel">
@@ -331,7 +367,7 @@ border: 1px solid black;
        <widget class="QLabel" name="step1Label">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>240</x>
           <y>30</y>
           <width>21</width>
           <height>20</height>
@@ -342,7 +378,7 @@ border: 1px solid black;
 	border: 1px solid darkslategrey;
 	font: 12pt &quot;Verdana&quot;;
 	color: green;
-	background-color: rgb(214, 107, 0);
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 white, stop: 1 chocolate);
 }</string>
         </property>
         <property name="frameShape">
@@ -358,7 +394,7 @@ border: 1px solid black;
        <widget class="QLabel" name="step2Label">
         <property name="geometry">
          <rect>
-          <x>160</x>
+          <x>190</x>
           <y>150</y>
           <width>21</width>
           <height>20</height>
@@ -368,8 +404,7 @@ border: 1px solid black;
          <string notr="true">QLabel{
 	border: 1px solid darkslategrey;
 	font: 12pt &quot;Verdana&quot;;
-	color: green;
-	background-color: rgb(214, 107, 0);
+	color: green;background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 white, stop: 1 chocolate);
 }</string>
         </property>
         <property name="text">
@@ -402,7 +437,7 @@ border: 1px solid black;
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>180</y>
+          <y>310</y>
           <width>681</width>
           <height>20</height>
          </rect>
@@ -422,16 +457,20 @@ border: 1px solid black;
       <widget class="QGroupBox" name="solutionSelectBox">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>20</x>
          <y>330</y>
-         <width>721</width>
-         <height>181</height>
+         <width>781</width>
+         <height>191</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">QGroupBox {
-	background-color: rgb(170, 170, 255);
-	border: 1px solid black;
+   background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0, y2: 1, stop: 0 lightblue, stop: 1 lightskyblue);
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 }</string>
        </property>
        <property name="title">
@@ -440,16 +479,16 @@ border: 1px solid black;
        <widget class="QLabel" name="solutionSelectTitle">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>20</y>
+          <x>270</x>
+          <y>30</y>
           <width>331</width>
           <height>20</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
-	color: maroon;
-	font: 12pt &quot;Javanese Text&quot;;
+	color: darkblue;
+	font: 12pt &quot;Trebuchet MS&quot;;
 }</string>
         </property>
         <property name="text">
@@ -462,10 +501,10 @@ border: 1px solid black;
        <widget class="QRadioButton" name="shortestPathButton">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>100</x>
           <y>60</y>
           <width>141</width>
-          <height>16</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="toolTip">
@@ -473,8 +512,8 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QRadioButton{
-	font: 700 10pt &quot;Arial&quot;;
-	color: rgb(0, 85, 0);
+	font: 12pt &quot;Gill Sans MT&quot;;
+	color: maroon;
 }</string>
         </property>
         <property name="text">
@@ -484,10 +523,10 @@ border: 1px solid black;
        <widget class="QRadioButton" name="mstButton">
         <property name="geometry">
          <rect>
-          <x>390</x>
+          <x>450</x>
           <y>60</y>
           <width>231</width>
-          <height>16</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="toolTip">
@@ -495,8 +534,8 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QRadioButton{
-	font: 700 10pt &quot;Arial&quot;;
-	color: rgb(0, 85, 0);
+	font: 12pt &quot;Gill Sans MT&quot;;
+	color: maroon
 }</string>
         </property>
         <property name="text">
@@ -506,48 +545,51 @@ border: 1px solid black;
        <widget class="QComboBox" name="startVertexSelect">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>100</y>
+          <x>100</x>
+          <y>120</y>
           <width>231</width>
           <height>22</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">QComboBox {
-	font: 9pt &quot;Arial&quot;;
-	border: 1px solid black;
-}</string>
+	font: 10pt &quot;Gill Sans MT&quot;;
+	border: 1px solid midnightblue;
+	border-radius: 1px;
+}
+</string>
         </property>
        </widget>
        <widget class="QComboBox" name="destVertexSelect">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>130</y>
+          <x>100</x>
+          <y>150</y>
           <width>231</width>
           <height>22</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">QComboBox {
-	font: 9pt &quot;Arial&quot;;
-	border: 1px solid black;
+	font: 10pt &quot;Gill Sans MT&quot;;
+	border: 1px solid midnightblue;
+	border-radius: 1px;
 }</string>
         </property>
        </widget>
        <widget class="QLabel" name="pathSelectTitle">
         <property name="geometry">
          <rect>
-          <x>-10</x>
-          <y>80</y>
+          <x>40</x>
+          <y>100</y>
           <width>251</width>
           <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
-	color: darkbrown;
-	font: 10pt &quot;Javanese Text&quot;;
+	color: navy;
+	font: 11pt &quot;Javanese Text&quot;;
 }</string>
         </property>
         <property name="text">
@@ -560,7 +602,7 @@ border: 1px solid black;
        <widget class="QToolButton" name="submitButton">
         <property name="geometry">
          <rect>
-          <x>560</x>
+          <x>590</x>
           <y>140</y>
           <width>151</width>
           <height>31</height>
@@ -571,9 +613,13 @@ border: 1px solid black;
         </property>
         <property name="styleSheet">
          <string notr="true">QToolButton {
-	border: 1px solid red;
-	font: 10pt &quot;Franklin Gothic Medium&quot;;
-	background-color: rgb(239, 239, 239);
+	color: indigo;
+	font: 700 10pt &quot;Sylfaen&quot;;
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue);
+	border-style: solid;
+	border-color: midnightblue;
+	border-width: 1px;
+	border-radius: 5px;
 }</string>
         </property>
         <property name="text">
@@ -583,8 +629,8 @@ border: 1px solid black;
        <widget class="QLabel" name="step3Label">
         <property name="geometry">
          <rect>
-          <x>170</x>
-          <y>20</y>
+          <x>240</x>
+          <y>30</y>
           <width>21</width>
           <height>20</height>
          </rect>
@@ -594,7 +640,7 @@ border: 1px solid black;
 	border: 1px solid darkslategrey;
 	font: 12pt &quot;Verdana&quot;;
 	color: green;
-	background-color: rgb(214, 107, 0);
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 white, stop: 1 chocolate);
 }</string>
         </property>
         <property name="text">
@@ -607,8 +653,8 @@ border: 1px solid black;
        <widget class="QLabel" name="vertexNotificationLabel">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>156</y>
+          <x>50</x>
+          <y>170</y>
           <width>351</width>
           <height>20</height>
          </rect>
@@ -623,46 +669,88 @@ border: 1px solid black;
          <string/>
         </property>
        </widget>
+       <widget class="Line" name="requestSeparator">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>781</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
       </widget>
-      <widget class="QToolButton" name="displayImgButton">
+      <widget class="QGroupBox" name="graphButtonBox">
        <property name="geometry">
         <rect>
-         <x>400</x>
-         <y>530</y>
-         <width>231</width>
-         <height>31</height>
+         <x>10</x>
+         <y>520</y>
+         <width>801</width>
+         <height>61</height>
         </rect>
        </property>
-       <property name="styleSheet">
-        <string notr="true">QToolButton {
-	border: 1px solid black;
-	font: 11pt &quot;Javanese Text&quot;;
-	background-color: rgb(255, 170, 127);
-}</string>
-       </property>
-       <property name="text">
-        <string>View Generated Solution</string>
-       </property>
-      </widget>
-      <widget class="QToolButton" name="displayGraphButton">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>530</y>
-         <width>221</width>
-         <height>31</height>
-        </rect>
+       <property name="autoFillBackground">
+        <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">QToolButton{
-	border: 1px solid black;
-	background-color: rgb(255, 255, 127);
-	font: 11pt &quot;Javanese Text&quot;;
+        <string notr="true">QGroupBox{
+	background-color: paleturquoise;
 }</string>
        </property>
-       <property name="text">
-        <string>View Generated Full Graph</string>
+       <property name="title">
+        <string/>
        </property>
+       <widget class="QToolButton" name="displayGraphButton">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>10</y>
+          <width>221</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	color: darkred;
+	font: 700 12pt &quot;Sylfaen&quot;;
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 gold, stop: 1 orange);
+	border-style: solid;
+	border-color:  black;
+	border-width: 1px;
+	border-radius: 5px;
+}</string>
+        </property>
+        <property name="text">
+         <string>View Generated Full Graph</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="displayImgButton">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>10</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton {
+	color: darkred;
+	font: 700 12pt &quot;Sylfaen&quot;;
+	background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 gold, stop: 1 orange);
+	border-style: solid;
+	border-color:  black;
+	border-width: 1px;
+	border-radius: 5px;
+}</string>
+        </property>
+        <property name="text">
+         <string>View Generated Solution</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -673,7 +761,7 @@ border: 1px solid black;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>811</width>
      <height>18</height>
     </rect>
    </property>
@@ -684,8 +772,8 @@ border: 1px solid black;
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: ghostwhite;
-font: 10pt &quot;Calibri&quot;;
-color: lightcoral;</string>
+font: 10pt &quot;Trebuchet MS&quot;;
+color: indigo;</string>
    </property>
   </widget>
   <action name="actionOpen">

@@ -68,15 +68,18 @@ MainWindow::MainWindow(QWidget *parent):
     // Initialize UI and Basic Application Window Settings
     ui->setupUi(this);
     this->setWindowTitle("Welcome To Graph Path UI");
-
+    ui->openButton->setText("Select Text File");
     // Toggle Display of UI elements that should not be initially be interacted with
     ui->manualVertexButton->hide();
     ui->estimateVertexButton->hide();
     ui->vertexSelectTitle->hide();
-    ui->solutionSelectBox->hide();
     ui->manualVertexEntry->hide();
     ui->manualVertexTitle->hide();
     ui->pathSelectTitle->hide();
+    ui->step3Label->hide();
+    ui->solutionSelectTitle->hide();
+    ui->mstButton->hide();
+    ui->shortestPathButton->hide();
     ui->startVertexSelect->hide();
     ui->destVertexSelect->hide();
     ui->submitButton->hide();
@@ -134,8 +137,6 @@ void MainWindow::onActionOpenTriggered()
     QFileDialog fileDialog(this, tr("Select Text File"), starting_file);
     bool verified_file = false;
     // Restrict File Selection to Text Files
-    // fileDialog.setFol
-    // fileDialog.setDirectory(starting_file);
     fileDialog.setNameFilter(tr("Text files (*.txt)"));
     if(fileDialog.exec()) {
         // Verify User Selected a Text File and Retrieve its Path for Referencing
@@ -145,7 +146,7 @@ void MainWindow::onActionOpenTriggered()
         filename = fileinfo.fileName();
         if (fileinfo.size() > 0){
             // If User Selected a Text File, Display Name to User and Proceed to Display Next Section
-            ui->selectedFileText->setStyleSheet("QPlainTextEdit{font: 10pt \"Courier New\"; color:limegreen;}");
+            ui->selectedFileText->setStyleSheet("QPlainTextEdit{font: 10pt \"Gill Sans MT\"; color:limegreen;}");
             ui->selectedFileText->setPlainText(filename);
             verified_file = true;
         }
@@ -155,13 +156,17 @@ void MainWindow::onActionOpenTriggered()
             filename = "";
             ui->manualVertexButton->setEnabled(false);
             ui->estimateVertexButton->setEnabled(false);
-            ui->solutionSelectBox->hide();
+            // ui->solutionSelectBox->hide();
+            ui->step3Label->hide();
+            ui->solutionSelectTitle->hide();
+            ui->mstButton->hide();
+            ui->shortestPathButton->hide();
             ui->submitButton->hide();
-            ui->selectedFileText->setStyleSheet("QPlainTextEdit{font: 10pt \"Courier New\"; color: crimson;}");
+            ui->selectedFileText->setStyleSheet("QPlainTextEdit{font: 10pt \"Gill Sans MT\"; color: crimson;}");
             ui->selectedFileText->setPlainText("Invalid File Selected!");
 
             ui->fileNotificationLabel->setVisible(true);
-            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
             this->statusBar()->showMessage("File is not a valid text file! Please select an existing text file that is not empty to proceed");
         } else {
             // Make Vertex Information Form Visible Upon Verifying Selected File Exists and is not Empty
@@ -170,13 +175,17 @@ void MainWindow::onActionOpenTriggered()
             ui->estimateVertexButton->setVisible(true);
             ui->manualVertexButton->setVisible(true);
             ui->vertexSelectTitle->setVisible(true);
-            ui->solutionSelectBox->setVisible(false);
+            ui->step3Label->setVisible(false);
+            ui->solutionSelectTitle->setVisible(false);
+            ui->mstButton->setVisible(false);
+            ui->shortestPathButton->setVisible(false);
+            // ui->solutionSelectBox->setVisible(false);
             ui->submitButton->setVisible(false);
             ui->manualVertexButton->setEnabled(true);
             ui->estimateVertexButton->setEnabled(true);
             ui->step2Label->setVisible(true);
             ui->fileNotificationLabel->setVisible(false);
-            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
             this->statusBar()->showMessage(fileNotification);
         }
         delete file;    // Cleanup allocation for QFile object
@@ -189,7 +198,7 @@ void MainWindow::onActionVertexEstimateSelected()
     // Verify Selected File is Valid before Allowing Access to Solution Selection
     if (filename.length() == 0){
         // If User Changed/Cleared Selected Text File after Intial Validation, Prevent Proceeding Further until Validated
-        this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+        this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         this->statusBar()->showMessage("File is not a valid text file! Please select an existing text file that is not empty to proceed");
         ui->confirmFileButton->setVisible(false);
         ui->fileNotificationLabel->setVisible(true);
@@ -210,7 +219,7 @@ void MainWindow::onActionVertexManualSelected()
     // Verify Selected File is Valid before Allowing Access to Solution Selection
     if (filename.length() == 0){
         // If User Changed/Cleared Selected Text File after Intial Validation, Prevent Proceeding Further until Validated
-        this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+        this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         this->statusBar()->showMessage("File is not a valid text file! Please select an existing text file that is not empty to proceed");
         ui->confirmFileButton->setVisible(false);
         ui->fileNotificationLabel->setVisible(true);
@@ -236,7 +245,7 @@ void MainWindow::onActionConfirmFileClicked()
      *  Generate and Display a Window Notifying the User of Program Progress as Soon as Program Begins Processing
     */
     QProgressDialog fileBuildBar("Parsing Selected Text File...", nullptr, 0, 100);
-    fileBuildBar.setStyleSheet("QProgressDialog{} QLabel{font: 8pt \"Javanese Style\"; color: rgb(0, 85, 0);}");
+    fileBuildBar.setStyleSheet("QProgressDialog{font: 700 10pt \"Sylfaen\";} QLabel{font: 700 10pt \"Sylfaen\"; color: rgb(0, 85, 0);}");
     fileBuildBar.setMinimumDuration(0);
     fileBuildBar.setWindowTitle("File Validation Progress");
     QApplication::processEvents();
@@ -244,11 +253,15 @@ void MainWindow::onActionConfirmFileClicked()
     // Verify Selected File is Valid before Allowing Access to Solution Selection
     if (filename.length() == 0){
         // In User Changes/Deselects File After Completing Vertex Selection/Entry, Prevent Further Progress
-        this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+        this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         this->statusBar()->showMessage("Graph Text File is Invalid! Please select a text file containing the graph information before proceeding");
         ui->fileNotificationLabel->setVisible(true);
         // Prevent User from Accessing UI Elements that are Populated with Data Extracted from User-Selected Text file
-        ui->solutionSelectBox->hide();
+        // ui->solutionSelectBox->hide();
+        ui->step3Label->hide();
+        ui->solutionSelectTitle->hide();
+        ui->mstButton->hide();
+        ui->shortestPathButton->hide();
         ui->confirmFileButton->hide();
     } else {
         /*
@@ -276,7 +289,7 @@ void MainWindow::onActionConfirmFileClicked()
              * - Verify Read Operation Success and Prepopulate UI Elements to Display Solution Selection Data to User
              */
             // Update Progress Bar and UI Element State to Assure User of Progress
-            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
             this->statusBar()->showMessage("Estimating Number of Verticies based on Selected Text File...");
             c_filename = filename.toStdString();
             gprintf("Estimating number of unique verticies from '%s'...\n", c_filename.c_str());
@@ -315,7 +328,7 @@ void MainWindow::onActionConfirmFileClicked()
              */
 
             // Update Progress Bar and UI Element State to Assure User of Progress
-            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+            this->statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
             this->statusBar()->showMessage("Using Provided Number of Verticies to Decrease File Processing Time...");
             c_filename = filename.toStdString();
             gprintf("Estimating number of unique verticies from '%s'...\n", c_filename.c_str());
@@ -409,12 +422,15 @@ void MainWindow::onActionConfirmFileClicked()
 
         // Indicate Successful Completion and Provide User Access to Solution Selection Section with Populated Data
         fileBuildBar.setValue(100);
-        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
         statusBar()->showMessage("Graph Contents Validated! If you wish to choose a different file, please restart the application.");
-        ui->solutionSelectBox->setVisible(true);
-        ui->confirmFileButton->setEnabled(false);
+        // ui->solutionSelectBox->setVisible(true);
+        ui->step3Label->setVisible(true);
+        ui->solutionSelectTitle->setVisible(true);
+        ui->mstButton->setVisible(true);
+        ui->shortestPathButton->setVisible(true);
+        ui->confirmFileButton->setVisible(false);
         ui->fileConfirmationLabel->setVisible(true);
-        ui->confirmFileButton->setStyleSheet("QToolButton {font: 9pt \"Franklin Gothic Medium\"; border: 1px solid firebrick; background-color: rgb(230, 230, 230);}");
     }
 }
 
@@ -426,13 +442,13 @@ void MainWindow::onActionSrcVertexChanged()
     std::string dest_vertex = ui->destVertexSelect->currentText().toStdString();
     // If Destination and Source Verticies are the Same, Notify user of Invalid Selection and Prevent User from Submitting with Selected Value Combination
     if (dest_vertex.compare(source_vertex) == 0) {
-        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         statusBar()->showMessage("WARNING: Destination is same as Starting Point. Please select another vertex before proceeding.");
         ui->submitButton->setVisible(false);
         ui->vertexNotificationLabel->setVisible(true);
     } else {
         // Otherwise, Indicate to User that Combination is Valid
-        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
         statusBar()->showMessage("Please Select a Starting and Ending point for path");
         ui->submitButton->setVisible(true);
         ui->vertexNotificationLabel->setVisible(false);
@@ -447,13 +463,13 @@ void MainWindow::onActionDestVertexChanged()
     std::string dest_vertex = ui->destVertexSelect->currentText().toStdString();
     // If Destination and Source Verticies are the Same, Notify user of Invalid Selection and Prevent User from Submitting with Selected Value Combination
     if (dest_vertex.compare(source_vertex) == 0) {
-        statusBar()->setStyleSheet("QStatusBar{font: 10pt \"Courier New\"; color: crimson;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         statusBar()->showMessage("WARNING: Destination is same as Starting Point. Please select another vertex before proceeding.");
         ui->submitButton->setVisible(false);
         ui->vertexNotificationLabel->setVisible(true);
     } else {
         // Otherwise, Indicate to User that Combination is Valid
-        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
         statusBar()->showMessage("Please Select a Starting and Ending point for path");
         ui->submitButton->setVisible(true);
         ui->vertexNotificationLabel->setVisible(false);
@@ -464,7 +480,7 @@ void MainWindow::onActionDestVertexChanged()
 void MainWindow::onActionShortestPathSelected()
 {
     if (ui->startVertexSelect->currentText().toStdString().compare(ui->destVertexSelect->currentText().toStdString()) == 0){
-        statusBar()->setStyleSheet("QStatusBar{font: 10pt \"Courier New\"; color: crimson;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         statusBar()->showMessage("WARNING: Destination is same as Starting Point. Please select another vertex before proceeding.");
         ui->submitButton->setVisible(false);
         ui->vertexNotificationLabel->setVisible(true);
@@ -473,7 +489,7 @@ void MainWindow::onActionShortestPathSelected()
         QString set_size = set_size.number(vertex_count);
         SPMsg.append(set_size);
         SPMsg.append(" detected with selected solution of Shortest Path");
-        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
         statusBar()->showMessage(SPMsg);
         ui->submitButton->setVisible(true);
         ui->vertexNotificationLabel->setVisible(false);
@@ -504,7 +520,7 @@ void MainWindow::onActionMSTSelected()
     QString set_size = set_size.number(vertex_count);
     MSTMsg.append(set_size);
     MSTMsg.append(" detected with selection solution of MST");
-    statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+    statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
     statusBar()->showMessage(MSTMsg);
 }
 
@@ -555,7 +571,7 @@ void MainWindow::onActionSubmitClicked()
         if (source_vertex.empty() || dest_vertex.empty()){
             // If User failed to Select a Destination or Source Vertex, Prevent Submission and Redirect User back to Vetex Selection
             ui->submitButton->setVisible(false);
-            statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+            statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
             statusBar()->showMessage("WARNING: Please ensure both starting vertex and destination vertex have been selected!");
             ui->vertexNotificationLabel->setVisible(true);
             return;
@@ -564,7 +580,7 @@ void MainWindow::onActionSubmitClicked()
         if (source_vertex.compare(dest_vertex) == 0){
             // If User Selected Same Vertex as both Destination and Source of Shortest Path, Prevent Submission and Redirect User back to Vetex Selection
             ui->submitButton->setVisible(false);
-            statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+            statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
             statusBar()->showMessage("WARNING: Please ensure both starting vertex and destination vertex have been selected!");
             ui->vertexNotificationLabel->setVisible(true);
             return;
@@ -619,7 +635,7 @@ void MainWindow::onActionSubmitClicked()
      *  Generate and Display a Window Notifying the User of Program Progress as Soon as Program Begins Processing
     */
     QProgressDialog imgProgressBar("Selecting local OS-compatible Script for Solution Imaging...", nullptr, 0, 100);
-    imgProgressBar.setStyleSheet("QProgressDialog{} QLabel{font: 8pt \"Javanese Style\"; color: rgb(0, 85, 0);}");
+    imgProgressBar.setStyleSheet("QProgressDialog{font: 700 10pt \"Sylfaen\";} QLabel{font: 700 10pt \"Sylfaen\"; color: rgb(0, 85, 0);}");
     imgProgressBar.setMinimumDuration(0);
     imgProgressBar.resize(this->width(), imgProgressBar.height() + 100);
     imgProgressBar.setWindowTitle("Solution Image Generation Progress");
@@ -782,9 +798,22 @@ void MainWindow::onActionSubmitClicked()
 #endif
     // If Script/Command Executions are Successful, Present User with UI Elements that Allow for Viewing Generated Images
     imgProgressBar.setValue(100);
-    statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: limegreen;}");
+    statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: limegreen;}");
     statusBar()->showMessage("Image Generation Complete!");
     solutionDestination = solutionDestination.fromStdString(destination_file);
+    QMessageBox imgInfo;
+    imgInfo.setWindowTitle("Viewing your Generated Image Results");
+    imgInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                           " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+    QString imgMessage = "Image Generation Complete! You may now view the generated images by:\n1. Clicking the buttons that appear at the bottom of the window to view the images at reduced quality.\n";
+    imgMessage.append("\n2. Locating them within the \"graph_images\" folder and opening each image using your operating system's native image-viewing application to view the image(s) at a higher quality.\n");
+    if (request_type.compare("SHORTEST PATH") == 0) {
+        imgMessage.append("\nThe generated shortest path image will be named \"shortest_path_overlay.png\" and full graph will be named \"full_graph.png\"\n");
+    } else {
+        imgMessage.append("\nThe generated MST image will be named \"MST_overlay.png\" and full graph will be named \"full_graph.png\"\n");
+    }
+    imgInfo.setText(imgMessage);
+    imgInfo.exec();
     ui->displayImgButton->setVisible(true);
     ui->submitButton->setVisible(true);
     ui->displayGraphButton->setVisible(true);
@@ -816,7 +845,7 @@ void MainWindow::onActionDisplayImgClicked(){
     // Fill Dialog Window with Pixmap that is Scaled to fill its Child Label with Aspect Ratio Intact
     if(!solutionMap.isNull()) {
         solutionLabel.resize(this->width() + 100, this->height() + 100);
-        solutionLabel.setPixmap(solutionMap.scaled(solutionLabel.size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
+        solutionLabel.setPixmap(solutionMap.scaled(solutionLabel.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
         solutionLabel.setScaledContents(true);
         // Execute Dialog Window with properly Adjusted Image of Solution to Appear
         solutionImg.exec();
@@ -842,14 +871,14 @@ void MainWindow::onActionDisplayGraphClicked()
     if (!fullGraphMap.isNull()){
         // Scale Image to Fit Size of Label child of Parent Dialog Box and Display Image to User
         fullGraphLabel.resize(this->width() + 100, this->height() + 100);
-        fullGraphLabel.setPixmap(fullGraphMap.scaled(fullGraphLabel.size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
+        fullGraphLabel.setPixmap(fullGraphMap.scaled(fullGraphLabel.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
         fullGraphLabel.setScaledContents(true);
         fullGraphImg.exec();
     } else {
         // Notify User that Generated Full Graph Image does not Exist or Path used is Invalid
         QString imgErrorMsg = "Program Failed to Extract Generated Full Graph Image From \"";
         imgErrorMsg.append(graphDestination).append("\". Please Ensure Path to \"").append(graphDestination).append("\" is Valid");
-        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Courier New\"; color: crimson;}");
+        statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
         this->statusBar()->showMessage(imgErrorMsg);
         std::cerr << "Failed to Extract Generated Image of Full Graph!";
     }

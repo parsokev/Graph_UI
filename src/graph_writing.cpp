@@ -246,7 +246,7 @@ int write_graph_header(std::fstream& graph_file, const std::string& graph_type, 
     std::string node_style = "filled";                  // Toggle Setting for Enabling Background Color of Nodes
     std::string landscape_enabled = "false";        // Toggle Setting for Portrait or Landscape Orientation of Image
     std::string background_color = "gainsboro";     // Background Color of Entire Image
-    std::string node_fill_color = "darkolivegreen2";    // Background Color of Individual Nodes
+    std::string node_fill_color = "cyan";    // Background Color of Individual Nodes
     std::string cluster_name = "Full Graph";        // Main Title Displayed for Image
     std::string cluster_shape = "box";          // Shape of Border Surrounding the Main Title
     std::string cluster_fontsize = "14";        // Font Size of Main Title
