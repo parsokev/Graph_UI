@@ -50,12 +50,11 @@ graphical visualizations after completing the following steps:
 > and place the extracted contents(excluding the main folder itself) directly into the cloned repository's [Graphviz directory](./Graphviz).
 > This will eliminate the need to complete local setup/installation of Graphviz on the local machine while still allowing for its use by the application.
 
-If wishing to clone this repository to your local machine, this application must be built ***using [QT Creator](https://doc.qt.io/qtcreator/index.html)***
-***or [Visual Studio with QT extensions installed and enabled](https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2022)***.
+If wishing to clone this repository to your local machine, this application must be built ***using [QT Creator](https://doc.qt.io/qtcreator/index.html)***.
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
 ## Setting up CMake Build Configurations for Local Execution and Debugging
-Once the repository has been cloned locally using either platforms, if you wish to build the application to run within QT Creator/Visual Studio,
+Once the repository has been cloned locally using either platforms, if you wish to build the application to run within QT Creator,
 set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is configured to be compatible with local machine's OS:
 ```
     <repo-root-directory>\build\<your-configuration-here>
@@ -74,15 +73,14 @@ Implementing the build path in QT Creator can be accomplished by selecting the `
 to match the path syntax listed above.
 Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
 for the selection of available kits presented.
-This should be sufficient to build the project using CMake. This process using Visual Studio is accomplished in a similar fashion.
-Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
+This should be sufficient to build the project using CMake. Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
 
 Upon completion of build process, the application will display the application window for accepting requests upon being executed. The most recently generated images
 will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
 
 ## Setting up CMake Build Directory for Deploying as Stand-Alone Application
 
-If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Visual Studio or Qt Creator
+If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Qt Creator
 to be installed. If wishing to deploy the application, set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is
 configured to be compatible with local machine's OS:
 ```
