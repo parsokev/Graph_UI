@@ -39,9 +39,14 @@ static void print_shortest_path(const std::vector<std::string>& path_list) {
 }
 
 
-int build_adjacency_list(const std::string& filename, const std::string& write_name, unsigned int vertex_count, main_hashmap<double>&& adj_list) {
+int build_adjacency_list(const std::string &filename,
+                         const std::string &write_name,
+                         unsigned int vertex_count,
+                         main_hashmap<double> &&adj_list)
+{
     std::fstream read_file;
-    std::fstream write_file {write_name, write_file.trunc | write_file.out};
+    // Open write.gv file with name of `write_file`, creating it if it doesn't exist or replacing its contents if it does
+    std::fstream write_file{write_name, write_file.trunc | write_file.out};
 
     read_file.open(filename);
     /*
@@ -50,178 +55,212 @@ int build_adjacency_list(const std::string& filename, const std::string& write_n
     If either fails, notify user and abort program
     */
     if (read_file.is_open()) {
-        if (write_file.is_open()) {
-            std::string close_brace = "}";
-            std::string graph_type = "undirected";
-            std::string title = "Full Graph";
+        std::string close_brace = "}";
+        std::string graph_type = "undirected";
+        std::string title = "Full Graph";
 
-            int header_write = write_graph_header(write_file, graph_type, title);
-            if (header_write < 0) {
-                std::cerr << "\nERROR encountered while writing header to graph file '" << write_name << "'!" << '\n';
+        int header_write = write_graph_header(write_file, graph_type, title);
+        if (header_write < 0) {
+            std::cerr << "\nERROR encountered while writing header to graph file '"
+                      << write_name << "'!" << '\n';
+            return -1;
+        }
+
+        std::string line;
+        int line_count = 0;
+        // Process each line according to expected format, notify user of any detected deviation
+        while (getline(read_file, line)) {
+            line_count++;
+            std::istringstream line_read(line);
+            size_t line_length = line.size();
+            long int spacer = 2;
+            auto end = line.find(',');
+
+            // Ensure comma separating vertex 1 and 2 is found
+            if (end == line.npos) {
+                std::cerr << "\nFILE ERROR: Line:" << line_count
+                          << ", Comma separating first vertex from second vertex not found!"
+                          << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
+                return -1;
+            }
+            std::string vertex = line.substr(0, end);
+
+            // Ensure comma separting vertex 2 and the edge weight is found
+            auto end_2 = line.rfind(',');
+            if (end == line.npos) {
+                std::cerr << "\nFILE ERROR: Line:" << line_count
+                          << ", Comma separating second vertex from edge weight between vertex "
+                             "1 and 2 not found!"
+                          << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
                 return -1;
             }
 
-            std::string line;
-            int line_count = 0;
-            // Process each line according to expected format, notify user of any detected deviation
-            while (getline(read_file, line)) {
-                line_count++;
-                std::istringstream line_read(line);
-                size_t line_length = line.size();
-                long int spacer = 2;
-                auto end = line.find(',');
+            // Ensure vertex 1 is found after a comma and a space
+            long int vertex_size = static_cast<long int>(vertex.size());
+            if (vertex_size <= 0) {
+                std::cerr << "\nFILE ERROR: Line:" << line_count
+                          << " , No vertex name found after first comma!" << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
+                return -1;
+            }
+            line_read.seekg(vertex_size + spacer, line_read.cur);
+            // Ensure vertex 2 is found before end of the current line
+            // line_read.seekg(line_read.tellg() + spacer + vertex_size);
+            if (line_read.tellg() == -1) {
+                std::cerr << "\nFILE ERROR: Line:" << line_count
+                          << ", Expected position of vertex 2  or weight was not found (out of "
+                             "bounds)!"
+                          << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
+                return -1;
+            }
 
-                // Ensure comma separating vertex 1 and 2 is found
-                if (end == line.npos) {
-                    std::cerr << "\nFILE ERROR: Line:" << line_count << ", Comma separating first vertex from second vertex not found!" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
+            size_t next_word = static_cast<size_t>(line_read.tellg());
+            std::string vertex_2 = line.substr(next_word, end_2 - next_word);
+
+            // Ensure vertex 2 is found between space after first comma and space before second comma
+            long int vertex2_size = static_cast<long int>(vertex_2.size());
+            if (vertex2_size <= 0) {
+                std::cerr << "\nFILE ERROR: Line: " << line_count
+                          << ", Second vertex name was not found after second comma!" << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
+                return -1;
+            }
+            line_read.seekg(vertex2_size + spacer, line_read.cur);
+            // Ensure edge weight between verticies is found before end of current line
+            // line_read.seekg(line_read.tellg() + vertex2_size + spacer);
+            if (line_read.tellg() == -1) {
+                std::cerr << "\nFILE ERROR: Line: " << line_count
+                          << ", Expected position of vertex 2 was not found (out of bounds)!"
+                          << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
+                return -1;
+            }
+
+            size_t final_word = static_cast<size_t>(line_read.tellg());
+            std::string weight_str = line.substr(final_word, line_length - final_word);
+            double weight = strtod(weight_str.c_str(), nullptr);
+
+            // Ensure edge weight contains a numerical value
+            if (weight == std::numeric_limits<double>::infinity() || weight <= 0) {
+                std::cerr << "\nFILE ERROR: Line: " << line_count
+                          << ", Entered value did not contain any non-zero numerical digits"
+                          << '\n';
+                std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, "
+                             "VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES"
+                          << '\n';
+                read_file.close();
+                write_file.close();
+                return -1;
+            }
+
+            // Replace whitespace within multi-word verticies with underscores to adhere to dot language format
+            std::string vertex1_name = underscore_spaces(vertex);
+            std::string vertex2_name = underscore_spaces(vertex_2);
+            /*
+            If main hashmap does not contain any hashmaps associated with `vertex` key, add this new hashmap (now containing its first edge)
+            with its associated key, `vertex`, to main hashmap
+            */
+            if (!adj_list.contains_key(vertex)) {
+                auto hash_tab1 = std::make_unique<soa_hashmap<double>>(
+                    static_cast<unsigned int>(vertex_count));
+                hash_tab1->add(vertex_2, weight);
+                adj_list.add(vertex, std::move(*hash_tab1));
+
+                // Write new vertex in dot language format to `write_name` file
+                int write_vertex = write_vertex_node(write_file, vertex1_name);
+                if (write_vertex < 0) {
+                    std::cerr << "\nFILE ERROR: Line: " << line_count
+                              << ", encountered while writing vertex node '" << vertex1_name
+                              << "' to file '" << write_name << "' !" << '\n';
                     return -1;
                 }
-                std::string vertex = line.substr(0, end);
-
-                // Ensure comma separting vertex 2 and the edge weight is found
-                auto end_2 = line.rfind(',');
-                if (end == line.npos) {
-                    std::cerr << "\nFILE ERROR: Line:" << line_count << ", Comma separating second vertex from edge weight between vertex 1 and 2 not found!" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
-                    return -1;
-                }
-
-                // Ensure vertex 1 is found after a comma and a space
-                long int vertex_size = static_cast<long int>(vertex.size());
-                if (vertex_size <= 0) {
-                    std::cerr << "\nFILE ERROR: Line:" << line_count << " , No vertex name found after first comma!" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
-                    return -1;
-                }
-                line_read.seekg(vertex_size + spacer, line_read.cur);
-                // Ensure vertex 2 is found before end of the current line
-                // line_read.seekg(line_read.tellg() + spacer + vertex_size);
-                if (line_read.tellg() == -1) {
-                    std::cerr << "\nFILE ERROR: Line:" << line_count << ", Expected position of vertex 2  or weight was not found (out of bounds)!" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
-                    return -1;
-                }
-
-                size_t next_word = static_cast<size_t>(line_read.tellg());
-                std::string vertex_2 = line.substr(next_word, end_2 - next_word);
-
-                // Ensure vertex 2 is found between space after first comma and space before second comma
-                long int vertex2_size = static_cast<long int>(vertex_2.size());
-                if (vertex2_size <= 0) {
-                    std::cerr << "\nFILE ERROR: Line: " << line_count << ", Second vertex name was not found after second comma!" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
-                    return -1;
-                }
-                line_read.seekg(vertex2_size + spacer, line_read.cur);
-                // Ensure edge weight between verticies is found before end of current line
-                // line_read.seekg(line_read.tellg() + vertex2_size + spacer);
-                if (line_read.tellg() == -1) {
-                    std::cerr << "\nFILE ERROR: Line: " << line_count << ", Expected position of vertex 2 was not found (out of bounds)!" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
-                    return -1;
-                }
-
-                size_t final_word = static_cast<size_t>(line_read.tellg());
-                std::string weight_str = line.substr(final_word, line_length - final_word);
-                double weight = strtod(weight_str.c_str(), nullptr);
-
-                // Ensure edge weight contains a numerical value
-                if (weight == std::numeric_limits<double>::infinity() || weight <= 0) {
-                    std::cerr << "\nFILE ERROR: Line: " << line_count << ", Entered value did not contain any non-zero numerical digits" << '\n';
-                    std::cerr << "Please ensure each line follows format:\n\t VERTEX1_NAME, VERTEX2_NAME, DISTANCE_BETWEEN_VERTICIES" << '\n';
-                    read_file.close();
-                    write_file.close();
-                    return -1;
-                }
-
-                // Replace whitespace within multi-word verticies with underscores to adhere to dot language format
-                std::string vertex1_name = underscore_spaces(vertex);
-                std::string vertex2_name = underscore_spaces(vertex_2);
+            } else {
                 /*
-                If main hashmap does not contain any hashmaps associated with `vertex` key, add this new hashmap (now containing its first edge)
-                with its associated key, `vertex`, to main hashmap
+                If hashmap associated with `vertex` key already exists in main hashmap but does not yet contain edge
+                with `vertex_2` key, add edge with `vertex_2` to hashmap associated with `vertex` key
                 */
-                if (!adj_list.contains_key(vertex)) {
-                    auto hash_tab1 = std::make_unique<soa_hashmap<double>>(static_cast<unsigned int>(vertex_count));
-                    hash_tab1 -> add(vertex_2, weight);
-                    adj_list.add(vertex, std::move(*hash_tab1));
-
-                    // Write new vertex in dot language format to `write_name` file
-                    int write_vertex = write_vertex_node(write_file, vertex1_name);
-                    if (write_vertex < 0) {
-                        std::cerr << "\nFILE ERROR: Line: " << line_count << ", encountered while writing vertex node '" << vertex1_name <<"' to file '" << write_name << "' !" << '\n';
-                        return -1;
+                try {
+                    if (!adj_list.get_hash_key(vertex).contains_key(vertex_2)) {
+                        adj_list.get_hash_key(vertex).add(vertex_2, weight);
                     }
-                } else {
-                    /*
-                    If hashmap associated with `vertex` key already exists in main hashmap but does not yet contain edge
-                    with `vertex_2` key, add edge with `vertex_2` to hashmap associated with `vertex` key
-                    */
-                    try {
-                        if (!adj_list.get_hash_key(vertex).contains_key(vertex_2)) {
-                            adj_list.get_hash_key(vertex).add(vertex_2, weight);
-                        }
-                    } catch (std::exception& e) {
-                        std::cerr << e.what() << '\n';
-                    }
-                }
-                /*
-                If main hashmap does not contain any hashmaps associated with `vertex_2` key, add this new hashmap (now containing its first edge)
-                with its associated key, `vertex_2`, to main hashmap
-                */
-                if (!adj_list.contains_key(vertex_2)) {
-                    auto hash_tab2 = std::make_unique<soa_hashmap<double>>(static_cast<unsigned int>(vertex_count));
-                    hash_tab2 -> add(vertex, weight);
-                    adj_list.add(vertex_2, std::move(*hash_tab2));
-                    // Write new vertex in dot language format to `write_name` file
-                    int write_vertex2 = write_vertex_node(write_file, vertex2_name);
-                    if (write_vertex2 < 0) {
-                        std::cerr << "\nWRITE ERROR: Line: " << line_count << ", encountered while writing vertex node '" << vertex2_name <<"' to file '" << write_name << "' !" << '\n';
-                        return -1;
-                    }
-
-                } else {
-                    /*
-                    If hashmap associated with `vertex_2` key already exists in main hashmap but does not yet contain edge
-                    with `vertex` key, add edge with `vertex` to hashmap associated with `vertex_2` key
-                    */
-                    try {
-                        if (!adj_list.get_hash_key(vertex_2).contains_key(vertex)) {
-                            adj_list.get_hash_key(vertex_2).add(vertex, weight);
-                        }
-                    } catch (std::exception& e) {
-                        std::cerr << e.what() << '\n';
-                    }
-                }
-                // Write new edge in dot language format to `write_name` file
-                int write_new_edge = write_edge(write_file, vertex1_name, vertex2_name, weight, graph_type);
-                if (write_new_edge < 0) {
-                    std::cerr << "\nWRITE ERROR encountered while writing the edge between '" << vertex << "' and '" << vertex_2 << "' on '" << write_name << "'!" << '\n';
-                    return -1;
+                } catch (std::exception &e) {
+                    std::cerr << e.what() << '\n';
                 }
             }
-            write_file.write(close_brace.c_str(), static_cast<long int>(close_brace.size()));
-            read_file.close();
-            write_file.close();
+            /*
+            If main hashmap does not contain any hashmaps associated with `vertex_2` key, add this new hashmap (now containing its first edge)
+            with its associated key, `vertex_2`, to main hashmap
+            */
+            if (!adj_list.contains_key(vertex_2)) {
+                auto hash_tab2 = std::make_unique<soa_hashmap<double>>(
+                    static_cast<unsigned int>(vertex_count));
+                hash_tab2->add(vertex, weight);
+                adj_list.add(vertex_2, std::move(*hash_tab2));
+                // Write new vertex in dot language format to `write_name` file
+                int write_vertex2 = write_vertex_node(write_file, vertex2_name);
+                if (write_vertex2 < 0) {
+                    std::cerr << "\nWRITE ERROR: Line: " << line_count
+                              << ", encountered while writing vertex node '" << vertex2_name
+                              << "' to file '" << write_name << "' !" << '\n';
+                    return -1;
+                }
 
-            // Report error to user if file for writing graph information fails to open correctly
-        } else {
-            std::cerr << "\nFILE ERROR: Opening file '" << write_name << "' failed!" << '\n';
-            return -1;
+            } else {
+                /*
+                If hashmap associated with `vertex_2` key already exists in main hashmap but does not yet contain edge
+                with `vertex` key, add edge with `vertex` to hashmap associated with `vertex_2` key
+                */
+                try {
+                    if (!adj_list.get_hash_key(vertex_2).contains_key(vertex)) {
+                        adj_list.get_hash_key(vertex_2).add(vertex, weight);
+                    }
+                } catch (std::exception &e) {
+                    std::cerr << e.what() << '\n';
+                }
+            }
+            // Write new edge in dot language format to `write_name` file
+            int write_new_edge = write_edge(write_file,
+                                            vertex1_name,
+                                            vertex2_name,
+                                            weight,
+                                            graph_type);
+            if (write_new_edge < 0) {
+                std::cerr << "\nWRITE ERROR encountered while writing the edge between '"
+                          << vertex << "' and '" << vertex_2 << "' on '" << write_name << "'!"
+                          << '\n';
+                return -1;
+            }
         }
+        write_file.write(close_brace.c_str(), static_cast<long int>(close_brace.size()));
+        read_file.close();
+        write_file.close();
         // Report error to user if file for reading graph information fails to open correctly
     } else {
         std::cerr << "\nFILE ERROR: Opening file '" << filename << "' failed!" << '\n';
