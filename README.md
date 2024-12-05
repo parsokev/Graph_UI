@@ -55,7 +55,7 @@ This allows for the generation of an application executable that is compatible w
 
 ## Setting up CMake Build Configurations for Local Execution and Debugging
 Once the repository has been cloned locally using either platforms, if you wish to build the application to run within QT Creator,
-set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is configured to be compatible with local machine's OS:
+set the application's **'Debug' or 'RelWithDebugInfo'** build directory path to mirror the path outlined below and ensure the CMake build kit is configured to be compatible with local machine's OS:
 ```
     <repo-root-directory>\build\<your-configuration-here>
 ```
@@ -81,7 +81,7 @@ will be stored within the [graph_images](./graph_images) directory (they will be
 ## Setting up CMake Build Directory for Deploying as Stand-Alone Application
 
 If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Qt Creator
-to be installed. If wishing to deploy the application, set the application's build directory path to mirror the path outlined below and ensure the CMake build kit is
+to be installed. If wishing to deploy the application, set the application's **'Release'** build directory path to mirror the path outlined below and ensure the CMake build kit is
 configured to be compatible with local machine's OS:
 ```
 <repo-root-directory>\<deployed-app-directory-here>
@@ -95,8 +95,8 @@ configured to be compatible with local machine's OS:
 > successive execution of the application. This may be flagged by a device's anti-virus software if transferred to a different device when application is executed.
 > **To prevent this from occurring, delete all previously generated files from these two directories before transferring to a different device**.
 
-CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path follows the path above and
-the CMake Build Type is 'Release' if wishing to deploy the application executable along with all required runtime and Qt dependencies***
+CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path for the 'Release' Configuration follows the***
+***path above if wishing to deploy the application executable along with all required runtime and Qt dependencies***
 
 Upon completion of build process, the directory in which the app was deployed can be executed locally without the programs required to build/run the application 
 by simply double clicking the .exe file within the directory
