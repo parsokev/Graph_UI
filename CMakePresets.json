@@ -1,0 +1,89 @@
+{
+    "version": 8,
+    "configurePresets": [
+        {
+            "name": "linux_debug_build",
+            "displayName": "Linux_Debug_DIR",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "description": "Debug Configuration for CMake Project using Linux",
+            "binaryDir": "${sourceDir}/build/debug",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_BUILD_TYPE":"Debug"
+            }
+        },
+        {
+            "name": "linux_release_build",
+            "displayName": "Linux_Release_DIR",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "description": "Release Configuration for Cmake Project using Linux",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_BUILD_TYPE":"Release"
+            }
+        },
+        {
+            "name": "windows_release_build",
+            "displayName": "Win_Release_DIR",
+            "hidden": false,
+            "generator": "Ninja",
+            "description": "Release Configuration for Cmake Project using Windows",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_BUILD_TYPE":"Release"
+            }
+        },
+        {
+            "name": "windows_debug_build",
+            "displayName": "Win_Debug_DIR",
+            "hidden": false,
+            "generator": "Ninja",
+            "description": "Debug Configuration for Cmake Project using Windows",
+            "binaryDir": "${sourceDir}/build/debug",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_BUILD_TYPE":"Debug"
+            }
+        },
+        {
+            "name": "macos_release_build",
+            "displayName": "Mac_Release_DIR",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "description": "Release Configuration for Cmake Project using MacOS",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+                "CMAKE_C_COMPILER": "/opt/homebrew/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/opt/homebrew/bin/g++",
+                "CMAKE_BUILD_TYPE":"Release"
+            }
+        },
+        {
+            "name": "macos_debug_build",
+            "displayName": "Mac_Debug_DIR",
+            "hidden": false,
+            "generator": "Unix Makefiles",
+            "description": "Debug Configuration for Cmake Project using MacOS",
+            "binaryDir": "${sourceDir}/build/debug",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+                "CMAKE_C_COMPILER": "/opt/homebrew/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/opt/homebrew/bin/g++",
+                "CMAKE_BUILD_TYPE":"Debug"
+            }
+        }
+    ]
+}
