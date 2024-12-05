@@ -532,8 +532,8 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
         gprintf("\nExtracted VERTEX is: %s with a DISTANCE of %.2lf", vertex.c_str(), distance);
         gprintf("\nThe Minimum HEAP currently contains: ");
         std::cerr << *mhp << '\n';
-#endif
-        // Find vertex that forms edge with the currently smallest cost/distance with extracted vertex
+#endif \
+    // Find vertex that forms edge with the currently smallest cost/distance with extracted vertex
         if (vertex.compare(source_vertex) == 0) {
             min_distance_edge = source_vertex;
         } else {

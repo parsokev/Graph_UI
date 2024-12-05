@@ -196,8 +196,8 @@ public:
             }
         }
         std::cerr << " ]\n";
-#endif
-        // If calculated parent index is out of bounds, newly added node is at front index now
+#endif \
+    // If calculated parent index is out of bounds, newly added node is at front index now
     }
 
 
@@ -243,8 +243,8 @@ public:
             }
 #ifndef NDEBUG
             std::cerr << "EVALUATING children from PERCOLATED NODE'S CURRENT POSITION OF: " << perc_index << '\n';
-#endif
-            // Pass index position and key:pair value of percolating node along with index positions of its children to helper function
+#endif \
+    // Pass index position and key:pair value of percolating node along with index positions of its children to helper function
             int end_check = evaluate_children(left_child_index, right_child_index, perc_element_pair, perc_index);
             /**
                  * If swapping function returns 0, percolation is complete and the loop is exited. Otherwise, percolation continues

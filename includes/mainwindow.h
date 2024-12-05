@@ -22,7 +22,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-// public slots:
+    // public slots:
 
 private slots:
     // Declare Private QT Slots/Attributes
@@ -45,12 +45,12 @@ private slots:
     void onActionDisplayGraphClicked();
     void onActionDisplayImgClicked();
 
-// protected:
+    // protected:
 
 private:
-    // Declare Private Instances / Allocated Resources for Class Members
-   std::unique_ptr<Ui::MainWindow> ui;
-   std::unique_ptr<main_hashmap<double>> main_hash = std::make_unique<main_hashmap<double>>(50);
+         // Declare Private Instances / Allocated Resources for Class Members
+    std::unique_ptr<Ui::MainWindow> ui;
+    std::unique_ptr<main_hashmap<double>> main_hash = std::make_unique<main_hashmap<double>>(50);
 };
 
 #endif // MAINWINDOW_H

@@ -399,15 +399,15 @@ void MainWindow::onActionConfirmFileClicked()
             return;
         }
 
-       // Update Progress Notification upon Success
+        // Update Progress Notification upon Success
         fileBuildBar.setValue(75);
         fileBuildBar.setLabelText("Finalizing Results for User Selection...");
         QApplication::processEvents();
         gprintf("Graph Successfully Built!");
 #ifdef debug
         std::cerr << "Filled Hashmap is: " << *(this->main_hash) << '\n';
-#endif
-        // Fill DropDowns with Verticies Found
+#endif \
+    // Fill DropDowns with Verticies Found
         auto vertex_list = this->main_hash->get_keys();
         vertex_list.sort();
         for (auto& vertex : vertex_list) {
@@ -430,7 +430,7 @@ void MainWindow::onActionConfirmFileClicked()
         QMessageBox confInfo;
         confInfo.setWindowTitle("File Processing Complete");
         confInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                               " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         QString confMessage = "File Validation and Processing Complete!\n\nPlease note that if you wish to have a different text file processed, you must restart the application to do so.";
         confInfo.setText(confMessage);
         confInfo.exec();
@@ -612,7 +612,7 @@ void MainWindow::onActionSubmitClicked()
             reportSPBuildError.setIcon(QMessageBox::Critical);
             reportSPBuildError.setText("Error(s) were encountered while attempting to calculate the shortest path solution");
             reportSPBuildError.setInformativeText("The selected text file depicts a graph that has one or more disconnected verticies.\n"
-                                                   "You may try again with corrected file or another text file depicting a connected graph.");
+                                                  "You may try again with corrected file or another text file depicting a connected graph.");
             reportSPBuildError.setWindowTitle("Shortest Path Build Error Encountered");
             reportSPBuildError.exec();
             QApplication::exit(1);
@@ -665,11 +665,11 @@ void MainWindow::onActionSubmitClicked()
         destination_file = MST_image;
     }
 
-    // Select Linux-Compatible Bash Script and set CLI command to environment path to linux bash if Linux is detected
+// Select Linux-Compatible Bash Script and set CLI command to environment path to linux bash if Linux is detected
 #ifdef __linux__
     // Preset Script Path and Graph Image Locations based on User Requested Information for Linux Users
     command_val = "/bin/bash"
-    if (requestedSolution == "S") {
+        if (requestedSolution == "S") {
         script_path = Linux_SP_script;
 
     } else {
@@ -682,7 +682,7 @@ void MainWindow::onActionSubmitClicked()
     command_val = "";
     std::string dot_path = "./Graphviz/bin/dot.exe";
     // Preset Script Path and Graph Image Locations based on User Requested Information for MacOS Users
-        if (requestedSolution == "S") {
+    if (requestedSolution == "S") {
         // Set Output Image File Path Designated for Shortest Path and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
         script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
@@ -809,7 +809,7 @@ void MainWindow::onActionSubmitClicked()
     QMessageBox imgInfo;
     imgInfo.setWindowTitle("Viewing your Generated Image Results");
     imgInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                           " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
     QString imgMessage = "Image Generation Complete! You may now view the generated images by:\n1. Clicking the buttons that appear at the bottom of the window to view the images at reduced quality.\n";
     imgMessage.append("\n2. Locating them within the \"graph_images\" folder and opening each image using your operating system's native image-viewing application to view the image(s) at a higher quality.\n");
     if (request_type.compare("SHORTEST PATH") == 0) {
