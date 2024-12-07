@@ -90,11 +90,11 @@ an incorrectly set default build path.
      - Select the `Extensions` tab -> `Qt Tools` -> `Qt Versions`
      - If no compiler profile is set, click `Autodetect` and see if a compiler profile is generated. This should be set to MVSC with a path to qmake.exe
     
-    2. Update the CMake Binary Directory in the generated `CMakeUserPresets.json` or have Visual Studio generate configurations with valid build paths
-        - Under `configurePresets`:
-           - For `Debug` configuration have `binaryDir` set to ```${sourceDir}/build/debug``` and `CMAKE_BUILD_TYPE` under `cacheVariables` set to `Debug`
-           - For `RelwithDebugInfo` configuration have same `binaryDir` as `Debug` but `CMAKE_BUILD_TYPE` set to `RelWithDebugInfo`
-           - For `Release` configuration have `binaryDir` set to ```${sourceDir}/App``` and `CMAKE_BUILD_TYPE` set to `Release` **(for Deployment only)**
+2. Update the CMake Binary Directory in the generated `CMakeUserPresets.json` or have Visual Studio generate configurations with valid build paths
+     - Under `configurePresets`:
+         - For `Debug` configuration have `binaryDir` set to ```${sourceDir}/build/debug``` and `CMAKE_BUILD_TYPE` under `cacheVariables` set to `Debug`
+         - For `RelwithDebugInfo` configuration have same `binaryDir` as `Debug` but `CMAKE_BUILD_TYPE` set to `RelWithDebugInfo`
+         - For `Release` configuration have `binaryDir` set to ```${sourceDir}/App``` and `CMAKE_BUILD_TYPE` set to `Release` **(for Deployment only)**
     
     It was decided not to provide a pre-made `CMakeUserPresets.json` file as Qt debugging and other settings are automatically provided through the enabled and required
     extension for Qt, requiring only minimal editing to be made to the generated file. After these changes have been made, the project can be built with CMake
