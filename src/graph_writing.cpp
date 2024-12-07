@@ -228,6 +228,76 @@ static void remove_underscores(std::string &target_string)
     return;
 }
 
+
+int check_for_CLRF(std::string& filename) {
+    // add 'temp_' to filename without modifying path or file extension
+    std::string write_name = filename;
+    auto find_filename = write_name.rfind('/');
+    if (find_filename != write_name.npos) {
+        std::string tempname = "temp_";
+        size_t k = 0;
+        for (; k < tempname.size(); k++) {
+            write_name.insert(write_name.begin() + 1 + static_cast<long int>(find_filename) + static_cast<long int>(k), tempname[k]);
+        }
+    } else {
+        // If file path is not valid return error
+        std::cerr << "Invalid filename/path syntax for '" << filename << "'!\n";
+        return -1;
+    }
+    std::fstream read_file;
+    // Create temporary file to store copied file lines without CRLF found in Windows files
+    std::fstream write_file {write_name, write_file.out | write_file.trunc};
+    read_file.open(filename);
+    // Copy each line in file to be parsed for CLRF and write modified contents to temp file
+    if (read_file.is_open()) {
+        std::string line;
+        bool is_windows = false;
+        while(getline(read_file, line)) {
+            std::string next_line = line;
+            auto carr_return_pos = line.find('\r');
+            // Check for CRLF characters found in Windows text files
+            if (carr_return_pos != line.npos) {
+                // If CRLF found, remove '\r\n' characters for Linux compatibility
+                next_line.erase(carr_return_pos, carr_return_pos + 1);
+                is_windows = true;
+            }
+            next_line.append(1, '\n');
+            write_file.write(next_line.c_str(), static_cast<long int>(next_line.size()));
+        }
+        read_file.close();
+        // Pipe commands to either replace original file with temp file or delete temp file
+        FILE *pipe_stream;
+        std::string command_val = "";
+        // If carriage return/CRLF found, temp file should replace windows text file
+        if (is_windows) {
+            // Pass command to rename temporary file to original file
+            command_val = "mv ";
+            command_val.append(write_name).append(" ").append(filename);
+
+        } else {
+            // If not a single line has carriage return/CRLF that may cause linux-incompatibility, pass command to delete temp file
+            command_val = "rm -rf ";
+            command_val.append(write_name);
+        }
+        std::string pipe_line;
+        pipe_stream = popen(command_val.c_str(), "r");
+        // Check to ensure pipeline is successfully established, close it if so
+        if (pipe_stream != NULL) {
+            pclose(pipe_stream);
+        } else {
+            // Exit if fork or pipe operations fail
+            perror("pipe/fork");
+            std::cerr << "ERROR: Failed to establish pipeline stream for replacing original file '" << filename << "' with '" << write_name << "'\n";
+            return -1;
+        }
+    } else {
+        // Exit with error if file to be parsed does not exist
+        std::cerr << "Failed to open file " << filename << '\n';
+        return -1;
+    }
+    return 0;
+}
+
 std::string underscore_spaces(const std::string &target_string)
 {
     auto underscore_string = target_string;
