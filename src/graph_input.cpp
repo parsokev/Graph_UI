@@ -5,7 +5,6 @@
 #include <iosfwd>
 #include <string>
 #include <cstdio>
-#include <list>
 
 #include "derived_hashmap.h"
 #include "graph_input.h"
@@ -37,22 +36,6 @@ std::ostream& operator<<(std::ostream& out, const std::vector<std::string>& stri
     return out;
 }
 
-/**
- * Local function for printing string List-type container array to standard output
- * @param list_s List container holding string values to be printed in readable format
- */
-static void print_list(std::list<std::string>& list_s) {
-    std::cout << "[ ";
-    for (auto& i : list_s) {
-        if ( i == list_s.back()) {
-            std::cout << i;
-        } else {
-            std::cout << i << ", ";
-        }
-    }
-    std::cout << " ]" << '\n';
-    return;
-}
 
 /**
  * Parses the absolute path, `abspath_to_file` for directory/file names with spaces and modifies
@@ -186,7 +169,12 @@ int approximate_graph_vertex_count(unsigned int& vertex_count, std::string& read
     return -1;
 #endif
     // Establish stream with intent to read from buffer containing the command line output written to standard output
+#ifdef _WIN32
+    pipe_stream = _popen(command_val.c_str(), "r");
+#else
     pipe_stream = popen(command_val.c_str(), "r");
+#endif
+
     std::string line;
     char buf[11];   // Digit count should not exceed maxmimum number for capacity allocation of data structures holding vertex information
 
@@ -197,7 +185,12 @@ int approximate_graph_vertex_count(unsigned int& vertex_count, std::string& read
         if (result) {
             line.append(result);
         }
+        // Close stream using system-compatible version of pclose
+#ifdef _WIN32
+        _pclose(pipe_stream);
+#else
         pclose(pipe_stream);
+#endif
     } else {
         // Exit if fork or pipe operations fail
         perror("pipe/fork");
@@ -235,3 +228,4 @@ int approximate_graph_vertex_count(unsigned int& vertex_count, std::string& read
     gprintf("Estimating Vertex Count to %i", vertex_count);
     return 0;
 }
+
