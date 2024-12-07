@@ -312,7 +312,7 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
     // Set source vertex's distance to 0
     visited_vertices.add(s_vertex, 0.0);
     // Add source vertex to minimum heap
-    mhp -> add_node(s_vertex, 0);
+    mhp -> add_node(s_vertex, 0.0);
     std::string popped_vertex;
     double popped_vertex_distance = 0;
     double min_distance_edge = 0;
