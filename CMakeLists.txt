@@ -13,6 +13,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 # Establish path to CMake deployment script
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 
+
 qt_standard_project_setup()
 
 # Include Qt deployment functions held in CMake deployment script
@@ -40,6 +41,13 @@ target_include_directories( ${TARGET} PUBLIC ${INCLUDE_PATH} )
 
 # Link Qt Widgets library required for application
 target_link_libraries( ${TARGET} PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
+
+# Set Compiler Flags
+if (MVSC)
+    target_compile_options( ${TARGET} PRIVATE -Wall /EHsc )
+else()
+    target_compile_options( ${TARGET} PRIVATE -Wall )
+endif()
 
 # Have CMake send different definitions to compiler based on its build type value/configuration
 # These are used in determining where resources are located and whether to deploy application
@@ -90,6 +98,7 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(${TARGET})
 endif()
 
+
 # FOR APPLICATION DEPLOYMENT ONLY - SET BUILD TYPE TO 'RELEASE'
 # Call appropriate function from deployment script to place all resources, runtime dependencies
 # and Qt dependencies within same directory as generated .exe file
@@ -105,3 +114,4 @@ if (CMAKE_BUILD_TYPE STREQUAL "Release")
     # Currently linux is not supported for deployment with this yet
     endif()
 endif()
+
