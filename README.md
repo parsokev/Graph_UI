@@ -50,7 +50,8 @@ graphical visualizations after completing the following steps:
 > and place the extracted contents(excluding the main folder itself) directly into the cloned repository's [Graphviz directory](./Graphviz).
 > This will eliminate the need to complete local setup/installation of Graphviz on the local machine while still allowing for its use by the application.
 
-If wishing to clone this repository to your local machine, this application must be built ***using [QT Creator](https://doc.qt.io/qtcreator/index.html)***.
+If wishing to clone this repository to your local machine, this application must be built ***using [QT Creator](https://doc.qt.io/qtcreator/index.html)
+or [Visual Studio](https://visualstudio.microsoft.com/) with [VS QT Tools](https://doc.qt.io/qtvstools/index.html) installed and enabled***.
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
 ## Setting up CMake Build Configurations for Local Execution and Debugging
@@ -69,8 +70,10 @@ the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug 
 
 > ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
-Implementing the build path in QT Creator can be accomplished by selecting the `Projects` tab from the left-hand menu bar and adjusting the build directory
-to match the path syntax listed above.
+### Setting Up Build Path Using QT Creator
+Implementing the build path in QT Creator after cloning the repository can be accomplished by selecting the `Projects` tab from the left-hand menu bar
+and adjusting the build directory to match the path syntax listed above.
+
 Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
 for the selection of available kits presented.
 This should be sufficient to build the project using CMake. Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
@@ -78,6 +81,25 @@ This should be sufficient to build the project using CMake. Further information 
 Upon completion of build process, the application will display the application window for accepting requests upon being executed. The most recently generated images
 will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
 
+
+### Setting Up Build Path using Visual Studio
+Implementing the build path in Visual Studio after cloning the repository can be accomplished through series of steps as Visual Studio will most likely automatically
+request to generate a `CMakeUserPresets.json` file after VS QT Tools extension detects the project is a Qt project, which can be edited after generation to correct
+an incorrectly set default build path.
+1. Ensure the compiler path is set correctly.
+     - Select the `Extensions` tab -> `Qt Tools` -> `Qt Versions`
+     - If no compiler profile is set, click `Autodetect` and see if a compiler profile is generated. This should be set to MVSC with a path to qmake.exe
+    
+    2. Update the CMake Binary Directory in the generated `CMakeUserPresets.json` or have Visual Studio generate configurations with valid build paths
+        - Under `configurePresets`:
+           - For `Debug` configuration have `binaryDir` set to ```${sourceDir}/build/debug``` and `CMAKE_BUILD_TYPE` under `cacheVariables` set to `Debug`
+           - For `RelwithDebugInfo` configuration have same `binaryDir` as `Debug` but `CMAKE_BUILD_TYPE` set to `RelWithDebugInfo`
+           - For `Release` configuration have `binaryDir` set to ```${sourceDir}/App``` and `CMAKE_BUILD_TYPE` set to `Release` **(for Deployment only)**
+    
+    It was decided not to provide a pre-made `CMakeUserPresets.json` file as Qt debugging and other settings are automatically provided through the enabled and required
+    extension for Qt, requiring only minimal editing to be made to the generated file. After these changes have been made, the project can be built with CMake
+    and run as intended.
+    
 ## Setting up CMake Build Directory for Deploying as Stand-Alone Application
 
 If wishing to deploy this application, Qt provides ability to deploy an application that can be executed locally without requiring Qt Creator
