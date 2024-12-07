@@ -170,7 +170,6 @@ public:
 
 #endif
         gprintf("ENTERING WHILE LOOP FOR POSITION SWAPPING\n");
-        size_t i = 0;
         while (next_parent_index >= 0 && data_val < std::get<1>(next_parent_pair)){
             // Initiate swapping operation with parent using temporary pair
             prox_parent_pair = next_parent_pair;
@@ -186,7 +185,6 @@ public:
             if (next_parent_index >= 0) {
                 next_parent_pair = start_heap[static_cast<size_t>(next_parent_index)] -> value_pair;
             }
-            i++;
         }
 
 #ifndef NDEBUG

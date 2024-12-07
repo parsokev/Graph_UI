@@ -446,11 +446,11 @@ private:
         hash_entry(): is_tombstone{false}, is_empty{true} {}
         hash_entry(std::string k, Type v, bool t, bool e): key{k}, value{v}, is_tombstone{t}, is_empty{e} {}
         // `Hash_entry` move constructor`
-        hash_entry(hash_entry&& other_hash): key{std::move(other_hash.key)},
+        hash_entry(hash_entry&& other_hash)  noexcept: key{std::move(other_hash.key)},
             value{std::move(other_hash.value)}, is_tombstone{std::move(other_hash.is_tombstone)},
             is_empty{std::move(other_hash.is_empty)} {}
         // `Hash_entry` move operator overloading function
-        hash_entry& operator=(hash_entry&& old_hash) {
+        hash_entry& operator=(hash_entry&& old_hash) noexcept {
             key = std::move(old_hash.key);
             value = std::move(old_hash.value);
             is_empty = std::move(old_hash.is_empty);
@@ -1063,4 +1063,5 @@ private:
         return main_hash_bucket;
     }
 };
+
 #endif // DERIVED_HASHMAP_H
