@@ -116,13 +116,16 @@ public:
         // Fill new node with tuple of key : value pair and add to end of start_heap
         Type data_val = data;
         std::string key_val = key;
-        auto pair_val = make_pair(key_val, data_val);
+        // Initialize new vertex_pair struct using passed key and value args
+        auto pair_val = vertex_pair(key_val, data_val);
+        // Create new smart pointer to reference newly initialized vertex_pair struct
         std::unique_ptr<vertex_pair> new_pair = std::make_unique<vertex_pair>(std::move(pair_val));
 
         gprintf("ADDED NODE: %s : ", std::get<0>(new_pair -> value_pair).c_str());
 #ifndef NDEBUG
         std::cerr << std::get<1>(new_pair -> value_pair) << '\n';
 #endif
+        // Move pointer referencing new vertex_pair into min heap's storage array `start_heap`
         start_heap.emplace_back(std::move(new_pair));
         heap_size++;
 
@@ -198,6 +201,7 @@ public:
         std::cerr << " ]\n";
 #endif \
     // If calculated parent index is out of bounds, newly added node is at front index now
+        return;
     }
 
 
@@ -428,27 +432,28 @@ private:
 
     /// @brief  Number of `vertex_pair` objects that `paired_min_heap` has currently preallocated memory for storage
     unsigned int capacity;
-    /**
+        /**
          *  Node elements of `paired_min_heap`
+         * @param key String value for 'key' of node
+         * @param value Value with deduced type that is value associated with node
          * @param value_pair Tuple of a string-type "key" and numerical "value" pair
          */
     struct vertex_pair {
-        /// @brief Tuple of a string-type "key" and numerical "value" pair
-        std::pair<std::string, Type> value_pair;
-        // std::string key;
-        // Type value;
-        // std::pair<std::string, Type> value_pair = {key, value};
-
-        // vertex_pair(std::string k, Type v): key{k}, value{v}, value_pair{k,v} {}
-        // // // `vertex_pair` move constructor`
-        // vertex_pair(vertex_pair&& other_pair): key{std::move(other_pair.key)},
-        //     value{std::move(other_pair.value)}, value_pair{std::move(other_pair.value_pair)} {}
-        // // `vertex_pair` move operator overloading function
-        // vertex_pair& operator=(vertex_pair&& old_pair) {
-        //     key = std::move(old_pair.key);
-        //     value = std::move(old_pair.value);
-        //     return *this;
-        // }
+        std::string key;
+        Type value;
+        std::pair<std::string, Type> value_pair = {key, value};
+        // `vertex_pair` default constructor
+        vertex_pair(std::string k, Type v): key{k}, value{v}, value_pair{k,v} {}
+        // `vertex_pair` move constructor`
+        vertex_pair(vertex_pair&& other_pair): key{std::move(other_pair.key)},
+            value{std::move(other_pair.value)}, value_pair{std::move(other_pair.value_pair)} {}
+        // `vertex_pair` move operator overloading function
+        vertex_pair& operator=(vertex_pair&& old_pair) {
+            key = std::move(old_pair.key);
+            value = std::move(old_pair.value);
+            value_pair = std::move(old_pair.value_pair);
+            return *this;
+        }
     };
     /// @brief  underlying storage array of `paired_min_heap` class instance
     std::vector<std::unique_ptr<vertex_pair>> start_heap {};
