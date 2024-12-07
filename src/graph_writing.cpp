@@ -262,7 +262,17 @@ int check_for_CLRF(std::string& filename) {
                 is_windows = true;
             }
             next_line.append(1, '\n');
-            write_file.write(next_line.c_str(), static_cast<long int>(next_line.size()));
+            try {
+                write_file.write(next_line.c_str(), static_cast<long int>(next_line.size()));
+            }
+            catch (const std::exception& e) {
+                std::cerr << e.what();
+                return -1;
+            }
+        }
+        if (read_file.bad()) {
+            std::cerr << "Error encountered during reading operation of '" << filename << "'\n";
+            return -1;
         }
         read_file.close();
         // Pipe commands to either replace original file with temp file or delete temp file
@@ -279,17 +289,33 @@ int check_for_CLRF(std::string& filename) {
             command_val = "rm -rf ";
             command_val.append(write_name);
         }
-        std::string pipe_line;
-        pipe_stream = popen(command_val.c_str(), "r");
+        // If windows system is detected use _popen and _pclose for compatibility across most windows systems
+#ifdef _WIN32
+        pipe_stream = _popen(command_val.c_str(), "r");
         // Check to ensure pipeline is successfully established, close it if so
         if (pipe_stream != NULL) {
-            pclose(pipe_stream);
-        } else {
+            _pclose(pipe_stream);
+        }
+        else {
             // Exit if fork or pipe operations fail
             perror("pipe/fork");
             std::cerr << "ERROR: Failed to establish pipeline stream for replacing original file '" << filename << "' with '" << write_name << "'\n";
             return -1;
         }
+        // If MacOS or Linux/Unix system use standard popen and pclose instead
+#else
+        pipe_stream = popen(command_val.c_str(), "r");
+        // Check to ensure pipeline is successfully established, close it if so
+        if (pipe_stream != NULL) {
+            pclose(pipe_stream);
+        }
+        else {
+            // Exit if fork or pipe operations fail
+            perror("pipe/fork");
+            std::cerr << "ERROR: Failed to establish pipeline stream for replacing original file '" << filename << "' with '" << write_name << "'\n";
+            return -1;
+        }
+#endif
     } else {
         // Exit with error if file to be parsed does not exist
         std::cerr << "Failed to open file " << filename << '\n';
