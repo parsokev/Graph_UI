@@ -675,6 +675,12 @@ void MainWindow::onActionSubmitClicked()
     } else {
         script_path = Linux_MST_script;
     }
+    // Ensure script written in Windows have carriage return characters replaced for read compatibility with Linux/Unix systems
+    windows_check = check_for_CLRF(script_path);
+    if (windows_check < 0) {
+        std::cerr << "ERROR: Read error(s) were encountered while checking file '" << script_path << "'\n";
+        return -1;
+    }
 #endif
     // If Preprocessor Conditional Detects MacOS, Directly Execute Multiple Bash Commands to Graphviz's Dot Executable through A Pipeline
     // Program Requires use of HomeBrew Executable to set Bash environment path and Graphviz bin path
@@ -810,7 +816,7 @@ void MainWindow::onActionSubmitClicked()
     imgInfo.setWindowTitle("Viewing your Generated Image Results");
     imgInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
                           " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
-    QString imgMessage = "Image Generation Complete! You may now view the generated images by:\n1. Clicking the buttons that appear at the bottom of the window to view the images at reduced quality.\n";
+    QString imgMessage = "Image Generation Complete! You may now view the generated images by:\n\n1. Clicking the buttons that appear at the bottom of the window to view the images at reduced quality.\n";
     imgMessage.append("\n2. Locating them within the \"graph_images\" folder and opening each image using your operating system's native image-viewing application to view the image(s) at a higher quality.\n");
     if (request_type.compare("SHORTEST PATH") == 0) {
         imgMessage.append("\nThe generated shortest path image will be named \"shortest_path_overlay.png\" and full graph will be named \"full_graph.png\"\n");
