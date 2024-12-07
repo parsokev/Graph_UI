@@ -407,7 +407,7 @@ void MainWindow::onActionConfirmFileClicked()
 #ifdef debug
         std::cerr << "Filled Hashmap is: " << *(this->main_hash) << '\n';
 #endif \
-    // Fill DropDowns with Verticies Found
+        // Fill DropDowns with Verticies Found
         auto vertex_list = this->main_hash->get_keys();
         vertex_list.sort();
         for (auto& vertex : vertex_list) {
@@ -760,18 +760,30 @@ void MainWindow::onActionSubmitClicked()
     gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type, destination_file);
     gprintf("The Image of the Entire Graph was placed within:   '%s'", graphDestination.toStdString());
 #else
-    // Use popen for MacOS and Windows Systems, to Execute Commands/Scripts within a Pipeline and Read/Monitor its Output for Errors
+    // Use popen(MacOS) or _popen (Windows), to Execute Commands/Scripts within a Pipeline and Read/Monitor its Output for Errors
     FILE *pipe_stream;
     command_val.append(script_path);
     gprintf("Generating the '%s' using the processed graphical information...\n", request_type.c_str());
     gprintf("\n=============================== IMAGE GENERATION RESULTS ====================================\n");
+#ifdef _WIN32
 
     // Establish Stream with Intent to both Execute the Powershell Script and Read from Buffer containing the Command Line Output for Error Detection
+    // Use _popen for compatibility over broader range of windows systems
+    pipe_stream = _popen(command_val.c_str(), "r");
+#else
+    // If MacOS use standard popen instead
     pipe_stream = popen(command_val.c_str(), "r");
+#endif
     // If Stream is Successfully Established with Pipeline, Attempt to Execute Powershell Commands to Generate Requested Solution and Full Graph Images
     if (pipe_stream != NULL) {
+#ifdef _WIN32
+        // Use _pclose for windows
+        int script_error = _pclose(pipe_stream);
+#else \
+    // Uee standard pclose for MacOS
         int script_error = pclose(pipe_stream);
-        // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
+#endif \
+    // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
         if (script_error == -1) {
             std::cerr << "ERROR: '" << script_path << "' encountered error(s) while executing to generate image of '"<< request_type << "' \n";
             QMessageBox reportImgGenError;
@@ -785,12 +797,53 @@ void MainWindow::onActionSubmitClicked()
             QApplication::exit(1);
             return;
         } else {
+            // Else, Proceed with Indicating Images are Ready for Viewing, report to debugging for status checking
+            gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type.c_str(), destination_file.c_str());
+            gprintf("The Image of the Entire Graph was placed within:   '%s'", c_graphfile.c_str());
+        }
+
+    } else {
+        // Exit if Internal Fork or Pipe Operations Fail
+        perror("pipe/fork");
+        std::cerr << "ERROR: Failed to establish pipeline stream for executing shell commands using popen with '" << script_path << "'\n";
+        QMessageBox reportImgGenError;
+        reportImgGenError.setIcon(QMessageBox::Warning);
+        reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
+        reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
+                                             "Please ensure the 'Graphviz' folder exists within the 'Common' folder.\n"
+                                             "Additionally, the commands to generate images may require elevated permissions to execute.\n");
+        reportImgGenError.setWindowTitle("Image Generation Error Encountered");
+        reportImgGenError.exec();
+        QApplication::exit(1);
+        return;
+    }
+    // Establish Stream with Intent to both Execute the Powershell Script and Read from Buffer containing the Command Line Output for Error Detection
+    pipe_stream = _popen(command_val.c_str(), "r");
+    // If Stream is Successfully Established with Pipeline, Attempt to Execute Powershell Commands to Generate Requested Solution and Full Graph Images
+    if (pipe_stream != NULL) {
+        int script_error = _pclose(pipe_stream);
+        // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
+        if (script_error == -1) {
+            std::cerr << "ERROR: '" << script_path << "' encountered error(s) while executing to generate image of '" << request_type << "' \n";
+            QMessageBox reportImgGenError;
+            reportImgGenError.setIcon(QMessageBox::Warning);
+            reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
+            reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
+                                                 "Please ensure the 'Graphviz' folder exists within the 'Common' folder.\n"
+                                                 "Additionally, the commands to generate images may require elevated permissions to execute.\n");
+            reportImgGenError.setWindowTitle("Image Generation Error Encountered");
+            reportImgGenError.exec();
+            QApplication::exit(1);
+            return;
+        }
+        else {
             // Else, Proceed with Indicating Images are Ready for Viewing
             gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type.c_str(), destination_file.c_str());
             gprintf("The Image of the Entire Graph was placed within:   '%s'", c_graphfile.c_str());
         }
-        pclose(pipe_stream);
-    } else {
+        _pclose(pipe_stream);
+    }
+    else {
         // Exit if Internal Fork or Pipe Operations Fail
         perror("pipe/fork");
         std::cerr << "ERROR: Failed to establish pipeline stream for executing shell commands using popen with '" << script_path << "'\n";
