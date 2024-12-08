@@ -1,5 +1,3 @@
-#include "graph_input.h"
-
 #include <iostream>
 #include <vector>
 #include <iosfwd>
@@ -36,7 +34,6 @@ std::ostream& operator<<(std::ostream& out, const std::vector<std::string>& stri
     return out;
 }
 
-
 /**
  * Parses the absolute path, `abspath_to_file` for directory/file names with spaces and modifies
  * the path to be read-compatible for OS when passed as arguments within command line
@@ -44,35 +41,35 @@ std::ostream& operator<<(std::ostream& out, const std::vector<std::string>& stri
  * @returns modified version of absolute path to be read compatible
  */
 static void path_parser(std::string& abspath_to_file) {
-    auto next_space = abspath_to_file.find(" ");
+    size_t next_space = abspath_to_file.find(" ");
     // Determine Whether Spaces are found in path
     if(next_space != abspath_to_file.npos) {
         // Determine OS type by checking syntax natively generated path
-        auto next_back_slash = abspath_to_file.find("\\");
-        auto next_forward_slash = abspath_to_file.find("/");
+        size_t next_back_slash = abspath_to_file.find("\\");
+        size_t next_forward_slash = abspath_to_file.find("/");
 
         // Handle Search using backslash character if path has Windows path syntax
         if (next_back_slash != abspath_to_file.npos) {
             // Establish initial positions of slashes surrounding first detected space
             next_back_slash = abspath_to_file.rfind("\\", next_space);
-            auto closing_slash = abspath_to_file.find("\\", next_space);
+            size_t closing_slash = abspath_to_file.find("\\", next_space);
 
             // Insert '"' character immediately after front slash and '\"' immediately before end slash
             abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(next_back_slash + 1), '"');
             abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(closing_slash + 1), '\\');
             abspath_to_file.insert(abspath_to_file.begin()+ static_cast<long int>(closing_slash + 2), '"');
             // Reposition front and end slashes according to position of next detected space
-            next_back_slash = closing_slash + static_cast<long int>(3);
-            closing_slash = abspath_to_file.find("\\", next_back_slash + 1);
-            next_space = abspath_to_file.find(" ", next_back_slash);
+            next_back_slash = static_cast<size_t>(closing_slash + 3);
+            closing_slash = abspath_to_file.find("\\", static_cast<size_t>(next_back_slash + 1));
+            next_space = abspath_to_file.find(" ", static_cast<size_t>(next_back_slash));
 
             // Continue parsing each slice of front and end slashes until end of path is reached
             while (next_space != abspath_to_file.npos) {
                 // If next space is not within slashes, update slash postioning until it is
-                if (closing_slash < next_space) {
-                    while (closing_slash < next_space) {
-                        next_back_slash = closing_slash;
-                        closing_slash = abspath_to_file.find("\\", next_back_slash + 1);
+                if (static_cast<size_t>(closing_slash) < static_cast<size_t>(next_space)) {
+                    while (static_cast<size_t>(closing_slash) < static_cast<size_t>(next_space)) {
+                        next_back_slash = static_cast<size_t>(closing_slash);
+                        closing_slash = abspath_to_file.find("\\", static_cast<size_t>(next_back_slash + 1));
                     }
                 }
                 // Handle insertion when current section is not at end of path and contains a space
@@ -82,9 +79,9 @@ static void path_parser(std::string& abspath_to_file) {
                     abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(closing_slash + 1), '\\');
                     abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(closing_slash + 2), '"');
                     // Reposition front and end slashes according to position of next detected space
-                    next_back_slash = closing_slash + static_cast<long int>(3);
-                    closing_slash = abspath_to_file.find("\\", next_back_slash + 1);
-                    next_space = abspath_to_file.find(" ", next_back_slash);
+                    next_back_slash = static_cast<size_t>(closing_slash + 3);
+                    closing_slash = abspath_to_file.find("\\", static_cast<size_t>(next_back_slash) + static_cast<size_t>(1));
+                    next_space = abspath_to_file.find(" ", static_cast<size_t>(next_back_slash));
                 } else {
                     // Handle insertion when current section contains a space and is at end (would otherwise be bypassed at beginning of iteration)
                     abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(next_back_slash + 1), '"');
@@ -101,23 +98,23 @@ static void path_parser(std::string& abspath_to_file) {
             if (next_forward_slash != abspath_to_file.npos) {
                 // Establish initial positions of slashes surrounding first detected space
                 next_forward_slash = abspath_to_file.rfind("/", next_space);
-                auto closing_slash = abspath_to_file.find("/", next_space);
+                size_t closing_slash = abspath_to_file.find("/", next_space);
                 // Insert '"\' substrings immediately after front slash and immediately before end slash
                 abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(next_forward_slash + 1), '\\');
                 abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(next_forward_slash + 2), '"');
                 abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(closing_slash + 2), '\\');
                 abspath_to_file.insert(abspath_to_file.begin() + static_cast<long int>(closing_slash + 3), '"');
                 // Reposition front and end slashes according to position of next detected space
-                next_forward_slash = closing_slash + static_cast<long int>(3);
-                closing_slash = abspath_to_file.find("/", next_forward_slash + 1);
+                next_forward_slash = static_cast<size_t>(closing_slash + 3);
+                closing_slash = abspath_to_file.find("/", static_cast<size_t>(next_forward_slash + 1));
                 next_space = abspath_to_file.find(" ", next_forward_slash);
                 // Continue parsing each slice of front and end slashes until end of path is reached
                 while (next_space != abspath_to_file.npos) {
                     // If next space is not within slashes, update slash postioning until it is
                     if (closing_slash < next_space) {
                         while (closing_slash < next_space) {
-                            next_forward_slash = closing_slash;
-                            closing_slash = abspath_to_file.find("/", next_forward_slash + 1);
+                            next_forward_slash = static_cast<size_t>(closing_slash);
+                            closing_slash = abspath_to_file.find("/", static_cast<size_t>(next_forward_slash + 1));
                         }
                     }
                     // Handle insertion when current section is not at end of path and contains a space
@@ -128,8 +125,8 @@ static void path_parser(std::string& abspath_to_file) {
                         abspath_to_file.insert(abspath_to_file.begin()+ static_cast<long int>(closing_slash + 2), '\\');
                         abspath_to_file.insert(abspath_to_file.begin()+ static_cast<long int>(closing_slash + 3), '"');
                         // Reposition front and end slashes according to position of next detected space
-                        next_forward_slash = closing_slash + static_cast<long int>(3);
-                        closing_slash = abspath_to_file.find("/", next_forward_slash + 1);
+                        next_forward_slash = static_cast<size_t>(closing_slash + 3);
+                        closing_slash = abspath_to_file.find("/", static_cast<size_t>(next_forward_slash + 1));
                         next_space = abspath_to_file.find(" ", next_forward_slash);
                     } else {
                         // Handle insertion when current section contains a space and is at end (would otherwise be bypassed at beginning of iteration)
@@ -218,7 +215,7 @@ int approximate_graph_vertex_count(unsigned int& vertex_count, std::string& read
      *  to estimate the number of unique verticies from the number of lines in the text file(each line = 1 edge):
      *      Edge Density = # of Edges / (# of Verticies * (# of Verticies - 1))
      */
-    vertex_count = std::nearbyint(((edge_density) + std::sqrt((pow(edge_density, 2)) + (4 * (edge_count) * (edge_density)))) / (2 * edge_density));
+    vertex_count = static_cast<unsigned int>((((edge_density) + std::sqrt((pow(edge_density, 2)) + (4 * (edge_count) * (edge_density)))) / (2 * edge_density)));
 
 
     // Handle Exceedingly Small Line Counts in Parsing User-Selected Text File
