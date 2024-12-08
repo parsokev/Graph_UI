@@ -4,8 +4,6 @@
 #include <vector>
 #include <cassert>
 #include <cmath>
-#include <string>
-#include <stdexcept>
 #include <tuple>
 #include <utility>
 #include <list>
@@ -48,27 +46,47 @@ class soa_hashmap {
 public:
     soa_hashmap(unsigned int c): size(0), capacity(c) {fill_buckets();} // Constructor builds underlying storage array with a starting bucket capacity of `c`
     soa_hashmap(): size(0), capacity(5) {fill_buckets();} // Constructor defaults to capacity of 5 if no capacity argument is provided
+    // Soa_hashmap Copy Constructor
+    soa_hashmap(const soa_hashmap<Type>& other_shash): size{other_shash.size},
+        capacity{other_shash.capacity},
+        hash_bucket{other_shash.hash_bucket},
+        keys{other_shash.keys} {}
+
+    // Soa_hashmap Copy Assignment Operator overloading constructor
+    soa_hashmap<Type>& operator=(soa_hashmap<Type>& old_shash) {
+        std::swap(size, old_shash.size);
+        std::swap(capacity, old_shash.capacity);
+        std::swap(hash_bucket, old_shash.hash_bucket);
+        std::swap(keys, old_shash.keys);
+        return *this;
+    }
 
     // Constructor for initialization with provided vector of key: value pairs
     soa_hashmap(std::vector<std::pair<std::string, Type>>& heap_array): size(0), capacity(0) {
         capacity = static_cast<unsigned int>(heap_array.size());
         fill_buckets();
-        std::string key;
-        Type value;
+        //std::string key;
+        //Type value;
         for (size_t s = 0; s < heap_array.size(); s++) {
-            std::tie(key, value) = heap_array[s];
-            add(key, value);
+            // Ensure pairs are of correct type and ensure all val
+            if constexpr (std::is_same_v<std::pair<std::string, Type>>, heap_array[s]) {
+                std::string key = std::get<0>(heap_array[s]);
+                Type value = std::get<1>(heap_array[s]);
+                //std::tie(key, value) = heap_array[s];
+                add(key, value);
+            }
+
         }
         heap_array.clear();
     }
     // Move Constructor for `soa_hashmap` objects
-    soa_hashmap(soa_hashmap<Type>&& old_shashmap): size{std::exchange(old_shashmap.size, 0)},
+    soa_hashmap(soa_hashmap<Type>&& old_shashmap)  noexcept: size{std::exchange(old_shashmap.size, 0)},
         capacity{std::exchange(old_shashmap.capacity, 0)},
         hash_bucket{std::move(old_shashmap.hash_bucket)},
         keys{std::move(old_shashmap.keys)} {}
 
     // Move operator overloading function for transferring ownership between `soa_hashmap` objects
-    soa_hashmap<Type>& operator=(soa_hashmap<Type>&& old_shashmap) {
+    soa_hashmap<Type>& operator=(soa_hashmap<Type>&& old_shashmap) noexcept {
         size = std::exchange(old_shashmap.size, 0);
         capacity = std::exchange(old_shashmap.capacity, 0);
         hash_bucket = std::move(old_shashmap.hash_bucket);
@@ -352,12 +370,12 @@ public:
                 size--;
                 // Erases matching key from `soa_hashmap` objects's `keys` member
                 std::list<std::string>::iterator list_pos = keys.begin();
-                for (auto& key : keys) {
-                    if(hash_bucket[next_index].key.compare(key) == 0) {
+                for (auto& key_name : keys) {
+                    if(hash_bucket[next_index].key.compare(key_name) == 0) {
                         keys.erase(list_pos);
                         break;
                     }
-                    if (key != keys.back()){
+                    if (key_name != keys.back()){
                         std::advance(list_pos, 1);
                     }
 
@@ -437,19 +455,33 @@ private:
         std::string key;
         /// @brief Corresponding value of key : value pair
         Type value;
-        /// @brief Boolean indicator of whether a `hash_entry` struct with a pre-assigned value 'exists'
-        bool is_tombstone = false;
         /// @brief Boolean indicator for detecting `hash_entry` structs with no pre-assigned attribute values
-        bool is_empty = true;
+        bool is_empty;
+        /// @brief Boolean indicator of whether a `hash_entry` struct with a pre-assigned value 'exists'
+        bool is_tombstone;
 
         // `Hash_entry` zero-initialization or pre-defined constructors
-        hash_entry(): is_tombstone{false}, is_empty{true} {}
-        hash_entry(std::string k, Type v, bool t, bool e): key{k}, value{v}, is_tombstone{t}, is_empty{e} {}
+        hash_entry(): is_empty(true), is_tombstone(false) {}
+
+        // `hash_entry` copy contructor
+        hash_entry(const hash_entry& other_entry): key{other_entry.key}, value{other_entry.value},
+            is_empty{other_entry.is_empty}, is_tombstone{other_entry.is_tombstone} {}
+        // `hash_entry` copy assignment operator overloading function
+        hash_entry& operator=(hash_entry& old_hash) {
+            std::swap(key, old_hash.key);
+            std::swap(value, old_hash.value);
+            std::swap(is_empty, old_hash.is_empty);
+            std::swap(is_tombstone, old_hash.is_tombstone);
+            return *this;
+        }
+
+        hash_entry(std::string k, Type v, bool t, bool e): key{k}, value{v}, is_empty{e}, is_tombstone{t} {}
+
         // `Hash_entry` move constructor`
         hash_entry(hash_entry&& other_hash)  noexcept: key{std::move(other_hash.key)},
-            value{std::move(other_hash.value)}, is_tombstone{std::move(other_hash.is_tombstone)},
-            is_empty{std::move(other_hash.is_empty)} {}
-        // `Hash_entry` move operator overloading function
+            value{std::move(other_hash.value)}, is_empty{std::move(other_hash.is_empty)},
+            is_tombstone{std::move(other_hash.is_tombstone)} {}
+        // `Hash_entry` move assignment operator overloading function
         hash_entry& operator=(hash_entry&& old_hash) noexcept {
             key = std::move(old_hash.key);
             value = std::move(old_hash.value);
@@ -496,21 +528,34 @@ public:
     main_hashmap(unsigned int c): main_size(0), main_capacity(c) {fill_buckets();}
     // Constructor defaults to capacity of 5 if no capacity argument is provided
     main_hashmap(): main_size(0), main_capacity(5) {fill_buckets();}
+
+    // Main_hashmap Copy Constructor
+    main_hashmap(const main_hashmap<Type>& other_mhash) : main_size{other_mhash.main_size},
+        main_hash_bucket{other_mhash.main_hash_bucket},
+        main_keys{other_mhash.main_keys} {}
+
+    // Main_hashmap Copy Assignment Operator overloading function
+    main_hashmap<Type>& operator=(main_hashmap<Type>& old_mhash) {
+        std::swap(main_size, old_mhash.main_size);
+        std::swap(main_capacity, old_mhash.main_capacity);
+        std::swap(main_hash_bucket, old_mhash.main_hash_bucket);
+        std::swap(main_keys, old_mhash.main_keys);
+        return *this;
+    }
     // Move Constructor for main_hashmap objects
-    main_hashmap(main_hashmap<Type>&& old_mashmap): main_size{std::exchange(old_mashmap.main_size, 0)},
+    main_hashmap(main_hashmap<Type>&& old_mashmap) noexcept : main_size{std::exchange(old_mashmap.main_size, 0)},
         main_capacity{std::exchange(old_mashmap.main_capacity, 0)},
         main_hash_bucket{std::move(old_mashmap.main_hash_bucket)},
         main_keys{std::move(old_mashmap.main_keys)} {}
 
     // Move operator overloading function for transferring ownership between soa_hashmap objects
-    main_hashmap<Type>& operator=(main_hashmap<Type>&& old_mashmap) {
+    main_hashmap<Type>& operator=(main_hashmap<Type>&& old_mashmap) noexcept {
         main_size = std::exchange(old_mashmap.main_size, 0);
         main_capacity = std::exchange(old_mashmap.main_capacity, 0);
         main_hash_bucket = std::move(old_mashmap.main_hash_bucket);
         main_keys = std::move(old_mashmap.main_keys);
         return *this;
     }
-
 
     /**
          * Retrieves current number of `hash_table` structs stored within `master_hash_bucket` storage array
@@ -933,12 +978,12 @@ public:
                 main_hash_bucket[next_index].is_tombstone = true;
                 main_size--;
                 std::list<std::string>::iterator list_pos = main_keys.begin();
-                for (auto& key : main_keys) {
-                    if(main_hash_bucket[next_index].main_key.compare(key) == 0) {
+                for (auto& key_name : main_keys) {
+                    if(main_hash_bucket[next_index].main_key.compare(key_name) == 0) {
                         main_keys.erase(list_pos);
                         break;
                     }
-                    if (key != main_keys.back()){
+                    if (key_name != main_keys.back()){
                         std::advance(list_pos, 1);
                     }
 
@@ -1028,6 +1073,20 @@ private:
 
         // Hash_table Constructors
         hash_table() : is_tombstone(false), is_empty(true) {}
+
+        // Hash_table Copy Constructor
+        hash_table(const hash_table& other_table) : main_key{other_table.main_key},
+            entry{other_table.entry}, is_tombstone{other_table.is_tombstone},
+            is_empty{other_table.is_empty} {}
+
+        // Hash_table Copy Assignment Operator overloading function
+        hash_table& operator=(hash_table& old_table) {
+            std::swap(main_key, old_table.main_key);
+            std::swap(entry, old_table.entry);
+            std::swap(is_tombstone, old_table.is_tombstone);
+            std::swap(is_empty, old_table.is_empty);
+            return *this;
+        }
 
         hash_table(std::string key, soa_hashmap<Type> hash, bool t, bool e): main_key(key),
             entry(std::move(hash)), is_tombstone(t), is_empty(e) {}
