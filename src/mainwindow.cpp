@@ -335,9 +335,9 @@ void MainWindow::onActionConfirmFileClicked()
             QApplication::processEvents();
 
             // Read and Store Value Entered by User (Adjust accordingly if Entered Value is unfeasible)
-            vertex_count = ui->manualVertexEntry->value();
+            vertex_count = static_cast<unsigned int>(ui->manualVertexEntry->value());
             ui->manualVertexEntry->setEnabled(false);
-            if (vertex_count <= 0) {
+            if (vertex_count == 0) {
                 vertex_count = 5;
             }
         } else {
