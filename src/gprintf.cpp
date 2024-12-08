@@ -1,9 +1,6 @@
-#include "gprintf.h"
-
 // Adapted from instructional material provided by Oregon State University
 // Date: 9/15/2024
 // Utilization/Definition of gprint functionality for debug printing derived from material provided in coursework from CS344 - 2024
-
 
 #include <cstdio>
 #include <cerrno>

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 
 #include "derived_hashmap.h"
 #include "graph_writing.h"
@@ -19,8 +20,8 @@
  */
 static void write_path_title(std::vector<std::string> &path_list, std::string &line)
 {
-    auto start_title_pos = line.find("label=") + 7;
-    auto end_title_pos = line.find('"', start_title_pos);
+    size_t start_title_pos = line.find("label=") + static_cast<size_t>(7);
+    size_t end_title_pos = line.find('"', start_title_pos);
 
     std::string path_title = "Shortest Path FROM "; // Graph title for overlayed image of shortest path
 
@@ -62,11 +63,11 @@ static void write_path_node(std::string &line, size_t &find_right_bracket)
     line.insert(find_right_bracket, node_label);
 
     // Check if there is a preset fill color for vertex nodes found within shortest path
-    auto find_fill_label = line.find("fillcolor=");
+    size_t find_fill_label = line.find("fillcolor=");
     if (find_fill_label != line.npos) {
         // If a preset fillcolor is found, change fill color to a new chosen color to highlight vertex nodes within shortest path
-        auto fcolor_start_pos = find_fill_label + static_cast<size_t>(11);
-        auto fcolor_end_pos = line.find('"', fcolor_start_pos);
+        size_t fcolor_start_pos = find_fill_label + static_cast<size_t>(11);
+        size_t fcolor_end_pos = line.find('"', fcolor_start_pos);
         size_t n = 0;
         // Directly replace as many characters as possible of previous color used as fillcolor with those of new color for shortest path image
         for (; n < fcolor_end_pos - fcolor_start_pos && n < node_fill_color.size(); n++) {
@@ -111,17 +112,17 @@ static void write_path_edge(size_t &first_space,
     std::string color_label = "darkcyan"; // Color of connecting edge(s) in shortest path
 
     // Get Previous Color Size and Position within Line
-    auto start_color_pos = line.find(" color=") + 8;
-    auto end_color_pos = line.find('"', start_color_pos);
-    auto prev_color_size = end_color_pos - start_color_pos;
+    size_t start_color_pos = line.find(" color=") + static_cast<size_t>(8);
+    size_t end_color_pos = line.find('"', start_color_pos);
+    size_t prev_color_size = end_color_pos - start_color_pos;
 
     // Update Actual Line used for Extracting Node Information To Directed Edge Format
     line[line.find("--") + 1] = '>';
     bool in_shortest_path = false; // Bool value for determining if extracted node is in shortest path
-    auto second_space = line.find(
+    size_t second_space = line.find(
         " ",
         first_space); // Position of whitespace between second vertex name and arrow character ('>')
-    auto third_space = line.find('[', second_space);
+    size_t third_space = line.find('[', second_space);
     std::string vertex1 = line.substr(0, first_space); // Substring containing first vertex name
     std::string vertex2 = line.substr(first_space + static_cast<size_t>(4),
                                       third_space - static_cast<size_t>(5)
@@ -132,7 +133,7 @@ static void write_path_edge(size_t &first_space,
     std::string reverse_edge = vertex2;
     reverse_edge.append(" -> ").append(vertex1);
     // Loop through List of Edges found in Shortest Path and Compare them to Substring containing Directed Edge
-    for (const auto &edge : path_edges) {
+    for (const std::string &edge : path_edges) {
         bool straight_match = edge.compare(straight_edge) == 0;
         bool reverse_match = edge.compare(reverse_edge) == 0;
         // Check each directed edge in shortest path for matches in alternate ordering of directionality
@@ -169,7 +170,7 @@ static void write_path_edge(size_t &first_space,
         line.insert(line.find('[') + 1, arrow_label);
         // If line defines an edge that is part of shortest path, change the text color of the weight label
     } else {
-        auto find_right_bracket = line.rfind(']');
+        size_t find_right_bracket = line.rfind(']');
         std::string text_label = " fontcolor=\"";
 
         std::string text_color
@@ -188,8 +189,8 @@ static void write_path_edge(size_t &first_space,
  */
 static void write_MST_title(std::string &line)
 {
-    auto start_title_pos = line.find("label=") + 7;
-    auto end_title_pos = line.find('"', start_title_pos);
+    size_t start_title_pos = line.find("label=") + static_cast<size_t>(7);
+    size_t end_title_pos = line.find('"', start_title_pos);
 
     std::string path_title = "Minimum Spanning Tree"; // Graph title for overlayed image of MST
 
@@ -215,7 +216,7 @@ static void write_MST_title(std::string &line)
 
 static void remove_underscores(std::string &target_string)
 {
-    auto find_underscore = target_string.find("_");
+    size_t find_underscore = target_string.find("_");
     if (find_underscore != target_string.npos) {
         std::string space = " ";
         while (find_underscore != target_string.npos) {
@@ -230,7 +231,7 @@ static void remove_underscores(std::string &target_string)
 int check_for_CLRF(std::string& filename) {
     // add 'temp_' to filename without modifying path or file extension
     std::string write_name = filename;
-    auto find_filename = write_name.rfind('/');
+    size_t find_filename = write_name.rfind('/');
     if (find_filename != write_name.npos) {
         std::string tempname = "temp_";
         size_t k = 0;
@@ -252,7 +253,7 @@ int check_for_CLRF(std::string& filename) {
         bool is_windows = false;
         while(getline(read_file, line)) {
             std::string next_line = line;
-            auto carr_return_pos = line.find('\r');
+            size_t carr_return_pos = line.find('\r');
             // Check for CRLF characters found in Windows text files
             if (carr_return_pos != line.npos) {
                 // If CRLF found, remove '\r\n' characters for Linux compatibility
@@ -324,8 +325,8 @@ int check_for_CLRF(std::string& filename) {
 
 std::string underscore_spaces(const std::string &target_string)
 {
-    auto underscore_string = target_string;
-    auto find_space = underscore_string.find(" ");
+    std::string underscore_string = target_string;
+    size_t find_space = underscore_string.find(" ");
 
     if (find_space != underscore_string.npos) {
         std::string under_score = "_";
@@ -495,7 +496,7 @@ int write_shortest_path_overlay(const std::string &graph_filename,
                                 std::vector<std::string> &path_list,
                                 soa_hashmap<double> &&path_map)
 {
-    auto path_edges = path_map.get_keys();
+    std::list<std::string> path_edges = path_map.get_keys();
     // Create shortest_path_overlay .gv file if does not exist or remove contents if it does
     std::fstream write_file{path_filename, write_file.trunc | write_file.out};
     std::fstream read_file{graph_filename, read_file.in};
@@ -503,7 +504,7 @@ int write_shortest_path_overlay(const std::string &graph_filename,
         std::string line;
         // Locate the leading 'g' of expected "graph" word in first line to edit for denoting a directed graph
         getline(read_file, line);
-        auto get_first_g = line.find('g');
+        size_t get_first_g = line.find('g');
         if (get_first_g == line.npos) {
             std::cerr << "\nERROR: expected at least once occurence in 'g' in first line of '"
                       << graph_filename << "' file\n";
@@ -517,15 +518,15 @@ int write_shortest_path_overlay(const std::string &graph_filename,
 
         while (getline(read_file, line)) {
             // Initialize parameters to track and locate key characters that define information type of each line
-            auto find_left_bracket = line.find('['); // Position of left bracket character ('[')
-            auto find_double_dash = line.find(
+            size_t find_left_bracket = line.find('['); // Position of left bracket character ('[')
+            size_t find_double_dash = line.find(
                 "--"); // Position of existing "--" substring if present
-            auto find_first_space = line.find(
+            size_t find_first_space = line.find(
                 " "); // Position immediately following name of first vertex for lines representing vertex nodes and edges
-            auto find_right_bracket = line.find(
+            size_t find_right_bracket = line.find(
                 "]"); // Position of last expected character in current line ("]");
             // Call function to edit title of shortest path image to match user-requested information
-            auto find_cluster_bracket = line.find('{');
+            size_t find_cluster_bracket = line.find('{');
             if (find_cluster_bracket != line.npos) {
                 write_path_title(path_list, line);
             }
@@ -541,7 +542,7 @@ int write_shortest_path_overlay(const std::string &graph_filename,
                 remove_underscores(node_slice);
 
                 // Change the text color of extracted vertex if it is within the shortest path
-                for (const auto &vertex : path_list) {
+                for (const std::string& vertex : path_list) {
                     if (node_slice.compare(vertex) == 0) {
                         write_path_node(line, find_right_bracket);
                     }
@@ -592,24 +593,19 @@ int write_MST_overlay(const std::string &graph_filename,
     if (read_file.is_open()) {
         std::string line;
         while (getline(read_file, line)) {
-            auto find_left_bracket = line.find('['); // Position of left bracket character ('[')
-            auto find_double_dash = line.find(
+            size_t find_left_bracket = line.find('['); // Position of left bracket character ('[')
+            size_t find_double_dash = line.find(
                 "--"); // Position of first dash of double dash ("--")
-            auto has_left_bracket
-                = find_left_bracket
-                  != line.npos; // True if left bracket character is found in current line  ('[')
-            auto has_double_dash
-                = line.find("--") != line.npos
-                  && line.find("--") < line.find(
-                         '['); // True if double dashes are found before left bracket character
-            auto find_cluster_bracket = line.find('{');
+            size_t has_left_bracket = find_left_bracket != line.npos; // True if left bracket character is found in current line  ('[')
+            size_t has_double_dash = line.find("--") != line.npos && line.find("--") < line.find('['); // True if double dashes are found before left bracket character
+            size_t find_cluster_bracket = line.find('{');
             // Determine whether line matches graph title and change it to reflect that it contains the MST
             if (find_cluster_bracket != line.npos && find_cluster_bracket < line.size() - 1) {
                 write_MST_title(line);
             }
             // Determine whether line matches expected format of an undirected edge
             if (has_left_bracket && has_double_dash) {
-                auto find_space = line.find(" ", find_double_dash);
+                size_t find_space = line.find(" ", find_double_dash);
                 std::string vertex1_name
                     = line.substr(0,
                                   find_double_dash
@@ -621,7 +617,7 @@ int write_MST_overlay(const std::string &graph_filename,
                                       - static_cast<size_t>(
                                           2)); // Substring of second vertex name
                 // Determine whether edge is part of those that comprise the MST
-                for (const auto &pair : MST_edges) {
+                for (const auto& pair : MST_edges) {
                     std::string pair_vertex1 = underscore_spaces(std::get<0>(pair));
                     std::string pair_vertex2 = underscore_spaces(std::get<1>(pair));
                     bool straight_match = pair_vertex1.compare(vertex1_name) == 0
@@ -630,13 +626,13 @@ int write_MST_overlay(const std::string &graph_filename,
                                          && pair_vertex2.compare(vertex1_name) == 0;
                     // If edge is part of MST, alter its edge and weight label coloration to distinguish it from non-MST edges
                     if (straight_match || reverse_match) {
-                        auto start_color_pos
+                        size_t start_color_pos
                             = line.find(" color=")
                               + 8; // Position of first character of previous edge color name
-                        auto end_color_pos = line.find(
+                        size_t end_color_pos = line.find(
                             '"',
                             start_color_pos); // Position of last character of previous edge color name
-                        auto prev_color_size = end_color_pos - start_color_pos;
+                        size_t prev_color_size = end_color_pos - start_color_pos;
 
                         std::string edge_color = "darkcyan"; // Edge Color for Edges Found In MST
 
@@ -659,7 +655,7 @@ int write_MST_overlay(const std::string &graph_filename,
                             }
                         }
                         // Insert different color for text label for edge weight value
-                        auto find_right_bracket = line.rfind(']');
+                        size_t find_right_bracket = line.rfind(']');
                         std::string text_label = " fontcolor=\"";
 
                         std::string text_color
@@ -703,3 +699,4 @@ int write_MST_overlay(const std::string &graph_filename,
     }
     return 0;
 }
+
