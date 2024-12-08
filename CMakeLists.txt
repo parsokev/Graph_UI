@@ -40,14 +40,15 @@ qt_add_executable( ${TARGET}
 target_include_directories( ${TARGET} PUBLIC ${INCLUDE_PATH} )
 
 # Link Qt Widgets library required for application
-target_link_libraries( ${TARGET} PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
+target_link_libraries( ${TARGET} PRIVATE Qt${QT_MAJOR_VERSION}::Widgets )
 
 # Set Compiler Flags
 if (CMAKE_MAKE_PROGRAM MATCHES "Visual Studio")
     target_compile_options( ${TARGET} PRIVATE /Wall /EHsc /Qspectre )
-       target_compile_features( ${TARGET} PRIVATE cxx_std_17 )
+    target_compile_features( ${TARGET} PRIVATE cxx_std_17 )
+    target_compile_definitions( ${TARGET} PRIVATE VS_PRESENT )
 else()
-    target_compile_options( ${TARGET} PRIVATE -Wall -Wextra -Wshadow -Wconversion -Wsign-conversion -Wunused-parameter -Wno-long-long -pedantic )
+    target_compile_options( ${TARGET} PRIVATE -Wall -O3 -Wextra -Wshadow -Wconversion -Wsign-conversion -Wunused-parameter -Wno-long-long -pedantic )
     target_compile_features( ${TARGET} PRIVATE cxx_std_17 )
 endif()
 
