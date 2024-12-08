@@ -15,13 +15,6 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
-    },
-    {
-      "name": "Qt-RelWithDebugInfo",
-      "binaryDir": "${sourceDir}/build/release",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-      }
     }
     ]
 }
