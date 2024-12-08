@@ -1,3 +1,8 @@
+// Suppress non-critical compiler warnings if using Microsoft Visual Studio compiler
+#ifdef VS_PRESENT
+#pragma warning(disable : 4265 4625 4626 4688 4710 4711 4866 4820 5045 )
+#endif
+
 #include <cstdint>
 #include <iostream>
 #include <string>
@@ -457,10 +462,10 @@ private:
         // `Hash_entry` zero-initialization or pre-defined constructors
         hash_entry(): is_empty(true), is_tombstone(false) {}
 
-        // `hash_entry` copy contructor
+        // `Hash_entry` Copy Contructor
         hash_entry(const hash_entry& other_entry): key{other_entry.key}, value{other_entry.value},
             is_empty{other_entry.is_empty}, is_tombstone{other_entry.is_tombstone} {}
-        // `hash_entry` copy assignment operator overloading function
+        // `Hash_entry` Copy Assignment Operator overloading function
         hash_entry& operator=(hash_entry& old_hash) {
             std::swap(key, old_hash.key);
             std::swap(value, old_hash.value);
@@ -471,11 +476,11 @@ private:
 
         hash_entry(std::string k, Type v, bool t, bool e): key{k}, value{v}, is_empty{e}, is_tombstone{t} {}
 
-        // `Hash_entry` move constructor`
+        // `Hash_entry` Move Constructor
         hash_entry(hash_entry&& other_hash)  noexcept: key{std::move(other_hash.key)},
             value{std::move(other_hash.value)}, is_empty{std::move(other_hash.is_empty)},
             is_tombstone{std::move(other_hash.is_tombstone)} {}
-        // `Hash_entry` move assignment operator overloading function
+        // `Hash_entry` Move Assignment Operator overloading function
         hash_entry& operator=(hash_entry&& old_hash) noexcept {
             key = std::move(old_hash.key);
             value = std::move(old_hash.value);
