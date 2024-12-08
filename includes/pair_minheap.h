@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <vector>
-#include <tuple>
 #include <string>
 #include <cassert>
 #include <memory>
@@ -37,15 +36,31 @@ public:
     paired_min_heap(std::vector<std::pair<std::string, Type>>& heap_array): heap_size(0), capacity(0) {
         start_heap.reserve(heap_array.size());
         capacity = static_cast<unsigned int>(heap_array.size());
-        std::string key;
-        Type value;
+        //std::string key;
+        //Type value;
         for (size_t s = 0; s < heap_array.size(); s++) {
-            std::tie(key, value) = heap_array[s];
-            add_node(key, value);
+            if constexpr (std::is_same_v<std::pair<std::string, Type>, decltype(heap_array[s])>) {
+                std::string key = std::get<0>(heap_array[s]);
+                Type value = std::get<1>(heap_array[s]);
+                //std::tie(key, value) = heap_array[s];
+                //add_node(key, value);
+            }
         }
         heap_array.clear();
     }
 
+    // Paired_min_heap Copy Constructor
+    paired_min_heap(const paired_min_heap<Type>& other_pheap) : heap_size{other_pheap.size},
+        capacity{other_pheap.capacity},
+        start_heap{ other_pheap.start_heap} {}
+
+    // Paired_min_heap Copy Assignment Operator overloading constructor
+    paired_min_heap<Type>& operator=(paired_min_heap<Type>& old_pheap) {
+        std::swap(heap_size, old_pheap.heap_size);
+        std::swap(capacity, old_pheap.capacity);
+        std::swap(start_heap, old_pheap.start_heap);
+        return *this;
+    }
     // Move Constructor for paired_min_heap objects
     paired_min_heap(paired_min_heap<Type>&& old_min_heap): heap_size{std::exchange(old_min_heap.heap_size, 0)},
         capacity{std::exchange(old_min_heap.capacity, 0)},
@@ -122,10 +137,10 @@ public:
         std::unique_ptr<vertex_pair> new_pair = std::make_unique<vertex_pair>(std::move(pair_val));
 
         gprintf("ADDED NODE: %s : ", std::get<0>(new_pair -> value_pair).c_str());
-#ifndef NDEBUG
+#ifdef DEBUG
         std::cerr << std::get<1>(new_pair -> value_pair) << '\n';
-#endif
-        // Move pointer referencing new vertex_pair into min heap's storage array `start_heap`
+#endif \
+    // Move pointer referencing new vertex_pair into min heap's storage array `start_heap`
         start_heap.emplace_back(std::move(new_pair));
         heap_size++;
 
@@ -136,7 +151,7 @@ public:
         int new_val_index = heap_size - 1;
 
         gprintf("STARTING HEAP : [ ");
-#ifndef NDEBUG
+#ifdef DEBUG
         for (const auto& ptr_val : start_heap) {
             if (ptr_val == start_heap.back()) {
                 std::cerr << std::get<0>(ptr_val -> value_pair) << " : " << std::get<1>(ptr_val -> value_pair);
@@ -160,14 +175,12 @@ public:
              * index position is not 0 and its data value is less than that of its current parent
             */
         gprintf("\nSTARTING POSITIONS FOR NEXT PARENT INDEX AND ADDED NODE INDEX\n");
-#ifndef NDEBUG
-
+#ifdef DEBUG
         std::cerr << "next_parent_index: " << "START_HEAP[" << next_parent_index << "] = ";
         print_value_pair(start_heap[static_cast<size_t>(next_parent_index)] -> value_pair, std::cerr);
         std::cerr << "\nnew_val_index: " << "START_HEAP[" << new_val_index << "] = ";
         print_value_pair(start_heap[static_cast<size_t>(new_val_index)] -> value_pair, std::cerr);
         std::cerr << '\n';
-
 #endif
         gprintf("ENTERING WHILE LOOP FOR POSITION SWAPPING\n");
         while (next_parent_index >= 0 && data_val < std::get<1>(next_parent_pair)){
@@ -187,7 +200,7 @@ public:
             }
         }
 
-#ifndef NDEBUG
+#ifdef DEBUG
         gprintf("HEAP AFTER ADDING NODE: [ ");
         for (const auto& ptr_val : start_heap) {
             if (ptr_val == start_heap.back()) {
@@ -197,8 +210,8 @@ public:
             }
         }
         std::cerr << " ]\n";
-#endif \
-    // If calculated parent index is out of bounds, newly added node is at front index now
+#endif
+        // If calculated parent index is out of bounds, newly added node is at front index now
         return;
     }
 
@@ -224,7 +237,7 @@ public:
         int max_loops_req = heap_size / 2;
         int perc_index = index;
 
-#ifndef NDEBUG
+#ifdef DEBUG
         gprintf("\nBEGINNING PERCOLATION with: ");
         print_value_pair(start_heap[static_cast<size_t>(perc_index)] -> value_pair, std::cerr);
         std::cerr << '\n';
@@ -243,10 +256,10 @@ public:
             if ( right_child_index >= 0 && right_child_index <= heap_length) {
                 right_child_index = (perc_index * 2) + 2;
             }
-#ifndef NDEBUG
+#ifdef DEBUG
             std::cerr << "EVALUATING children from PERCOLATED NODE'S CURRENT POSITION OF: " << perc_index << '\n';
-#endif \
-    // Pass index position and key:pair value of percolating node along with index positions of its children to helper function
+#endif
+            // Pass index position and key:pair value of percolating node along with index positions of its children to helper function
             int end_check = evaluate_children(left_child_index, right_child_index, perc_element_pair, perc_index);
             /**
                  * If swapping function returns 0, percolation is complete and the loop is exited. Otherwise, percolation continues
@@ -256,9 +269,7 @@ public:
                 break;
             }
         }
-#ifndef NDEBUG
         gprintf("PERCOLATION COMPLETE!\n");
-#endif
     }
 
 
@@ -342,7 +353,7 @@ public:
             std::cerr << e.what() << '\n';
         }
 
-#ifndef NDEBUG
+#ifdef DEBUG
         gprintf("REMOVING NODE WITH MINIMUM VALUE: ");
         print_value_pair(start_heap[0] -> value_pair, std::cerr);
         std::cerr << '\n';
@@ -430,7 +441,7 @@ private:
 
     /// @brief  Number of `vertex_pair` objects that `paired_min_heap` has currently preallocated memory for storage
     unsigned int capacity;
-        /**
+    /**
          *  Node elements of `paired_min_heap`
          * @param key String value for 'key' of node
          * @param value Value with deduced type that is value associated with node
@@ -440,13 +451,26 @@ private:
         std::string key;
         Type value;
         std::pair<std::string, Type> value_pair = {key, value};
-        // `vertex_pair` default constructor
+        // Vertex_pair Copy Constructor
+        vertex_pair(const vertex_pair& other_vpair) : key{other_vpair.key},
+            value{other_vpair.value}, value_pair{other_vpair.value_pair} {}
+
+        // Vertex_pair Copy Assignment Operator overloading constructor
+        vertex_pair& operator=(vertex_pair& old_vpair) {
+            std::swap(key, old_vpair.key);
+            std::swap(value, old_vpair.value);
+            std::swap(value_pair, old_vpair.value_pair);
+            return *this;
+        }
+
         vertex_pair(std::string k, Type v): key{k}, value{v}, value_pair{k,v} {}
-        // `vertex_pair` move constructor`
-        vertex_pair(vertex_pair&& other_pair): key{std::move(other_pair.key)},
+
+        // Vertex_pair Move Constructor
+        vertex_pair(vertex_pair&& other_pair) noexcept: key{std::move(other_pair.key)},
             value{std::move(other_pair.value)}, value_pair{std::move(other_pair.value_pair)} {}
-        // `vertex_pair` move operator overloading function
-        vertex_pair& operator=(vertex_pair&& old_pair) {
+
+        // Vertex_pair Move Assignment Operator overloading function
+        vertex_pair& operator=(vertex_pair&& old_pair) noexcept {
             key = std::move(old_pair.key);
             value = std::move(old_pair.value);
             value_pair = std::move(old_pair.value_pair);
