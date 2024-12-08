@@ -56,7 +56,7 @@ endif()
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     $<$<CONFIG:Debug>:DEBUG>
     $<$<CONFIG:Release>:RELEASE>
-    $<$<CONFIG:RelWithDebInfo>:RELDEBUG>
+    $<$<CONFIG:RelWithDebInfo>:RelWithDebInfo>
 )
 
 else()

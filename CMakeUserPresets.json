@@ -20,8 +20,7 @@
       "name": "Qt-RelWithDebugInfo",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-        "CMAKE_CXX_FLAGS": "-DQT_QML_DEBUG"
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     }
     ]
