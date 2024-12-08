@@ -1086,13 +1086,13 @@ private:
             entry(std::move(hash)), is_tombstone(t), is_empty(e) {}
 
         // Hash_table Move Constructor
-        hash_table(hash_table&& old_hasht): main_key{std::move(old_hasht.main_key)},
+        hash_table(hash_table&& old_hasht) noexcept: main_key{std::move(old_hasht.main_key)},
             entry{std::move(old_hasht.entry)},
             is_tombstone{std::move(old_hasht.is_tombstone)},
             is_empty{std::move(old_hasht.is_empty)} {}
 
         // Hash_table Move Operator Overloading Function
-        hash_table& operator=(hash_table&& old_hash) {
+        hash_table& operator=(hash_table&& old_hash) noexcept {
             entry = std::move(old_hash.entry);
             main_key = std::move(old_hash.main_key);
             is_tombstone = std::move(old_hash.is_tombstone);
