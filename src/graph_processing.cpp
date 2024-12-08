@@ -117,7 +117,8 @@ int build_adjacency_list(const std::string &filename,
                 write_file.close();
                 return -1;
             }
-            line_read.seekg(vertex_size + spacer, line_read.cur);
+            // Prevent overflow by upcasting
+            line_read.seekg(static_cast<long long int>(vertex_size + spacer), line_read.cur);
             // Ensure vertex 2 is found before end of the current line
             // line_read.seekg(line_read.tellg() + spacer + vertex_size);
             if (line_read.tellg() == -1) {
@@ -148,7 +149,7 @@ int build_adjacency_list(const std::string &filename,
                 write_file.close();
                 return -1;
             }
-            line_read.seekg(vertex2_size + spacer, line_read.cur);
+            line_read.seekg(static_cast<long long int>(vertex2_size + spacer), line_read.cur);
             // Ensure edge weight between verticies is found before end of current line
             // line_read.seekg(line_read.tellg() + vertex2_size + spacer);
             if (line_read.tellg() == -1) {
@@ -422,9 +423,9 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
     shortPathMsg.append("The Shortest Path from ").append(s_vertex).append(" TO ").append(des_vertex).append("\n");
     std::cerr << "============================= SHORTEST PATH RESULTS ====================================\n";
     std::cerr << "The Shortest Path from " << s_vertex << " TO " << des_vertex << " : " << '\n';
-    auto path_map = std::make_unique<soa_hashmap<double>>(static_cast<unsigned int>(vertex_count / 2));     // Hashmap holding directed edges as keys and their corresponding weight values
+    std::unique_ptr<soa_hashmap<double>> path_map = std::make_unique<soa_hashmap<double>>(static_cast<unsigned int>(vertex_count / 2));     // Hashmap holding directed edges as keys and their corresponding weight values
     // Trace backward from destination vertex, visiting each subsequent last vertex visited until source vertex is reached
-    auto new_vertex = des_vertex;
+    std::string new_vertex = des_vertex;
     std::string prev_vertex;
     try {
         prev_vertex = vertex_path.get_val(des_vertex);
@@ -472,8 +473,7 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
     print_shortest_path(shortest_path);
     QString distance = distance.number(visited_vertices.get_val(des_vertex));
     shortPathMsg.append("\nTOTAL COST/DISTANCE: ").append(distance).append('\n');
-    std::cerr << "\nTOTAL COST/DISTANCE: " << visited_vertices.get_val(des_vertex) << '\n';
-    std::cerr << '\n';
+    std::cerr << '\n' << "TOTAL COST / DISTANCE: " << visited_vertices.get_val(des_vertex) << "\n\n";
     // Pass hashmap containing directed edges of shortest path to function for writing graph file for visualizing shortest path overlaying entire graph
     int path_output  = 0;
     try {
@@ -533,7 +533,7 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
         gprintf("\nThe Minimum HEAP currently contains: ");
         std::cerr << *mhp << '\n';
 #endif \
-    // Find vertex that forms edge with the currently smallest cost/distance with extracted vertex
+        // Find vertex that forms edge with the currently smallest cost/distance with extracted vertex
         if (vertex.compare(source_vertex) == 0) {
             min_distance_edge = source_vertex;
         } else {
@@ -563,7 +563,7 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
         }
 
         // Gather list of all verticies adjacent to extracted vertex
-        auto adjacent_verticies = adj_list.get_hash_key(vertex).get_keys();
+        std::list<std::string> adjacent_verticies = adj_list.get_hash_key(vertex).get_keys();
         gprintf("\nChecking list of verticies for those not visited yet");
 
         // Check for any adjacent verticies of extracted vertex that have not been visited yet
