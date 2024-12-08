@@ -43,10 +43,12 @@ target_include_directories( ${TARGET} PUBLIC ${INCLUDE_PATH} )
 target_link_libraries( ${TARGET} PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
 
 # Set Compiler Flags
-if (MVSC)
-    target_compile_options( ${TARGET} PRIVATE -Wall /EHsc )
+if (CMAKE_MAKE_PROGRAM MATCHES "Visual Studio")
+    target_compile_options( ${TARGET} PRIVATE /Wall /EHsc /Qspectre )
+       target_compile_features( ${TARGET} PRIVATE cxx_std_17 )
 else()
-    target_compile_options( ${TARGET} PRIVATE -Wall )
+    target_compile_options( ${TARGET} PRIVATE -Wall -Wextra -Wshadow -Wconversion -Wsign-conversion -Wunused-parameter -Wno-long-long -pedantic )
+    target_compile_features( ${TARGET} PRIVATE cxx_std_17 )
 endif()
 
 # Have CMake send different definitions to compiler based on its build type value/configuration
