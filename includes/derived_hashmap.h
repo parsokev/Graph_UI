@@ -4,7 +4,6 @@
 #include <vector>
 #include <cassert>
 #include <cmath>
-#include <tuple>
 #include <utility>
 #include <list>
 #ifndef DERIVED_HASHMAP_H
@@ -65,17 +64,12 @@ public:
     soa_hashmap(std::vector<std::pair<std::string, Type>>& heap_array): size(0), capacity(0) {
         capacity = static_cast<unsigned int>(heap_array.size());
         fill_buckets();
-        //std::string key;
-        //Type value;
         for (size_t s = 0; s < heap_array.size(); s++) {
-            // Ensure pairs are of correct type and ensure all val
-            if constexpr (std::is_same_v<std::pair<std::string, Type>>, heap_array[s]) {
+            if constexpr (std::is_same_v<std::pair<std::string, Type>, decltype(heap_array[s])>) {
                 std::string key = std::get<0>(heap_array[s]);
                 Type value = std::get<1>(heap_array[s]);
-                //std::tie(key, value) = heap_array[s];
                 add(key, value);
             }
-
         }
         heap_array.clear();
     }
