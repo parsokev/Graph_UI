@@ -23,6 +23,7 @@
  * 'DEBUG' or 'RELDEBUG' = Local Build -> Build path = CMAKE_SOURCE_DIR/build/<local-config-directory>
 */
 #ifdef RELEASE
+
 // Relative Paths for deployed executable that is within same directory as the executable
 std::string path_filename = "./dot_graphs/shortest_path_overlay.gv";
 std::string MST_filename = "./dot_graphs/MST_overlay.gv";
@@ -32,6 +33,12 @@ std::string MST_image = "./graph_images/MST_overlay.png";
 std::string SP_image = "./graph_images/shortest_path_overlay.png";
 QString graphDestination = "./graph_images/full_graph.png";
 QString starting_file = "./sample_graphs";
+#ifdef __linux__
+// Instead of using direct commands, program uses pre-made shell scripts for Linux OS without verbosity
+// These will not deploy runtime and library dependencies but can be still be built in Release build path
+std::string Linux_SP_script = "./scripts/Linux/visualize_graph_SPR.sh";
+std::string Linux_MST_script = "./scripts/Linux/visualize_graph_MSTR.sh";
+#endif
 #else
 // Relative Paths for locally built executable that is two levels below resource files
 std::string path_filename = "../../dot_graphs/shortest_path_overlay.gv";
@@ -42,13 +49,15 @@ std::string MST_image = "../../graph_images/MST_overlay.png";
 std::string SP_image = "../../graph_images/shortest_path_overlay.png";
 QString graphDestination = "../../graph_images/full_graph.png";
 QString starting_file = "../../sample_graphs";
+// Instead of using direct commands, program uses pre-made shell scripts for Linux OS with verbosity
+#ifdef __linux__
+std::string Linux_SP_script = "../../scripts/Linux/visualize_graph_SPD.sh";
+std::string Linux_MST_script = "../../scripts/Linux/visualize_graph_MSTD.sh";
 #endif
 
-// Instead of using direct commands, program uses pre-made shell scripts for Linux OS
-#ifdef __linux__
-std::string Linux_SP_script = "../../scripts/Linux/visualize_graph_SP.sh";
-std::string Linux_MST_script = "../../scripts/Linux/visualize_graph_MST.sh";
 #endif
+
+
 
 // Qt QString variables storing updated platform-selective text file/graph image locations
 QString filename = "";  // Name of Selected Text File to Process
@@ -674,9 +683,8 @@ void MainWindow::onActionSubmitClicked()
 #ifdef __linux__
     // Preset Script Path and Graph Image Locations based on User Requested Information for Linux Users
     command_val = "/bin/bash"
-        if (requestedSolution == "S") {
+    if (requestedSolution == "S") {
         script_path = Linux_SP_script;
-
     } else {
         script_path = Linux_MST_script;
     }
@@ -696,15 +704,33 @@ void MainWindow::onActionSubmitClicked()
     if (requestedSolution == "S") {
         // Set Output Image File Path Designated for Shortest Path and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
-        script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
-        script_path.append(dot_path).append(" -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file).append(" -v");
+        script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
+// Toggle verbosity of both graphviz commands based on based on build configuration
+#ifndef RELEASE
+        script_path.append(" -v; ");
+#else
+        script_path.append("; ");
+#endif
+        script_path.append(dot_path).append(" -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file);
+// Toggle verbosity of both graphviz commands based on based on build configuration
+#ifndef RELEASE
+        script_path.append(" -v");
+#endif
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for Shortest Path Solution Image is '%s'", path_filename.c_str());
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
-        script_path.append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
-        script_path.append(dot_path).append(" -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file).append(" -v");
+        script_path.append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
+#ifndef RELEASE
+        script_path.append(" -v; ");
+#else
+        script_path.append("; ");
+#endif
+        script_path.append(dot_path).append(" -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file);
+#ifndef RELEASE
+        script_path.append(" -v");
+#endif
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
@@ -716,15 +742,37 @@ void MainWindow::onActionSubmitClicked()
     if (requestedSolution == "S") {
         // Set Output Image File Path Designated for Shortest Path and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = graphviz_path;
-        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
-        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file).append(" -v\"");
+        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
+// Toggle verbosity of both graphviz commands based on based on build configuration
+#ifndef RELEASE
+        script_path.append(" -v; ");
+#else
+        script_path.append("; ");
+#endif
+        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(path_filename).append(" -o ").append(destination_file);
+#ifndef RELEASE
+        script_path.append(" -v\"");
+#else
+        script_path.append("\"");
+#endif
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for Shortest Path Solution Image is '%s'", path_filename.c_str());
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = graphviz_path;
-        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString()).append(" -v; ");
-        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file).append(" -v\"");
+        script_path.append("dot -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
+// Toggle verbosity of both graphviz commands based on based on build configuration
+#ifndef RELEASE
+        script_path.append(" -v; ");
+#else
+        script_path.append("; ");
+#endif
+        script_path.append(graphviz_path).append("dot -Tpng:cairo ").append(MST_filename).append(" -o ").append(destination_file);
+#ifndef RELEASE
+        script_path.append(" -v\"");
+#else
+        script_path.append("\"");
+#endif
         gprintf("Path for Full Graph Image is '%s'", c_graphfile.c_str());
         gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
@@ -785,7 +833,7 @@ void MainWindow::onActionSubmitClicked()
         // Use _pclose for windows
         int script_error = _pclose(pipe_stream);
 #else \
-    // Uee standard pclose for MacOS
+    // Use standard pclose for MacOS
         int script_error = pclose(pipe_stream);
 #endif \
     // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
