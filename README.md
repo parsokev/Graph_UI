@@ -55,37 +55,41 @@ or [Visual Studio](https://visualstudio.microsoft.com/) with [VS QT Tools](https
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
 
-## Setting Up the Project Build Path
+## Setting Up the Project Build
 
 Regardless of which IDE is utilized to build the program, the program was developed with the intention of using two key build paths
 that are dependent on the user's intended use for the program.
 
-The program offers the option for the user to either:
+### Building the Project for Local Development and Execution
 
-1. Build the program to run locally for debugging/testing/modification purposes when using the preset configurations for either **'Debug'**
-   **or 'RelWithDebInfo' (Release With Debug Info)**
+If intending to build the program to run locally for debugging/testing/modification purposes, the program is intended to be 
+built under the CMake build types of either **'Debug' or 'RelWithDebInfo' (Release With Debug Info)**.
    
-    For use of the program under these conditions, the build path **must adhere to the following relative path from the root directory**:
+For use of the program under these conditions, the **build path must adhere to the following relative path from the root directory**:
         
 ```
-    <repo-root-directory>\build\<your-configuration-name-here>
+<repo-root-directory>\build\<your-configuration-name-here>
 ```
 
+CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path follows the above path***
+***and the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug Information)*** if wishing to build for local
+usage purposes
+
 > [!NOTE]
-> CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path follows the path above and
-> the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug Information) and NOT 'Release' if wishing to build for local usage purposes***
->
->
 > The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
 > The repository tree should follow the below image (some directories are not shown in image)
 
 > ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
 
-2. Build the program to be deployed to specific directory as a stand-alone application executable that can be run without the IDE using the
-   preset configuration for **'Release' exclusively**
+### Building the Project for Application Deployment
+
+The program provides the option to deployed as a stand-alone application executable (can be run on devices with same OS and architecture without
+requiring the installation of the IDE/toolchain used to build it).
+
+If intending to build the program for deployment, the program is intended to built using the preset configuration for **'Release' exclusively**
    
-    For use of the program under these conditions, the build path **must adhere to the following relative path from the root directory**:
+For use of the program under these conditions, the build path **must adhere to the following relative path from the root directory**:
     
 ```
 <repo-root-directory>\<deployed-app-directory-here>
@@ -93,78 +97,85 @@ The program offers the option for the user to either:
 
 > [!NOTE]
 > The [App directory](./App) within the repo was intentionally left empty to provide expected location of deployment directory within the path represented above.
-> CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path for the 'Release' Configuration follows the***
-> ***path above if wishing to deploy the application executable along with all required runtime and Qt dependencies*** 
->
-> 
-> It should also be noted that the .png files stored in the 'graph_images' directory and .gv files stored in the 'dot_graphs' directory will be modified in each
-> successive execution of the application. This may be flagged by a device's anti-virus software if transferred to a different device when application is executed.
-> **To prevent this from occurring, delete all previously generated files from these two directories before transferring to a different device**.
->
->
-> Upon completion of build process, the directory in which the app was deployed can be executed locally without the programs required to build/run the application 
-> by simply double clicking the .exe file within the directory
+> CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path for the 'Release'***
+> ***Configuration follows the path above if wishing to deploy the application executable along with all required runtime and Qt dependencies*** 
+
+It should also be noted that the .png files stored in the 'graph_images' directory and .gv files stored in the 'dot_graphs' directory will be modified in each
+successive execution of the application. This may be flagged by a device's anti-virus software if transferred to a different device when application is executed.
+**To prevent this from occurring, delete all previously generated files from these two directories before transferring to a different device**.
+
+Upon completion of the appropriate IDE setup and build process detailed in the sections below, the directory in which the app was deployed can be
+executed locally without the programs required to build/run the application by simply double clicking the .exe file within the directory.
 
 
-## Setting Up Project Using QT Creator
+## Building the Project Using QT Creator
 
 Setting up the program using Qt Creator after cloning the repository can be completed by either:
-1. Modifying the CMake Preset Configurations gathered from the `CMakeUserPresets.json` file by Qt automatically to have the expected build paths
-   for the different configurations to be automatically set by these imported preset configurations.
 
-2. Ignoring the Preset Configurations offered by Qt upon cloning the repository and simply modifying the build paths to their expected values for the
-   for each configuration path that will be generated by Qt Creator upon request.
+1. Updating the CMake Preset Configurations imported from the `CMakeUserPresets.json` file to use the desired toolchain/kit for building
+the program without having to manually update the build paths for the different configurations
 
-### Option 1: Modifying the CMake Preset Configurations
+2. Generating the CMake Preset Configurations using Qt Creator, which will automatically set the appropriate toolchain/kit for building program
+and then modifying the default build paths to their expected values for each configuration path after creating them.
+
+### Option 1: Using the Imported CMake Preset Configurations
 
 After cloning the repository, Qt Creator will gather the configuration presets listed in the `CMakeUserPresets.json` file and offer these upon intial setup window.
 These will be listed as:
-A. `Qt-Debug` configuration which will set the expected build path for localized testing/execution of the program.
-B. `Qt-Release` configuration which will set the expected build path for deploying the application as a stand-alone executable
+1. `Qt-Debug (CMake) -temporary` configuration which will set the expected build path for localized testing/execution of the program.
+2. `Qt-Release (CMake) -temporary` configuration which will set the expected build path for deploying the application as a stand-alone executable
 
-In order to make the configuration compatible with the local machine the additional information has been ommitted and must be manually applied to each preset separately
-This can accomplished by:
-1. Clicking the `Details` tab that appears under each of these presets to manually select the options for setting local build compatibility
-2. Selecting the preferred `CMake Generator` option from the dropdown list (Ex: 'Ninja')
-3. Selecting the preferred `Debugger` option from the dropdown list (Ex: GNU gdb)
-3. Selecting the preferred `Compiler` option for both C and C++ compilers from the dropdown lists (Ex: MingGW for C,C++)
-4. Selecting the preferred `Qt Version` option from the dropdown list (Ex: Qt Version 6.8.0)
-5. Clicking `Apply` to set these to the imported configuration
+In order to ensure toolchain/kit flexibility, the required toolchain/kit information was omitted and must be manually applied to each preset separately.
+To finish configuration setup:
+1. In first page displayed after cloning the repository, ensure the presets with names matching those listed above are selected/checked for creation.
+2. Hover the cursor over the far right-hand side of the box of each selected configuration to reveal the `Manage` button under the `Details` tab.
+You may need to click the `Details` dropdown arrow before the `Manage` button may appear. Upon clicking the `Manage` button, a window should appear
+with a list of various build options that can be selected for each configuration.
+3. Select the required build options specific to the desired toolchain/kit to build the program (those available can be found in the local Qt directory)
+    - Select the preferred `CMake Generator` option from the dropdown list (Ex: 'Ninja')
+    - Select the preferred `Debugger` option from the dropdown list (Ex: GNU gdb)
+    - Select the preferred `Compiler` option for both C and C++ compilers from the dropdown lists (Ex: MingGW for C,C++)
+    - Select the preferred `Qt Version` option from the dropdown list (Ex: Qt Version 6.8.0 MinGW)
+4. Click `Apply` to associate these settings to the imported configuration
+5. After completing this for both `Qt-Debug` and `Qt-Release`, click the `Configure Project` button to complete the build setup.
 
 If uncertain of any of these options, the preset values for kits offered by Qt automatically will have the options offered by Qt itself.
     
-Upon configuring both configurations, either can be built with the build paths set to the expected paths and executed immediately.
+After completing the above steps, either configuration can be built with the build paths set to the expected paths and executed immediately.
 
 ### Option 2: Modifying the Qt-Generated Preset Configurations
 
-Qt will automatically provide kits that will have all the CMake settings optimized with the resources Qt provides for building locally.
-These must be generated using Qt and then the build path must be changed to adhere to expected build path for the intended program utilization.
-This can be accomplished by:
+Qt automatically provides kits that will have all the CMake settings optimized according to the various toolchains/kits Qt provides for building locally.
+These are automatically made available by Qt and can be selected upon cloning the repository. However, the build path for each configuration
+must be manually changed to adhere to [expected build path for that configuration type](#setting-up-the-project-build).
 
-1. Selecting the `Projects` tab from the left-hand menu bar
-2. Selecting a kit that is compatible with the local machine's OS can be configured by clicking the `Manage Kits` button within the `Projects` page and choosing
-for the selection of available kits presented.
-3. Changing the build path to match the path syntax listed above according the `CMAKE_BUILD_TYPE` value of the kit configuration by clicking the `Manage` button.
+To create a new configuration using desired build type:
+1. Select the `Projects` tab from the left-hand menu bar
+2. Select a kit with name that includes the desired toolchain/kit by clicking the `Manage Kits` button within the `Projects` page and choosing
+from the selection of available kits presented. All of the toolchain-specific settings should be preset to the desired CMake build settings.
+3. Change the build path to match the path syntax listed above according the `CMAKE_BUILD_TYPE` value of the kit configuration by clicking
+the `Manage` button to the left of the `build directory` item under the `CMake` section.
 
-This should be sufficient to build the project using CMake. Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
+This should be sufficient to build the project with either configuration using CMake.
+Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
 
-Upon completion of build process, the application will display the application window for accepting requests upon being executed. The most recently generated images
-will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored elsewhere locally)
+Upon completion of build process, the application will display the application window for accepting requests when executed. The most recently generated
+images will be stored within the [graph_images](./graph_images) directory (they will be overwritten upon next execution if not copied and stored
+elsewhere locally).
 
 
-## Setting Up Project using Microsoft Visual Studio
+## Building Project using Microsoft Visual Studio
 
-Upon cloning the repository, VS will most likely immediately request to modify `CMakeUserPresets.json` file after VS QT Tools extension detects the project is
-a Qt project to include the provided paths to required Qt Components/Resources to the CMake Build settings. 
+Upon cloning the repository, Visual Studio will most likely immediately request to modify `CMakeUserPresets.json` file after VS QT Tools extension
+detects the project is a Qt project to add the provided paths/settings for the required Qt Components/Resources to the CMake Build settings. 
 
-Upon completion, the build paths originally provided in the `CMakeUserPresets.json` should allow for immediate
-selection/building of the configurations with the correct associated build paths.
+If this does not occur upon cloning the repository, double click on the `Folder View` tab under the `Solution Explorer` section and ensure the 
+VS Qt Tools Extension is listed under the `Extensions` tab and is enabled before proceeding.
 
-Before building either of the configurations:
+The build paths originally provided in the `CMakeUserPresets.json` should allow for immediate
+selection/building of the configurations with the correct associated build paths and be available for selection immediately.
 
-1. Ensure the compiler path is set correctly.
-     - The VS QT Tools extension will most likely prompt for configuring the project upon recognizing the Qt Project and will most likely
-        alter the provided the `CMakeUserPresets.json` file to include the provided paths to required Qt Components/Resources but not the compiler settings
+Before building either of the configurations, ensure the compiler path is set correctly:
      - Select the `Extensions` tab -> `Qt Tools` -> `Qt Versions`
      - If no compiler profile is set, click `Autodetect` and see if a compiler profile is generated. This should be set to MVSC with a path to qmake.exe
     
