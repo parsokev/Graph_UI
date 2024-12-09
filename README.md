@@ -54,13 +54,10 @@ If wishing to clone this repository to your local machine, this application must
 or [Visual Studio](https://visualstudio.microsoft.com/) with [VS QT Tools](https://doc.qt.io/qtvstools/index.html) installed and enabled***.
 This allows for the generation of an application executable that is compatible with the local machine's OS.
 
-
-## Setting Up the Project Build
-
-Regardless of which IDE is utilized to build the program, the program was developed with the intention of using two key build paths
+Regardless of which IDE is utilized to build the program, the program was developed with the intention of using two separate build paths
 that are dependent on the user's intended use for the program.
 
-### Building the Project for Local Development and Execution
+## Building the Project for Local Development and Execution
 
 If intending to build the program to run locally for debugging/testing/modification purposes, the program is intended to be 
 built under the CMake build types of either **'Debug' or 'RelWithDebInfo' (Release With Debug Info)**.
@@ -82,7 +79,7 @@ usage purposes
 > ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
 
-### Building the Project for Application Deployment
+## Building the Project for Application Deployment
 
 The program provides the option to deployed as a stand-alone application executable (can be run on devices with same OS and architecture without
 requiring the installation of the IDE/toolchain used to build it).
@@ -138,6 +135,7 @@ with a list of various build options that can be selected for each configuration
     - Select the preferred `Qt Version` option from the dropdown list (Ex: Qt Version 6.8.0 MinGW)
 4. Click `Apply` to associate these settings to the imported configuration
 5. After completing this for both `Qt-Debug` and `Qt-Release`, click the `Configure Project` button to complete the build setup.
+6. Ensure you have placed the locally compatible version of Graphviz within the empty `Graphviz` directory as specified in the [intial setup section](#project-setup).
 
 If uncertain of any of these options, the preset values for kits offered by Qt automatically will have the options offered by Qt itself.
     
@@ -147,7 +145,8 @@ After completing the above steps, either configuration can be built with the bui
 
 Qt automatically provides kits that will have all the CMake settings optimized according to the various toolchains/kits Qt provides for building locally.
 These are automatically made available by Qt and can be selected upon cloning the repository. However, the build path for each configuration
-must be manually changed to adhere to [expected build path for that configuration type](#setting-up-the-project-build).
+must be manually changed to adhere to the [expected build path for the 'Release' configuration](#building-the-project-for-local-development-and-execution) and the
+[expected build path for 'Debug' or 'RelWithDebugInfo' configuration](#building-the-project-for-application-deployment).
 
 To create a new configuration using desired build type:
 1. Select the `Projects` tab from the left-hand menu bar
@@ -155,6 +154,7 @@ To create a new configuration using desired build type:
 from the selection of available kits presented. All of the toolchain-specific settings should be preset to the desired CMake build settings.
 3. Change the build path to match the path syntax listed above according the `CMAKE_BUILD_TYPE` value of the kit configuration by clicking
 the `Manage` button to the left of the `build directory` item under the `CMake` section.
+4. Ensure you have placed the locally compatible version of Graphviz within the empty `Graphviz` directory as specified in the [intial setup section](#project-setup).
 
 This should be sufficient to build the project with either configuration using CMake.
 Further information on this process can be found [here](https://doc.qt.io/qtcreator/creator-how-to-activate-kits.html).
@@ -172,14 +172,18 @@ detects the project is a Qt project to add the provided paths/settings for the r
 If this does not occur upon cloning the repository, double click on the `Folder View` tab under the `Solution Explorer` section and ensure the 
 VS Qt Tools Extension is listed under the `Extensions` tab and is enabled before proceeding.
 
-The build paths originally provided in the `CMakeUserPresets.json` should allow for immediate
-selection/building of the configurations with the correct associated build paths and be available for selection immediately.
+After these modification have been made/applied:
 
-Before building either of the configurations, ensure the compiler path is set correctly:
+- Check that the build paths originally provided in the `CMakeUserPresets.json` are available for selection from configuration dropdown
+    in the top menu bar. These should now automatically have the correct associated build paths set.
+
+- Ensure you have placed the locally compatible version of Graphviz within the empty `Graphviz` directory as specified in the [intial setup section](#project-setup).
+
+- Verify the compiler path is set correctly:
      - Select the `Extensions` tab -> `Qt Tools` -> `Qt Versions`
      - If no compiler profile is set, click `Autodetect` and see if a compiler profile is generated. This should be set to MVSC with a path to qmake.exe
     
-Upon ensuring the Qt Resources are correctly linked to the CMake variables the preset configurations can be built and the program executred using VS.
+Upon checking all of the above conditions have been met, the preset configurations can be built and the program executed within Visual Studio.
 
 # Sample Generated Images
 
@@ -198,7 +202,7 @@ Example Image Generated from `my_graph5.txt`
 
 # Additional Resources
 
-## Build Graphs using GoogleMaps API and the provided Python script
+## Build Graphs using GoogleMaps API and Flask
 
 The `main.py` file found in the [py_builder directory](./py_builder) was utilized for testing and generating graph text files
 while using the GoogleMaps API to provided simplified distance data between geographic locations. The `main.py` file can be used to:
@@ -211,6 +215,8 @@ while using the GoogleMaps API to provided simplified distance data between geog
 If wishing to use this, please visit [the DistanceMatrixAPI homepage](https://developers.google.com/maps/documentation/distance-matrix) to
 create an account and generate the API key needed to make requests with the program. For the requests made by the program, the cost for such requests will
 be virtually free and free trials with GCP credits are available for new accounts.
+
+Please ensure you generate a virtual environment and install the requirements listed in `requirements.txt` before executing the Flask application.
 
 # Citations
 
