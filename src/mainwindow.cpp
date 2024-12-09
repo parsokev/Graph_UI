@@ -142,6 +142,8 @@ MainWindow::MainWindow(QWidget *parent):
     connect(ui->displayImgButton, &QToolButton::clicked, this, &MainWindow::onActionDisplayImgClicked);
     connect(ui->displayGraphButton, &QToolButton::clicked, this, &MainWindow::onActionDisplayGraphClicked);
 #ifdef RELEASE
+// Notify user of application deployment and where to find it if they are macos or windows users
+#ifndef __linux__
     QMessageBox deployInfo;
     deployInfo.setWindowTitle("Application Deployed");
     deployInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
@@ -151,6 +153,19 @@ MainWindow::MainWindow(QWidget *parent):
     deployMessage.append("\nFor further information on proper use, please visit the README.");
     deployInfo.setText(deployMessage);
     deployInfo.exec();
+#else
+    // If Linux user, all dependencies are not deployed with application build in release build path so notify user of how to complete this manually
+    QMessageBox LdeployInfo;
+    LdeployInfo.setWindowTitle("Application Deployment on Linux");
+    LdeployInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                             " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+    QString LdeployMessage = "Application has been built in the \"App\" but without its required dependencies for standalone execution.\n\n";
+    LdeployMessage.append("Due to the lack of a Qt deployment tool for Linux systems, adding the runtime and third-party dependencies must be done manually.\n");
+    LdeployMessage.append("\nHowever, Qt does provide information on how this may be completed, which can be found at: https://doc.qt.io/qt-6/linux-deployment.html\n");
+    LdeployMessage.append("\nFor further information on proper use, please visit the README, in addition to listed link.");
+    LdeployInfo.setText(deployMessage);
+    LdeployInfo.exec();
+#endif
 #endif
 }
 
