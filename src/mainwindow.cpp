@@ -33,6 +33,7 @@ std::string MST_image = "./graph_images/MST_overlay.png";
 std::string SP_image = "./graph_images/shortest_path_overlay.png";
 QString graphDestination = "./graph_images/full_graph.png";
 QString starting_file = "./sample_graphs";
+std::string deploy_path = "./App";
 #ifdef __linux__
 // Instead of using direct commands, program uses pre-made shell scripts for Linux OS without verbosity
 // These will not deploy runtime and library dependencies but can be still be built in Release build path
@@ -140,6 +141,17 @@ MainWindow::MainWindow(QWidget *parent):
     connect(ui->submitButton, &QToolButton::clicked, this, &MainWindow::onActionSubmitClicked);
     connect(ui->displayImgButton, &QToolButton::clicked, this, &MainWindow::onActionDisplayImgClicked);
     connect(ui->displayGraphButton, &QToolButton::clicked, this, &MainWindow::onActionDisplayGraphClicked);
+#ifdef RELEASE
+    QMessageBox deployInfo;
+    deployInfo.setWindowTitle("Application Deployed");
+    deployInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                           " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+    QString deployMessage = "Application Deployment Complete!\n\nThe \"App\" directory will now contain the application executable along with all its runtime and third-party dependencies.\n";
+    deployMessage.append("\nYou may now transfer this directory to other devices and be able to execute the application from within this directory (IF they have same OS AND architecture). \n");
+    deployMessage.append("\nFor further information on proper use, please visit the README.");
+    deployInfo.setText(deployMessage);
+    deployInfo.exec();
+#endif
 }
 
 // Event Handler for Clicking in "Open" Button that triggers File Dialog Window
@@ -366,6 +378,7 @@ void MainWindow::onActionConfirmFileClicked()
             QApplication::exit(1);
             return;
         }
+
         gprintf("Process finished processing vertex count input. Building unordered map container...");
 
         // Initialize Storage Container with Allocated Storage Capacity According Vertex Count Value

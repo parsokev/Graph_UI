@@ -12,7 +12,7 @@ void vgprintf(char const *prefix, char const *fmt, va_list ap);
 void gprintf(char const *prefix, char const *fmt, ...);
 
 // In release configuration, gprintf function calls are effectively ignored and do not accept any passed arguments or formatted strings for writing to standard error
-#ifdef NDEBUG
+#ifndef DEBUG
 #define vgprintf(fmt, ap) ((void)(0))
 #define gprintf(fmt, ...) ((void)(0))
 #else
