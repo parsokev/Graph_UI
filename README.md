@@ -59,8 +59,8 @@ that are dependent on the user's intended use for the program.
 
 ## Building the Project for Local Development and Execution
 
-If intending to build the program to run locally for debugging/testing/modification purposes, the program is intended to be 
-built under the CMake build types of either **'Debug' or 'RelWithDebInfo' (Release With Debug Info)**.
+If intending to build the program for local debugging/testing/modification purposes, the program must be built
+using the CMake build types of either **'Debug' or 'RelWithDebInfo' (Release With Debug Info)**.
    
 For use of the program under these conditions, the **build path must adhere to the following relative path from the root directory**:
         
@@ -68,23 +68,22 @@ For use of the program under these conditions, the **build path must adhere to t
 <repo-root-directory>\build\<your-configuration-name-here>
 ```
 
-CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path follows the above path***
-***and the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug Information)*** if wishing to build for local
-usage purposes
+The program's CMake settings and its resource paths are adjusted according to the CMake Build Type so ***ensure the CMake build path follows the above path***
+***and the CMake Build Type is either 'Debug' or 'RelWithDebugInfo'(Release with Debug Information)*** if wishing to build for local development.
 
 > [!NOTE]
-> The [build directory](./build) within the repo was intentionally left empty to provide expected location of build directory within the path represented above.
-> The repository tree should follow the below image (some directories are not shown in image)
+> The [build directory](./build) within the repository was intentionally left empty to provide the expected location of the build directory
+> within the path represented above. The repository tree should follow that of the below image (some directories are not shown in image).
 
 > ![Image of Hierarchy](./ui_images/rough-directory-tree.png)
 
 
 ## Building the Project for Application Deployment
 
-The program provides the option to deployed as a stand-alone application executable (can be run on devices with same OS and architecture without
+The program provides the option to be deployed as a stand-alone application executable (can be run on devices with same OS and architecture without
 requiring the installation of the IDE/toolchain used to build it).
 
-If intending to build the program for deployment, the program is intended to built using the preset configuration for **'Release' exclusively**
+If intending to build the program for deployment, the program must be built using the CMake build type of **'Release' exclusively**.
    
 For use of the program under these conditions, the build path **must adhere to the following relative path from the root directory**:
     
@@ -93,9 +92,11 @@ For use of the program under these conditions, the build path **must adhere to t
 ```
 
 > [!NOTE]
-> The [App directory](./App) within the repo was intentionally left empty to provide expected location of deployment directory within the path represented above.
-> CMakeLists and resource paths are configured to be set according to the CMake Build Type so ***ensure the CMake build path for the 'Release'***
-> ***Configuration follows the path above if wishing to deploy the application executable along with all required runtime and Qt dependencies*** 
+> The [App directory](./App) within the repo was intentionally left empty to provide the expected location of deployment directory within the path
+> represented above.
+
+The program's CMake settings and its resource paths are adjusted according to the CMake Build Type so ***ensure the CMake build path for the 'Release'***
+***Configuration follows the path above if wishing to deploy the application executable along with all required runtime and Qt dependencies***.
 
 It should also be noted that the .png files stored in the 'graph_images' directory and .gv files stored in the 'dot_graphs' directory will be modified in each
 successive execution of the application. This may be flagged by a device's anti-virus software if transferred to a different device when application is executed.
@@ -194,7 +195,7 @@ using [my_graph6.txt](./sample_graphs/my_graph6.txt) both of which can be found 
 > [!CAUTION]
 > When building visualizations for graphs with higher edge densities like `my_graph6.txt`, it may take several minutes for the
 > visualization software to complete the image generation process. In such cases, the detailed progress of the visualization process can
-> be monitored through standard error ouput in the console
+> be monitored through standard error ouput in the console.
 
 Example Image Generated from `my_graph5.txt`
 
