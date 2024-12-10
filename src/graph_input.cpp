@@ -208,7 +208,13 @@ int approximate_graph_vertex_count(unsigned int& vertex_count, std::string& read
     // Convert extracted grep command ouput to a long integer and assign half its value to estimate the number of unique verticies for graph
     unsigned long vertex_conversion = strtoul(line.c_str(), nullptr, 10);
 
-    if (errno == ERANGE || errno == EINVAL || vertex_conversion <= 0 || vertex_conversion > UINT_MAX) {
+// Set appropriate system defined value for unsigned integer maximum value to prevent potential overflow
+#ifndef __linux__
+    auto max_int = UINT_MAX;
+#else
+    auto max_int = UINT32_MAX;
+#endif
+    if (errno == ERANGE || errno == EINVAL || vertex_conversion <= 0 || vertex_conversion > max_int) {
         std::cerr << "ERROR: Conversion of extracted line count for '" << read_name << "' failed. Please ensure text file is not empty and file is not exceedingly large\n";
         return -1;
     }
