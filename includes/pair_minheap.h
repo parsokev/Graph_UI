@@ -36,15 +36,10 @@ public:
     paired_min_heap(std::vector<std::pair<std::string, Type>>& heap_array): heap_size(0), capacity(0) {
         start_heap.reserve(heap_array.size());
         capacity = static_cast<unsigned int>(heap_array.size());
-        //std::string key;
-        //Type value;
         for (size_t s = 0; s < heap_array.size(); s++) {
-            if constexpr (std::is_same_v<std::pair<std::string, Type>, decltype(heap_array[s])>) {
-                std::string key = std::get<0>(heap_array[s]);
-                Type value = std::get<1>(heap_array[s]);
-                //std::tie(key, value) = heap_array[s];
-                //add_node(key, value);
-            }
+            std::string key = std::get<0>(heap_array[s]);
+            Type value = std::get<1>(heap_array[s]);
+            add_node(key, value);
         }
         heap_array.clear();
     }
