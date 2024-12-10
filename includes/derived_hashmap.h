@@ -65,14 +65,13 @@ public:
         capacity = static_cast<unsigned int>(heap_array.size());
         fill_buckets();
         for (size_t s = 0; s < heap_array.size(); s++) {
-            if constexpr (std::is_same_v<std::pair<std::string, Type>, decltype(heap_array[s])>) {
-                std::string key = std::get<0>(heap_array[s]);
-                Type value = std::get<1>(heap_array[s]);
-                add(key, value);
-            }
+            std::string key = std::get<0>(heap_array[s]);
+            Type value = std::get<1>(heap_array[s]);
+            add(key, value);
         }
         heap_array.clear();
     }
+
     // Move Constructor for `soa_hashmap` objects
     soa_hashmap(soa_hashmap<Type>&& old_shashmap)  noexcept: size{std::exchange(old_shashmap.size, 0)},
         capacity{std::exchange(old_shashmap.capacity, 0)},
