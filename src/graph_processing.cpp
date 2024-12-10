@@ -277,8 +277,7 @@ int build_adjacency_list(const std::string &filename,
 
 
 int find_shortest_path(const std::string& s_vertex, const std::string& des_vertex, const std::string& graph_filename, const std::string& path_filename, main_hashmap<double>&& adj_list) {
-#ifdef NDEBUG
-#else
+#ifdef DEBUG
     std::cerr << "ENTIRE LIST OF ALL GRAPH VERTICIES AND THEIR CORRESPONDING ADJACENT VERTICIES:" << '\n';
     std::cerr << adj_list << '\n';
 #endif
@@ -373,12 +372,13 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
                     if (di < visited_vertices.get_val(vertex)) {
                         // If new edge to be updated is the destination vertex, determine whether to update the vertices forming shortest path
                         if (des_vertex.compare(vertex) == 0) {
-                            gprintf("CURRENT VERTEX: ");
-#ifdef NDEBUG
-#else
+
+#ifdef DEBUG
+                            std::cerr << "CURRENT VERTEX: " << '\n';
                             std::cerr << visited_vertices << '\n';
+                            std::cerr << "UPDATING MINIMUM DISTANCE/PATH FROM SOURCE VERTEX TO DESTINATION VERTEX" << '\n;
 #endif
-                            gprintf("UPDATING MINIMUM DISTANCE/PATH FROM SOURCE VERTEX TO DESTINATION VERTEX");
+
                             gprintf("Current vertex is %s", popped_vertex.c_str());
                             gprintf("Weight of edge between %s and %s is %.2lf", popped_vertex.c_str(), vertex.c_str(), weight);
                             gprintf("Current Distance from Source (%s) is %.2lf", s_vertex.c_str(), popped_vertex_distance);
@@ -405,13 +405,9 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
             return -1;
         }
         gprintf("LIST OF SHORTEST DISTANCES FROM %s to EACH LABELED VERTEX", s_vertex.c_str());
-#ifdef NDEBUG
-#else
+#ifdef DEBUG
         std::cerr << visited_vertices << '\n';
-#endif
-        gprintf("LIST OF LAST VERTEX TO VISIT EACH LABELED VERTEX");
-#ifdef NDEBUG
-#else
+        std::cerr << "LIST OF LAST VERTEX TO VISIT EACH LABELED VERTEX" << '\n';
         std::cerr << vertex_path << '\n';
 #endif
 
@@ -532,12 +528,11 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
             return -1;
         }
 
-#ifdef NDEBUG
-#else
+#ifdef DEBUG
         gprintf("\nExtracted VERTEX is: %s with a DISTANCE of %.2lf", vertex.c_str(), distance);
-        gprintf("\nThe Minimum HEAP currently contains: ");
+        std::cerr << "\nThe Minimum HEAP currently contains: " << '\n';
         std::cerr << *mhp << '\n';
-#endif \
+#endif
         // Find vertex that forms edge with the currently smallest cost/distance with extracted vertex
         if (vertex.compare(source_vertex) == 0) {
             min_distance_edge = source_vertex;
@@ -569,7 +564,10 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
 
         // Gather list of all verticies adjacent to extracted vertex
         std::list<std::string> adjacent_verticies = adj_list.get_hash_key(vertex).get_keys();
-        gprintf("\nChecking list of verticies for those not visited yet");
+#ifdef DEBUG
+        std::cerr << "\nChecking list of verticies for those not visited yet" << '\n';
+#endif
+
 
         // Check for any adjacent verticies of extracted vertex that have not been visited yet
         for (auto& next_vertex : adjacent_verticies) {
@@ -594,8 +592,7 @@ int find_MST(std::string& source_vertex, const std::string& graph_filename, cons
                 }
                 mhp -> add_node(next_vertex, weight);
                 gprintf("\nAdding vertex %s to Minimum HEAP", next_vertex.c_str());
-#ifdef NDEBUG
-#else
+#ifdef DEBUG
                 std::cerr << "HEAP is now: " << *mhp << '\n';
 #endif
             }
