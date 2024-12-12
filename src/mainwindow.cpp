@@ -344,6 +344,8 @@ void MainWindow::onActionConfirmFileClicked()
                 std::cerr << "An Error was encountered in generating estimated vertex_count";
                 QMessageBox reportEstimateError;
                 reportEstimateError.setIcon(QMessageBox::Critical);
+                reportEstimateError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
                 reportEstimateError.setText("Error(s) were encountered while attempting estimate the vertex count from the selected text file");
                 reportEstimateError.setInformativeText("Shell commands used to estimate the number of verticies in the file failed to execute properly."
                                                        "\nThe Local OS may not be compatible with the commands or requires elevated permissions to execute\n"
@@ -385,6 +387,8 @@ void MainWindow::onActionConfirmFileClicked()
             std::cerr << "Unexpected value of requested Solution type received\n";
             QMessageBox reportUnexpectedError;
             reportUnexpectedError.setIcon(QMessageBox::Critical);
+            reportUnexpectedError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportUnexpectedError.setText("Error(s) were encountered while attempting to determine selected vertex estimation type");
             reportUnexpectedError.setInformativeText("An unexpected value was received for the selected request vertex estimation type.\n"
                                                      "Please restart the application and try again.");
@@ -421,6 +425,8 @@ void MainWindow::onActionConfirmFileClicked()
             QMessageBox reportException;
             reportException.setIcon(QMessageBox::Warning);
             reportException.setText(e.what());
+            reportException.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportException.setInformativeText("Exception was thrown while parsing selected text file\nEnsure the file is properly formatted.");
             reportException.setWindowTitle("File Error Encountered");
             reportException.exec();
@@ -432,6 +438,8 @@ void MainWindow::onActionConfirmFileClicked()
             std::cerr << "An error was encountered while reading from graph text file";
             QMessageBox reportFileError;
             reportFileError.setIcon(QMessageBox::Critical);
+            reportFileError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportFileError.setText("Error(s) were encountered while reading the selected text file");
             reportFileError.setInformativeText("The selected file is most likely not properly formatted.\n"
                                                "Each Line should follow format:\n\n 'Vertex1_name, Vertex2_name, Distance'\n\n"
@@ -591,6 +599,8 @@ void MainWindow::onActionSubmitClicked()
             std::cerr << e.what() << '\n';
             QMessageBox reportException;
             reportException.setIcon(QMessageBox::Warning);
+            reportException.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportException.setText(e.what());
             reportException.setInformativeText("Exception was thrown building MST file\n.The selected text file may contain incomplete/corrupted data.\n");
             reportException.setWindowTitle("MST Processing Error Encountered");
@@ -604,6 +614,8 @@ void MainWindow::onActionSubmitClicked()
 
             QMessageBox reportMSTBuildError;
             reportMSTBuildError.setIcon(QMessageBox::Critical);
+            reportMSTBuildError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportMSTBuildError.setText("Error(s) were encountered while attempting to calculate the MST solution");
             reportMSTBuildError.setInformativeText("The selected text file depicts a graph that has one or more disconnected verticies.\n"
                                                    "You may try again with corrected file or another text file depicting a connected graph.");
@@ -644,6 +656,8 @@ void MainWindow::onActionSubmitClicked()
             QMessageBox reportException;
             reportException.setIcon(QMessageBox::Warning);
             reportException.setText(e.what());
+            reportException.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                                " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportException.setInformativeText("Exception was thrown building the shortest path from selected text file.\n"
                                                "The selected text file may contain incomplete/corrupted data.");
             reportException.setWindowTitle("Shortest Path Processing Error Encountered");
@@ -656,6 +670,8 @@ void MainWindow::onActionSubmitClicked()
             std::cerr << "An Error was Encountered while Building Shortest Path";
             QMessageBox reportSPBuildError;
             reportSPBuildError.setIcon(QMessageBox::Critical);
+            reportSPBuildError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                                " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportSPBuildError.setText("Error(s) were encountered while attempting to calculate the shortest path solution");
             reportSPBuildError.setInformativeText("The selected text file depicts a graph that has one or more disconnected verticies.\n"
                                                   "You may try again with corrected file or another text file depicting a connected graph.");
@@ -668,6 +684,8 @@ void MainWindow::onActionSubmitClicked()
         std::cerr << "Unexpected value of requested Solution type received\n";
         QMessageBox reportUnexpectedError;
         reportUnexpectedError.setIcon(QMessageBox::Critical);
+        reportUnexpectedError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportUnexpectedError.setText("Error(s) were encountered while attempting to determine selected solution request type");
         reportUnexpectedError.setInformativeText("An unexpected value was received for the selected solution request type.\n"
                                                  "Please restart the application and try again.");
@@ -727,6 +745,8 @@ void MainWindow::onActionSubmitClicked()
         std::cerr << "ERROR: Read error(s) were encountered while checking file '" << script_path << "'\n";
         QMessageBox reportUnexpectedOSError;
         reportUnexpectedOSError.setIcon(QMessageBox::Critical);
+        reportUnexpectedOSError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportUnexpectedOSError.setText("Error(s) were encountered while attempting to check local scripts read compatibility local for Linux");
         reportUnexpectedOSError.setInformativeText("Linux script files ecountered read errors while attempting to execute. Please ensure they are"
                                                    " in the expected location of 'scripts/Linux' before attempting to read them.\n");
@@ -823,6 +843,8 @@ void MainWindow::onActionSubmitClicked()
     if (script_path.size() == 0) {
         QMessageBox reportUnexpectedOSError;
         reportUnexpectedOSError.setIcon(QMessageBox::Critical);
+        reportUnexpectedOSError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportUnexpectedOSError.setText("Error(s) were encountered while attempting to detect local operating system");
         reportUnexpectedOSError.setInformativeText("The operating system in which this application has been executed does not match"
                                                    " any of the operating systems that are compatible with this application.\n");
@@ -884,9 +906,11 @@ void MainWindow::onActionSubmitClicked()
             std::cerr << "ERROR: '" << script_path << "' encountered error(s) while executing to generate image of '"<< request_type << "' \n";
             QMessageBox reportImgGenError;
             reportImgGenError.setIcon(QMessageBox::Warning);
+            reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                            " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
             reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
-                                                 "Please ensure the 'Graphviz' folder exists within the 'Common' folder.\n"
+                                                 "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
                                                  "Additionally, the commands to generate images may require elevated permissions to execute.\n");
             reportImgGenError.setWindowTitle("Image Generation Error Encountered");
             reportImgGenError.exec();
@@ -904,9 +928,11 @@ void MainWindow::onActionSubmitClicked()
         std::cerr << "ERROR: Failed to establish pipeline stream for executing shell commands using popen with '" << script_path << "'\n";
         QMessageBox reportImgGenError;
         reportImgGenError.setIcon(QMessageBox::Warning);
+        reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
         reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
-                                             "Please ensure the 'Graphviz' folder exists within the 'Common' folder.\n"
+                                             "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
                                              "Additionally, the commands to generate images may require elevated permissions to execute.\n");
         reportImgGenError.setWindowTitle("Image Generation Error Encountered");
         reportImgGenError.exec();
@@ -923,9 +949,11 @@ void MainWindow::onActionSubmitClicked()
             std::cerr << "ERROR: '" << script_path << "' encountered error(s) while executing to generate image of '" << request_type << "' \n";
             QMessageBox reportImgGenError;
             reportImgGenError.setIcon(QMessageBox::Warning);
+            reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                            " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
             reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
-                                                 "Please ensure the 'Graphviz' folder exists within the 'Common' folder.\n"
+                                                 "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
                                                  "Additionally, the commands to generate images may require elevated permissions to execute.\n");
             reportImgGenError.setWindowTitle("Image Generation Error Encountered");
             reportImgGenError.exec();
@@ -945,9 +973,11 @@ void MainWindow::onActionSubmitClicked()
         std::cerr << "ERROR: Failed to establish pipeline stream for executing shell commands using popen with '" << script_path << "'\n";
         QMessageBox reportImgGenError;
         reportImgGenError.setIcon(QMessageBox::Warning);
+        reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
         reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
-                                             "Please ensure the 'Graphviz' folder exists within the 'Common' folder.\n"
+                                             "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
                                              "Additionally, the commands to generate images may require elevated permissions to execute.\n");
         reportImgGenError.setWindowTitle("Image Generation Error Encountered");
         reportImgGenError.exec();
@@ -1037,6 +1067,17 @@ void MainWindow::onActionDisplayGraphClicked()
         fullGraphImg.exec();
     } else {
         // Notify User that Generated Full Graph Image does not Exist or Path used is Invalid
+        QMessageBox reportImgGenError;
+        reportImgGenError.setIcon(QMessageBox::Warning);
+        reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+        reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
+        reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
+                                             "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
+                                             "Additionally, the commands to generate images may require elevated permissions to execute.\n");
+        reportImgGenError.setWindowTitle("Image Generation Error Encountered");
+        reportImgGenError.exec();
+
         QString imgErrorMsg = "Program Failed to Extract Generated Full Graph Image From \"";
         imgErrorMsg.append(graphDestination).append("\". Please Ensure Path to \"").append(graphDestination).append("\" is Valid");
         statusBar()->setStyleSheet("QStatusBar{background-color: ghostwhite; font: 10pt \"Gill Sans MT\"; color: crimson;}");
