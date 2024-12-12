@@ -147,7 +147,7 @@ MainWindow::MainWindow(QWidget *parent):
     QMessageBox deployInfo;
     deployInfo.setWindowTitle("Application Deployed");
     deployInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                           " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                             " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
     QString deployMessage = "Application Deployment Complete!\n\nThe \"App\" directory will now contain the application executable along with all its runtime and third-party dependencies.\n";
     deployMessage.append("\nYou may now transfer this directory to other devices and be able to execute the application from within this directory (IF they have same OS AND architecture). \n");
     deployMessage.append("\nFor further information on proper use, please visit the README.");
@@ -158,7 +158,7 @@ MainWindow::MainWindow(QWidget *parent):
     QMessageBox LdeployInfo;
     LdeployInfo.setWindowTitle("Application Deployment on Linux");
     LdeployInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                             " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
     QString LdeployMessage = "Application has been built in the \"App\" but without its required dependencies for standalone execution.\n\n";
     LdeployMessage.append("Due to the lack of a Qt deployment tool for Linux systems, adding the runtime and third-party dependencies must be done manually.\n");
     LdeployMessage.append("\nHowever, Qt does provide information on how this may be completed, which can be found at: https://doc.qt.io/qt-6/linux-deployment.html\n");
@@ -345,7 +345,7 @@ void MainWindow::onActionConfirmFileClicked()
                 QMessageBox reportEstimateError;
                 reportEstimateError.setIcon(QMessageBox::Critical);
                 reportEstimateError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                                  " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
                 reportEstimateError.setText("Error(s) were encountered while attempting estimate the vertex count from the selected text file");
                 reportEstimateError.setInformativeText("Shell commands used to estimate the number of verticies in the file failed to execute properly."
                                                        "\nThe Local OS may not be compatible with the commands or requires elevated permissions to execute\n"
@@ -388,7 +388,7 @@ void MainWindow::onActionConfirmFileClicked()
             QMessageBox reportUnexpectedError;
             reportUnexpectedError.setIcon(QMessageBox::Critical);
             reportUnexpectedError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                                " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportUnexpectedError.setText("Error(s) were encountered while attempting to determine selected vertex estimation type");
             reportUnexpectedError.setInformativeText("An unexpected value was received for the selected request vertex estimation type.\n"
                                                      "Please restart the application and try again.");
@@ -615,7 +615,7 @@ void MainWindow::onActionSubmitClicked()
             QMessageBox reportMSTBuildError;
             reportMSTBuildError.setIcon(QMessageBox::Critical);
             reportMSTBuildError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportMSTBuildError.setText("Error(s) were encountered while attempting to calculate the MST solution");
             reportMSTBuildError.setInformativeText("The selected text file depicts a graph that has one or more disconnected verticies.\n"
                                                    "You may try again with corrected file or another text file depicting a connected graph.");
@@ -657,7 +657,7 @@ void MainWindow::onActionSubmitClicked()
             reportException.setIcon(QMessageBox::Warning);
             reportException.setText(e.what());
             reportException.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                                " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                          " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportException.setInformativeText("Exception was thrown building the shortest path from selected text file.\n"
                                                "The selected text file may contain incomplete/corrupted data.");
             reportException.setWindowTitle("Shortest Path Processing Error Encountered");
@@ -671,7 +671,7 @@ void MainWindow::onActionSubmitClicked()
             QMessageBox reportSPBuildError;
             reportSPBuildError.setIcon(QMessageBox::Critical);
             reportSPBuildError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                                " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                             " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
             reportSPBuildError.setText("Error(s) were encountered while attempting to calculate the shortest path solution");
             reportSPBuildError.setInformativeText("The selected text file depicts a graph that has one or more disconnected verticies.\n"
                                                   "You may try again with corrected file or another text file depicting a connected graph.");
@@ -685,7 +685,7 @@ void MainWindow::onActionSubmitClicked()
         QMessageBox reportUnexpectedError;
         reportUnexpectedError.setIcon(QMessageBox::Critical);
         reportUnexpectedError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                            " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportUnexpectedError.setText("Error(s) were encountered while attempting to determine selected solution request type");
         reportUnexpectedError.setInformativeText("An unexpected value was received for the selected solution request type.\n"
                                                  "Please restart the application and try again.");
@@ -728,7 +728,7 @@ void MainWindow::onActionSubmitClicked()
         request_type = "MINIMUM SPANNING TREE";
         destination_file = MST_image;
     }
-
+// BUILD LINUX COMMANDS
 // Select Linux-Compatible Bash Script and set CLI command to environment path to linux bash if Linux is detected
 #ifdef __linux__
     // Preset Script Path and Graph Image Locations based on User Requested Information for Linux Users
@@ -746,7 +746,7 @@ void MainWindow::onActionSubmitClicked()
         QMessageBox reportUnexpectedOSError;
         reportUnexpectedOSError.setIcon(QMessageBox::Critical);
         reportUnexpectedOSError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportUnexpectedOSError.setText("Error(s) were encountered while attempting to check local scripts read compatibility local for Linux");
         reportUnexpectedOSError.setInformativeText("Linux script files ecountered read errors while attempting to execute. Please ensure they are"
                                                    " in the expected location of 'scripts/Linux' before attempting to read them.\n");
@@ -756,6 +756,7 @@ void MainWindow::onActionSubmitClicked()
         return;
     }
 #endif
+    // BUILD APPLE COMMANDS
     // If Preprocessor Conditional Detects MacOS, Directly Execute Multiple Bash Commands to Graphviz's Dot Executable through A Pipeline
     // Program Requires use of HomeBrew Executable to set Bash environment path and Graphviz bin path
 #ifdef __APPLE__
@@ -796,7 +797,7 @@ void MainWindow::onActionSubmitClicked()
         gprintf("Path for MST Solution Image is '%s'", MST_filename.c_str());
     }
 #endif
-
+// BUILD WINDOWS COMMANDS
 #ifdef _WIN32
     // If Preprocessor Conditional Detects Windows OS, Directly Execute Multiple Powershell Commands to Graphviz's Dot Executable through A Pipeline
     command_val = "powershell -Command \"";
@@ -839,12 +840,13 @@ void MainWindow::onActionSubmitClicked()
     }
 
 #endif
+    // CHECK IF NEITHER WINDOWS/MACOS/LINUX
     // Return Without Executing Script Program if Preprocessor Conditionals indicate Unexpected/Undefined OS Detection
     if (script_path.size() == 0) {
         QMessageBox reportUnexpectedOSError;
         reportUnexpectedOSError.setIcon(QMessageBox::Critical);
         reportUnexpectedOSError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportUnexpectedOSError.setText("Error(s) were encountered while attempting to detect local operating system");
         reportUnexpectedOSError.setInformativeText("The operating system in which this application has been executed does not match"
                                                    " any of the operating systems that are compatible with this application.\n");
@@ -854,7 +856,7 @@ void MainWindow::onActionSubmitClicked()
         return;
     }
     gprintf("Attempting to Execute Script or Command of '%s'...", script_path.c_str());
-
+// EXECUTE LINUX SCRIPTS
 // Execute Bash Shell Scripts using Linux-Compliant <sys/wait.h> Library Functions for Image Generation if Linux OS is Detected
 #ifdef __linux__
     // Run Appropriate Bash Script for Generating Graph Images
@@ -876,6 +878,7 @@ void MainWindow::onActionSubmitClicked()
     gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type, destination_file);
     gprintf("The Image of the Entire Graph was placed within:   '%s'", graphDestination.toStdString());
 #else
+    // EXECUTE MACOS/WINDOWS COMMANDS
     // Use popen(MacOS) or _popen (Windows), to Execute Commands/Scripts within a Pipeline and Read/Monitor its Output for Errors
     FILE *pipe_stream;
     command_val.append(script_path);
@@ -898,10 +901,10 @@ void MainWindow::onActionSubmitClicked()
         // Use _pclose for windows
         int script_error = _pclose(pipe_stream);
 #else \
-    // Use standard pclose for MacOS
+        // Use standard pclose for MacOS
         int script_error = pclose(pipe_stream);
 #endif \
-    // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
+        // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
         if (script_error == -1) {
             std::cerr << "ERROR: '" << script_path << "' encountered error(s) while executing to generate image of '"<< request_type << "' \n";
             QMessageBox reportImgGenError;
@@ -939,51 +942,6 @@ void MainWindow::onActionSubmitClicked()
         QApplication::exit(1);
         return;
     }
-    // Establish Stream with Intent to both Execute the Powershell Script and Read from Buffer containing the Command Line Output for Error Detection
-    pipe_stream = _popen(command_val.c_str(), "r");
-    // If Stream is Successfully Established with Pipeline, Attempt to Execute Powershell Commands to Generate Requested Solution and Full Graph Images
-    if (pipe_stream != NULL) {
-        int script_error = _pclose(pipe_stream);
-        // If One or More Errors are Encountered in Execution of Powershell/Bash Commands, Notify User
-        if (script_error == -1) {
-            std::cerr << "ERROR: '" << script_path << "' encountered error(s) while executing to generate image of '" << request_type << "' \n";
-            QMessageBox reportImgGenError;
-            reportImgGenError.setIcon(QMessageBox::Warning);
-            reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                            " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
-            reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
-            reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
-                                                 "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
-                                                 "Additionally, the commands to generate images may require elevated permissions to execute.\n");
-            reportImgGenError.setWindowTitle("Image Generation Error Encountered");
-            reportImgGenError.exec();
-            QApplication::exit(1);
-            return;
-        }
-        else {
-            // Else, Proceed with Indicating Images are Ready for Viewing
-            gprintf("Success!\nThe Image of the '%s' was placed within '%s'\n", request_type.c_str(), destination_file.c_str());
-            gprintf("The Image of the Entire Graph was placed within:   '%s'", c_graphfile.c_str());
-        }
-        _pclose(pipe_stream);
-    }
-    else {
-        // Exit if Internal Fork or Pipe Operations Fail
-        perror("pipe/fork");
-        std::cerr << "ERROR: Failed to establish pipeline stream for executing shell commands using popen with '" << script_path << "'\n";
-        QMessageBox reportImgGenError;
-        reportImgGenError.setIcon(QMessageBox::Warning);
-        reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
-        reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
-        reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
-                                             "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
-                                             "Additionally, the commands to generate images may require elevated permissions to execute.\n");
-        reportImgGenError.setWindowTitle("Image Generation Error Encountered");
-        reportImgGenError.exec();
-        QApplication::exit(1);
-        return;
-    }
 #endif
     // If Script/Command Executions are Successful, Present User with UI Elements that Allow for Viewing Generated Images
     imgProgressBar.setValue(100);
@@ -996,12 +954,14 @@ void MainWindow::onActionSubmitClicked()
     imgInfo.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
                           " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
     QString imgMessage = "Image Generation Complete! You may now view the generated images by:\n\n1. Clicking the buttons that appear at the bottom of the window to view the images at reduced quality.\n";
+
     imgMessage.append("\n2. Locating them within the \"graph_images\" folder and opening each image using your operating system's native image-viewing application to view the image(s) at a higher quality.\n");
     if (request_type.compare("SHORTEST PATH") == 0) {
         imgMessage.append("\nThe generated shortest path image will be named \"shortest_path_overlay.png\" and full graph will be named \"full_graph.png\"\n");
     } else {
         imgMessage.append("\nThe generated MST image will be named \"MST_overlay.png\" and full graph will be named \"full_graph.png\"\n");
     }
+    imgMessage.append("\nIMPORTANT NOTE: On FIRST execution of application, Click on BOTH image-viewing buttons to ensure images were successfully generated!\n");
     imgInfo.setText(imgMessage);
     imgInfo.exec();
     // Make image viewing buttons available after providing viewing instructions
@@ -1040,6 +1000,20 @@ void MainWindow::onActionDisplayImgClicked(){
         solutionLabel.setScaledContents(true);
         // Execute Dialog Window with properly Adjusted Image of Solution to Appear
         solutionImg.exec();
+
+    }
+    else {
+
+        QMessageBox reportImgGenError;
+        reportImgGenError.setIcon(QMessageBox::Warning);
+        reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
+                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+        reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
+        reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable.\n"
+                                             "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
+                                             "Additionally, the commands to generate images may require elevated permissions to execute.\n");
+        reportImgGenError.setWindowTitle("Image Generation Error Encountered");
+        reportImgGenError.exec();
     }
 }
 
@@ -1070,9 +1044,9 @@ void MainWindow::onActionDisplayGraphClicked()
         QMessageBox reportImgGenError;
         reportImgGenError.setIcon(QMessageBox::Warning);
         reportImgGenError.setStyleSheet("QMessageBox {background-color: qlineargradient(x1: 0, y1: 0.5, x2: 0.5, y2: 1, stop: 0 ghostwhite, stop: 1 lightsteelblue); font: 700 10pt \"Sylfaen\";}"
-                              " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
+                                        " QMessageBox QLabel{color: indigo; font: 700 10pt \"Sylfaen\";}");
         reportImgGenError.setText("Error(s) were encountered while attempting to generate the solution images");
-        reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable."
+        reportImgGenError.setInformativeText("The program failed to generate the images from the processed data using Graphviz's dot executable.\n"
                                              "Please ensure the 'Graphviz' folder has been filled with the necessary files listed within the readme.\n"
                                              "Additionally, the commands to generate images may require elevated permissions to execute.\n");
         reportImgGenError.setWindowTitle("Image Generation Error Encountered");
