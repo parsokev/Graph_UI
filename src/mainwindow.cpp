@@ -393,8 +393,9 @@ void MainWindow::onActionConfirmFileClicked()
             QApplication::exit(1);
             return;
         }
-
-        gprintf("Process finished processing vertex count input. Building unordered map container...");
+#ifdef DEBUG
+        std::cerr << "Process finished processing vertex count input. Building unordered map container..." << '\n';
+#endif
 
         // Initialize Storage Container with Allocated Storage Capacity According Vertex Count Value
         unsigned int file_vertex_count = static_cast<unsigned int>(vertex_count);
@@ -445,8 +446,9 @@ void MainWindow::onActionConfirmFileClicked()
         fileBuildBar.setValue(75);
         fileBuildBar.setLabelText("Finalizing Results for User Selection...");
         QApplication::processEvents();
-        gprintf("Graph Successfully Built!");
-#ifdef debug
+
+#ifdef DEBUG
+        std::cerr << "Graph Successfully Built!" << '\n';
         std::cerr << "Filled Hashmap is: " << *(this->main_hash) << '\n';
 #endif \
         // Fill DropDowns with Verticies Found
@@ -573,7 +575,9 @@ void MainWindow::onActionMSTSelected()
 // Event Handler triggered by Clicking on Button for Generating Images of Entire Graph and Requested Solution Type
 void MainWindow::onActionSubmitClicked()
 {
-    gprintf("Generating Images...");
+#ifdef DEBUG
+    std::cerr << "Generating Images..." << '\n';
+#endif
     ui->vertexNotificationLabel->setVisible(false);
     // Handle User Input for Preferred Calculation to Apply using Extracted Information
     if (requestedSolution == "M") {
@@ -710,17 +714,26 @@ void MainWindow::onActionSubmitClicked()
 // Select Linux-Compatible Bash Script and set CLI command to environment path to linux bash if Linux is detected
 #ifdef __linux__
     // Preset Script Path and Graph Image Locations based on User Requested Information for Linux Users
-    command_val = "/bin/bash"
+    command_val = "/bin/bash";
     if (requestedSolution == "S") {
         script_path = Linux_SP_script;
     } else {
         script_path = Linux_MST_script;
     }
     // Ensure script written in Windows have carriage return characters replaced for read compatibility with Linux/Unix systems
+    int windows_check;
     windows_check = check_for_CLRF(script_path);
     if (windows_check < 0) {
         std::cerr << "ERROR: Read error(s) were encountered while checking file '" << script_path << "'\n";
-        return -1;
+        QMessageBox reportUnexpectedOSError;
+        reportUnexpectedOSError.setIcon(QMessageBox::Critical);
+        reportUnexpectedOSError.setText("Error(s) were encountered while attempting to check local scripts read compatibility local for Linux");
+        reportUnexpectedOSError.setInformativeText("Linux script files ecountered read errors while attempting to execute. Please ensure they are"
+                                                   " in the expected location of 'scripts/Linux' before attempting to read them.\n");
+        reportUnexpectedOSError.setWindowTitle("Read Error Encountered for Linux Shell Scripts");
+        reportUnexpectedOSError.exec();
+        QApplication::exit(1);
+        return;
     }
 #endif
     // If Preprocessor Conditional Detects MacOS, Directly Execute Multiple Bash Commands to Graphviz's Dot Executable through A Pipeline
@@ -732,7 +745,7 @@ void MainWindow::onActionSubmitClicked()
     if (requestedSolution == "S") {
         // Set Output Image File Path Designated for Shortest Path and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
-        script_path..append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
+        script_path..append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
 // Toggle verbosity of both graphviz commands based on based on build configuration
 #ifndef RELEASE
         script_path.append(" -v; ");
@@ -749,7 +762,7 @@ void MainWindow::onActionSubmitClicked()
     } else {
         // Set Output Image File Path Designated for MST and Specify Output Format to Graphviz's Dot using Appropriate .gv files for Input
         script_path = "chmod +x ";
-        script_path.append(dot_path).append("; ").append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
+        script_path.append(dot_path).append(" -Tpng:cairo ").append(graph_filename).append(" -o ").append(graphDestination.toStdString());
 #ifndef RELEASE
         script_path.append(" -v; ");
 #else
@@ -832,7 +845,7 @@ void MainWindow::onActionSubmitClicked()
     case 0:
         gprintf("Executing '%s' to overlay the '%s' using the processed graphical information...\n", script_path, request_type);
         gprintf("\n=============================== IMAGE GENERATION RESULTS ====================================\n");
-        execl(command_val.c_str(), bash_path, script_path.c_str(), nullptr);
+        execl(command_val.c_str(), command_val.c_str(), script_path.c_str(), nullptr);
         perror("execl");
         break;
     default:
@@ -845,7 +858,9 @@ void MainWindow::onActionSubmitClicked()
     FILE *pipe_stream;
     command_val.append(script_path);
     gprintf("Generating the '%s' using the processed graphical information...\n", request_type.c_str());
-    gprintf("\n=============================== IMAGE GENERATION RESULTS ====================================\n");
+#ifdef DEBUG
+    std::cerr << "\n=============================== IMAGE GENERATION RESULTS ====================================\n";
+#endif
 #ifdef _WIN32
 
     // Establish Stream with Intent to both Execute the Powershell Script and Read from Buffer containing the Command Line Output for Error Detection
