@@ -376,7 +376,7 @@ int find_shortest_path(const std::string& s_vertex, const std::string& des_verte
 #ifdef DEBUG
                             std::cerr << "CURRENT VERTEX: " << '\n';
                             std::cerr << visited_vertices << '\n';
-                            std::cerr << "UPDATING MINIMUM DISTANCE/PATH FROM SOURCE VERTEX TO DESTINATION VERTEX" << '\n;
+                            std::cerr << "UPDATING MINIMUM DISTANCE/PATH FROM SOURCE VERTEX TO DESTINATION VERTEX" << '\n';
 #endif
 
                             gprintf("Current vertex is %s", popped_vertex.c_str());
