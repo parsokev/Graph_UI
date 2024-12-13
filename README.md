@@ -10,9 +10,7 @@ This was achieved through the utilization of:
 
    - [Graphviz](https://www.graphviz.org/) to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
-[Demonstration Video](https://github.com/user-attachments/assets/ae2bc191-844e-494d-ba03-a11df1394161)
-
-
+[Demonstration Video](https://github.com/user-attachments/assets/70cf5a42-a15d-4f3d-b54d-fead94f72871)
 
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
 the application will generate a desktop application window that will allow the user to generate and view
