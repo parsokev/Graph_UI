@@ -10,7 +10,7 @@ This was achieved through the utilization of:
 
    - [Graphviz](https://www.graphviz.org/) to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
-
+[Test Video](https://media.oregonstate.edu/media/t/1_ua3kcbjd?st=0)
 
 [Demonstration Video](https://github.com/user-attachments/assets/ae2bc191-844e-494d-ba03-a11df1394161)
 
