@@ -10,8 +10,6 @@ This was achieved through the utilization of:
 
    - [Graphviz](https://www.graphviz.org/) to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
-"https://cdnapisec.kaltura.com/p/391241/embedPlaykitJs/uiconf_id/55338833iframeembed=true&playerId=kaltura_player&entry_id=1_ua3kcbjd&flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_8brro7"
-
 [Demonstration Video](https://github.com/user-attachments/assets/ae2bc191-844e-494d-ba03-a11df1394161)
 
 
