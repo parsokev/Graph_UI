@@ -10,8 +10,22 @@ This was achieved through the utilization of:
 
    - [Graphviz](https://www.graphviz.org/) to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
-[Demonstration Video](https://github.com/user-attachments/assets/70cf5a42-a15d-4f3d-b54d-fead94f72871)
+## Demonstration Videos
 
+
+Video With Subtitles
+
+https://github.com/user-attachments/assets/0063b0c5-138a-4f0b-809d-dd505e40c8bd
+
+
+Video Without Subtitles
+
+
+https://github.com/user-attachments/assets/4ce038b9-8bf4-4482-90ca-559be4ab8272
+
+
+
+## Graph User Interface Walkthrough
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
 the application will generate a desktop application window that will allow the user to generate and view
 graphical visualizations after completing the following steps:
