@@ -10,6 +10,8 @@ This was achieved through the utilization of:
 
    - [Graphviz](https://www.graphviz.org/) to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
+[Demonstration Video](https://cdnapisec.kaltura.com/p/391241/embedPlaykitJs/uiconf_id/44855082?iframeembed=true&amp;entry_id=1_ua3kcbjd&amp;config%5Bprovider%5D=%7B%22widgetId%22%3A%221_i3j9c5vf%22%7D&amp;config%5Bplayback%5D=%7B%22startTime%22%3A0%7D)
+
 Upon completing the required steps for project setup outlined in the [Project Setup section](#project-setup),
 the application will generate a desktop application window that will allow the user to generate and view
 graphical visualizations after completing the following steps:
