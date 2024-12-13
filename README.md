@@ -10,7 +10,7 @@ This was achieved through the utilization of:
 
    - [Graphviz](https://www.graphviz.org/) to visualize the submitted graphical information, along with the requested solution, in PNG-formatted images.
 
-[Test Video](https://media.oregonstate.edu/media/t/1_ua3kcbjd?st=0)
+<iframe id="kaltura_player" src='https://cdnapisec.kaltura.com/p/391241/embedPlaykitJs/uiconf_id/44855082?iframeembed=true&amp;entry_id=1_ua3kcbjd&amp;config%5Bprovider%5D=%7B%22widgetId%22%3A%221_l733oqs4%22%7D&amp;config%5Bplayback%5D=%7B%22startTime%22%3A0%7D'  style="width: 640px;height: 420px;border: 0;" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" title="Graph Visualization UI Demo"></iframe>
 
 [Demonstration Video](https://github.com/user-attachments/assets/ae2bc191-844e-494d-ba03-a11df1394161)
 
